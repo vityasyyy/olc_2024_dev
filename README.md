@@ -10,7 +10,7 @@ npm i
 ## Commit Message Convention
 
 ```
-<type>(optional scope): <description>
+[<type>](optional scope): <description>
 ```
 
 `<type>` : 
@@ -25,11 +25,11 @@ npm i
 ### Contoh: 
 
 * ```
-  feat(landing Page): menambahkan hero section
+  [feat](landing Page): menambahkan hero section
   ```
 * ```
-  fix(api): kalkulasi salah
+  [fix](api): kalkulasi salah
   ```
 * ```
-  build: menambahkan dependencies
+  [build]: menambahkan dependencies
   ```
