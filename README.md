@@ -1,6 +1,7 @@
 ## Frontend Setup
 
-Kalo baru pull/clone repo ini, run command ini dulu biar bisa `npm run dev` di browser kalian.
+> [!TIP]
+> Kalo baru pull/clone repo ini, run command ini dulu biar bisa `npm run dev` di browser kalian.
 
 ```bash
 cd frontend
