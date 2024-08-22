@@ -10,14 +10,14 @@ npm i
 ## Commit Message Convention
 
 ```
-[<type>](optional scope): <description>
+[<TYPE>](optional scope): <description>
 ```
 
-`<type>` : 
-  - `feat`: menambahkan/menghapus fitur
-  - `fix`: memperbaiki bug
-  - `build`: menambahkan dependencies
-  - `chore`: commit misc e.g. mengubah `.gitignore`
+`<TYPE>` : 
+  - `FEAT`: menambahkan/menghapus fitur
+  - `FIX`: memperbaiki bug
+  - `BUILD`: menambahkan dependencies
+  - `CHORE`: commit misc e.g. mengubah `.gitignore`
 
 `<description>`:
   - penjelasan singkat tentang perubahan apa yang kalian buat
@@ -25,11 +25,11 @@ npm i
 ### Contoh: 
 
 * ```
-  [feat](landing Page): menambahkan hero section
+  [FEAT](landing Page): menambahkan hero section
   ```
 * ```
-  [fix](api): kalkulasi salah
+  [FIX](api): kalkulasi salah
   ```
 * ```
-  [build]: menambahkan dependencies
+  [BUILD]: menambahkan dependencies
   ```
