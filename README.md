@@ -1,3 +1,11 @@
+## Before You Make Changes
+
+PLEASE jangan lupa **PULL** sebelum bikin perubahan apapun, dan jangan lupa saling kabarin lagi kerjain bagian apa :)
+
+```
+git pull origin main
+```
+
 ## Frontend Setup
 
 > [!TIP]
