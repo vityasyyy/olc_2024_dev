@@ -45,3 +45,7 @@ npm i
 * ```
   [BUILD]: menambahkan dependencies
   ```
+
+### References:
+
+[conventional-commit-messages](https://gist.github.com/qoomon/5dfcdf8eec66a051ecd85625518cfd13)
