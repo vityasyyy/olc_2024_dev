@@ -1,0 +1,21 @@
+{
+  "name": "olc_2024_backend",
+  "version": "1.0.0",
+  "description": "OmahTI Learning Center (OLC) 2024",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vityasyyy/olc_2024_dev.git"
+  },
+  "author": "Arel, Argya V, Fahmi S, Rayhan F, S Devin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vityasyyy/olc_2024_dev/issues"
+  },
+  "homepage": "https://github.com/vityasyyy/olc_2024_dev#readme"
+}
