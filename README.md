@@ -21,6 +21,9 @@ npm i
 
 `<description>`:
   - penjelasan singkat tentang perubahan apa yang kalian buat
+  - bagian **wajib** dari format ini
+  - jangan pakai huruf _kapital_ buat huruf pertama
+  - jangan pakai `.` di akhir kalimat
 
 ### Contoh: 
 
