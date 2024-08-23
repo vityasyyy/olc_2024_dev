@@ -3,9 +3,9 @@
 PLEASE jangan lupa **PULL** sebelum bikin perubahan apapun, dan jangan lupa saling kabarin lagi kerjain bagian apa :)
 
 ```
-git pull origin main
+git pull --rebase origin main
 ```
-
+FOR A CLEANER COMMIT HISTORY PLS
 ## Frontend Setup
 
 > [!TIP]
