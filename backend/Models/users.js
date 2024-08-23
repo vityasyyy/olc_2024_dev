@@ -37,7 +37,13 @@ const userSchema = new Schema({
     assignments: [{
         type: Schema.Types.ObjectId,
         ref: "Assignment"
-    }]
+    }],
+    resetToken: {
+        type: String
+    },
+    resetTokenExpiration: {
+        type: Date
+    }
 });
 
 // Hash password before saving
