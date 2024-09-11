@@ -1,10 +1,10 @@
 require('dotenv').config();
-const bcrypt = require('bcryptjs')
-const User = require('../Models/users');
 const jwt = require('jsonwebtoken');
-const BlacklistedToken = require('../Models/tokenBlacklist');
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
+const User = require('../Models/users');
+const BlacklistedToken = require('../Models/tokenBlacklist');
+const Mahasiswa = require('../Models/mahasiswa');
 
 const transporter = nodemailer.createTransport({
     host: 'smtp-relay.brevo.com',
@@ -21,7 +21,10 @@ module.exports.register = async (req, res) => {
         const { email, username, password, nomorHP, NIM } = req.body;
         const existingUser = await User.findOne({ $or: [{ email }, { username }] }).lean();
         if (existingUser) return res.status(400).json({ error: 'User already exists' });
-
+        if(NIM) {
+            const existingNim = await Mahasiswa.findOne({NIM}).lean();
+            if (!existingNim) return res.status(400).json({ error: 'NIM not found' });
+        }
         const user = await User.create({ email, username, password, nomorHP, NIM });
         const token = jwt.sign({
             _id: user._id,
