@@ -9,7 +9,7 @@ FOR A CLEANER COMMIT HISTORY PLS
 ## Frontend Setup
 
 > [!TIP]
-> Kalo baru pull/clone repo ini, run command ini dulu biar bisa `npm run dev` di browser kalian.
+> Kalo baru pull/clone repo ini, run command ini dulu buat install semua dependencies
 
 ```bash
 cd frontend
@@ -19,14 +19,14 @@ npm i
 ## Commit Message Convention
 
 ```
-[<TYPE>](optional scope): <description>
+<TYPE>(optional scope): <description>
 ```
 
 `<TYPE>` : 
-  - `FEAT`: menambahkan/menghapus fitur
-  - `FIX`: memperbaiki bug
-  - `BUILD`: menambahkan dependencies
-  - `CHORE`: commit misc e.g. mengubah `.gitignore`
+  - `feat`: menambahkan/menghapus fitur
+  - `fix`: memperbaiki bug
+  - `build`: menambahkan dependencies
+  - `chore`: commit misc e.g. mengubah `.gitignore`
 
 `<description>`:
   - penjelasan singkat tentang perubahan apa yang kalian buat
@@ -37,13 +37,13 @@ npm i
 ### Contoh: 
 
 * ```
-  [FEAT](landing Page): menambahkan hero section
+  feat(landing Page): menambahkan hero section
   ```
 * ```
-  [FIX](api): kalkulasi salah
+  feat(api): kalkulasi salah
   ```
 * ```
-  [BUILD]: menambahkan dependencies
+  build: menambahkan dependencies
   ```
 
 ### References:
