@@ -1,21 +1,70 @@
 import Container from "../global/Container";
 import Tag from "../global/Tag";
+import Image from "next/image";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const Classes = () => {
   return (
     <Container parentClass="bg-[#8E8E8E]" className="flex flex-col gap-6">
+      {/* tag */}
       <div className="flex flex-col gap-4">
         <Tag className="text-black">OLClass</Tag>
-        <p className="font-semibold">Kelas dengan bimbingan profesional industri</p>
+        <p className="font-semibold">
+          Kelas dengan bimbingan profesional industri
+        </p>
       </div>
+
+      {/* class cards */}
+      <Card label="apa gitu"/>
+      <Card />
+      <Card />
     </Container>
   );
 };
 
-const Card = () => {
-    return (
-        
-    )
-}
+const Card = ({
+  label = "Software Engineering",
+  judul = "Nama Judul Kelas",
+  nama = "Fahmi Shampoerna",
+  description = "Project Manager at TelkomBeta",
+  materi = "Banyak banget yang dipelajari"
+}) => {
+  return (
+    <>
+      <div className="flex h-96 w-full flex-col border-[1px] border-black sm:h-48 sm:flex-row">
+        {/* image */}
+        <div className="relative h-1/2 w-full sm:h-full sm:w-[200px]">
+          <Image src="placeholder.svg" layout="fill" objectFit="cover" />
+        </div>
+        <div className="flex h-1/2 w-full flex-col justify-end gap-1 border-b-[1px] border-black bg-[#656161] p-4 text-white sm:h-full sm:w-full">
+          {/* label */}
+          <p className="mb-4 w-fit rounded-md bg-white p-1 text-sm text-black">
+            {label}
+          </p>
+          {/* title */}
+          <h1 className="text-2xl font-semibold sm:text-4xl">{judul}</h1>
+          {/* moderator */}
+          <p className="text-sm sm:text-lg">Moderator: {nama}</p>
+          {/* description */}
+          <p className="text-sm">{description}</p>
+        </div>
+      </div>
+
+      <Accordion type="single" collapsible>
+        <AccordionItem value="item-1">
+          <AccordionTrigger>Materi yang akan kamu pelajari</AccordionTrigger>
+          <AccordionContent>
+            {materi}
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
+    </>
+  );
+};
 
 export default Classes;
