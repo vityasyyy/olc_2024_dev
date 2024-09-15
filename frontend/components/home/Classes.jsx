@@ -14,7 +14,8 @@ const Classes = () => {
 
 const Card = () => {
     return (
-        
+        <>
+        </>
     )
 }
 
