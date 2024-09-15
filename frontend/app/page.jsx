@@ -1,4 +1,4 @@
-import Navbar from "../components/Navbar";
+import Navbar from "../components/global/Navbar";
 import Hero from "../components/home/Hero";
 import AboutOLC from "../components/home/AboutOLC";
 import Classes from "@/components/home/Classes";
