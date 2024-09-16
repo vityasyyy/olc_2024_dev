@@ -6,8 +6,8 @@ import { useRouter } from "next/navigation";
 const BackButton = () => {
   const Router = useRouter();
   return (
-    <Button onClick={() => Router.back()} variant="ghost">
-      <ArrowLeft className="mr-2 h-5 w-5" />
+    <Button onClick={() => Router.back()} variant="link" className="px-0">
+      <ArrowLeft className="mr-2 h-4 w-4" />
       Kembali
     </Button>
   );

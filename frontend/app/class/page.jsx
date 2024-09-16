@@ -2,25 +2,31 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Navbar from "@/components/global/Navbar";
-import Image from "next/image";
+import CardDrawer from "@/components/class/Card";
 import Tag from "@/components/global/Tag";
 import ContainerLarge from "@/components/global/ContainerLarge";
+import CardLoading from "@/components/class/CardLoading";
+import { motion } from "framer-motion";
+import { Skeleton } from "@/components/ui/skeleton"; 
 
 const Class = () => {
   const Router = useRouter();
   const [isVisible, setIsVisible] = useState(false);
   const [classes, setClasses] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const fetchAllClass = async () => {
-    const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/olclass`);
+    const response = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_URL}/olclass`,
+    );
     setClasses(response.data);
-  }
+    setLoading(false);
+  };
   useState(() => {
     fetchAllClass();
-  })
+  });
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
@@ -36,9 +42,15 @@ const Class = () => {
         <h1 className="pb-10 text-3xl font-semibold sm:text-4xl">
           Halo,
           <br />
-          <span className={`${isVisible ? 'opacity-100' : 'opacity-0'} transition-all duration-1000 ease-in-out`}>
-            Sultan Tampan Suyudi
-          </span>
+          {loading ? (
+            <>
+              <Skeleton className="h-8 w-96 mt-2" />
+            </>
+          ) : (
+            <motion.p initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }}>
+              Sultan Tampan Suyudi
+            </motion.p>
+          )}
         </h1>
 
         <Tag>OLClass</Tag>
@@ -50,50 +62,23 @@ const Class = () => {
         </p>
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
-          {classes.map((item) => (
-            <Link key={item._id} href={`/class/${item.slug}`}>
-                <Card
+          {loading ? (
+            <>
+              <CardLoading />
+            </>
+          ) : (
+            classes.map((item) => (
+                <CardDrawer
                   label={item.title}
                   judul={item.title} //Use appropriate fields from the data
                   tanggal={item.waktu ? item.waktu : "TBA"} // Example of how you can handle missing fields
+                  href={`/class/${item.slug}`}
                 />
-            </Link>
-          ))}
+            ))
+          )}
         </div>
       </ContainerLarge>
     </>
-  );
-};
-
-const Card = ({
-  label = "Software Engineering",
-  judul = "Judul",
-  tanggal = "22 Sept - 20 Okt 2024",
-}) => {
-  return (
-    <div className="w-full justify-between rounded-xl border-[2px] border-black shadow-sm">
-      <div className="relative h-32 w-full overflow-hidden rounded-t-xl">
-        <Image
-          src="/placeholder.svg"
-          alt="Kelas"
-          layout="fill"
-          objectFit="cover"
-          className="rounded-t-xl"
-        />
-        <span className="absolute left-3 top-3 rounded-md bg-gray-100 px-2 py-1 text-sm font-medium">
-          {label}
-        </span>
-      </div>
-
-      <div className="p-3">
-        <h2 className="mb-2 text-xl font-bold sm:text-2xl">{judul}</h2>
-        <p className="mb-4 pb-10 text-sm">{tanggal}</p>
-
-        <Button className="w-full border-black" variant="outline" asChild>
-          <Link href="/auth/register">Daftar Sekarang</Link>
-        </Button>
-      </div>
-    </div>
   );
 };
 

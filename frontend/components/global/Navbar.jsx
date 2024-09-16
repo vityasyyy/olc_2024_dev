@@ -14,21 +14,13 @@ import {
 export default function Navbar({
   className,
   loggedIn = false,
-  scrollToAbout,
   ...props
 }) {
-
-  const navItems = loggedIn
-    ? [{ href: "/logout", label: "Keluar" }]
-    : [
-        { href: "/about", label: "About Us" },
-        { href: "/class", label: "OLClass" },
-      ];
 
   return (
     <>
       <nav
-        className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 
+        className={`fixed left-0 right-0 top-0 z-50
           bg-white/75 backdrop-blur-[8px] ${className}`}
         {...props}
       >

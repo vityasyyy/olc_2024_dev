@@ -6,10 +6,22 @@ import Image from "next/image";
 import BackButton from "@/components/global/BackButton";
 import { Progress } from "@/components/ui/progress";
 import ContainerLarge from "@/components/global/ContainerLarge";
+import CardDrawer from "@/components/class/slug/Card";
+import { Button } from "@/components/ui/button";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
 
 const ClassDetail = () => {
   const params = useParams();
-  const slug  = params.slug; // Get the slug from the URL
+  const slug = params.slug; // Get the slug from the URL
   const [classDetail, setClassDetail] = useState(null);
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState(0);
@@ -21,14 +33,20 @@ const ClassDetail = () => {
     const fetchClassIdBySlug = async () => {
       try {
         // Fetch class data by slug to retrieve the id
-        const slugResponse = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/olclass/slug/${slug}`);
-        console.log(slugResponse)
+        const slugResponse = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL}/olclass/slug/${slug}`,
+        );
+        console.log(slugResponse);
         const classId = slugResponse.data; // Assuming your response contains the ID
 
         // Now fetch the class details using the id
-        const classResponse = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/olclass/${classId}`);
+        const classResponse = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL}/olclass/${classId}`,
+        );
         setClassDetail(classResponse.data);
-        setProgress((classResponse.data.enrolled / classResponse.data.slot) * 100);
+        setProgress(
+          (classResponse.data.enrolled / classResponse.data.slot) * 100,
+        );
         setLoading(false);
       } catch (error) {
         console.error("Error fetching class detail:", error);
@@ -44,80 +62,67 @@ const ClassDetail = () => {
 
   return (
     <>
-      <ContainerLarge>
-        <BackButton />
-        <h1 className="my-8 text-4xl font-bold">{classDetail.title}</h1>
+      <div className="bg-white">
+        <ContainerLarge>
+          <BackButton />
+          <h1 className="my-8 text-4xl font-bold">{classDetail.title}</h1>
 
-        <div className="flex flex-col gap-6 md:flex-row">
-          {/* speaker and image section */}
-          <div className="relative flex w-full flex-row gap-2 md:w-1/3 md:flex-col">
-            <Image
-              className="h-24 w-auto object-cover md:h-auto md:w-full"
-              src={classDetail.image || "/placeholder.svg"}
-              alt={classDetail.mentor?.nama || "Speaker Image"}
-              width={500}
-              height={600}
-            />
+          <div className="flex flex-col gap-6 md:flex-row">
+            {/* speaker and image section */}
+            <div className="relative flex w-full flex-row gap-2 md:w-1/3 md:flex-col">
+              <Image
+                className="h-24 w-auto object-cover md:h-auto md:w-full"
+                src={classDetail.image || "/placeholder.svg"}
+                alt={classDetail.mentor?.nama || "Speaker Image"}
+                width={500}
+                height={600}
+              />
 
-            <div className="flex flex-col sm:gap-2">
-              <p className="font-medium">Speaker</p>
-              <p className="text-xl font-semibold sm:text-2xl">
-                {classDetail.mentor?.nama || "Speaker Name"}
-              </p>
-              <p className="font-medium text-gray-500">
-                {classDetail.mentor?.deskripsi || "Speaker Position"}
-              </p>
-            </div>
-          </div>
-
-          {/* right side */}
-          <div className="flex w-full flex-col gap-4">
-            <p className="text-2xl font-semibold">Slot Tersedia :</p>
-            <div className="flex flex-wrap gap-3">
-              <Progress value={progress} />
-              <p className="text-xl font-semibold">
-                {classDetail.enrolled}/{classDetail.slot}
-              </p>
+              <div className="flex flex-col sm:gap-2">
+                <p className="font-medium">Speaker</p>
+                <p className="text-xl font-semibold sm:text-2xl">
+                  {classDetail.mentor?.nama || "Speaker Name"}
+                </p>
+                <p className="font-medium text-gray-500">
+                  {classDetail.mentor?.deskripsi || "Speaker Position"}
+                </p>
+              </div>
             </div>
 
-            {/* session cards */}
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {classDetail.sesi.map((session, index) => (
-                <Card
-                  key={index}
-                  sesi={`${index + 1}`}
-                  judul={session.judulSesi}
-                  tanggal={new Date(session.waktu).toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' })}
-                  jam={new Date(session.waktu).toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' })}
-                  tempat={session.platform}
-                />
-              ))}
+            {/* right side */}
+            <div className="flex w-full flex-col gap-4">
+              <p className="text-2xl font-semibold">Slot Tersedia :</p>
+              <div className="flex flex-wrap gap-3">
+                <Progress value={progress} />
+                <p className="text-xl font-semibold">
+                  {classDetail.enrolled}/{classDetail.slot}
+                </p>
+              </div>
+
+              {/* session cards */}
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {classDetail.sesi.map((session, index) => (
+                  <CardDrawer
+                    key={index}
+                    sesi={`${index + 1}`}
+                    judul={session.judulSesi}
+                    tanggal={new Date(session.waktu).toLocaleDateString(
+                      "id-ID",
+                      { day: "2-digit", month: "long", year: "numeric" },
+                    )}
+                    jam={new Date(session.waktu).toLocaleTimeString("id-ID", {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
+                    tempat={session.platform}
+                  />
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      </ContainerLarge>
-    </>
-  );
-};
-
-const Card = ({ sesi, judul, jam, tanggal, tempat }) => {
-  return (
-    <div className="flex h-52 w-full flex-col justify-between rounded-xl border-[2px] border-black p-4 shadow-sm">
-      <p className="text-base font-semibold">Sesi {sesi}</p>
-
-      <div>
-        <p className="text-3xl font-semibold">{judul}</p>
-        <div className="flex justify-between text-sm font-medium">
-          <div>
-            <p>{jam}</p>
-            <p>{tanggal}</p>
-          </div>
-          <div className="flex items-end">
-            <p>{tempat}</p>
-          </div>
-        </div>
+        </ContainerLarge>
       </div>
-    </div>
+    </>
   );
 };
 
