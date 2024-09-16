@@ -1,13 +1,10 @@
 "use client";
-import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
-import { Arrow } from "@radix-ui/react-dropdown-menu";
+import BackButton from "@/components/global/BackButton";
 import { useState, useEffect } from "react";
 
 const Register = () => {
-  const Router = useRouter();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -22,10 +19,7 @@ const Register = () => {
     <div className="fixed inset-0 flex h-screen w-screen flex-col sm:flex-row">
       {/* top side / left side */}
       <div className="h-1/2 w-screen bg-[#D9D9D9] p-4 sm:h-screen sm:w-1/2">
-        <Button onClick={() => Router.back()} variant="ghost">
-          <ArrowLeft className="mr-2 h-5 w-5" />
-          Kembali
-        </Button>
+        <BackButton />
       </div>
 
       {/* form bottom / right side */}
