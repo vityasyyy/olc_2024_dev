@@ -1,4 +1,5 @@
 "use client";
+import axios from "axios";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -11,7 +12,15 @@ import ContainerLarge from "@/components/global/ContainerLarge";
 const Class = () => {
   const Router = useRouter();
   const [isVisible, setIsVisible] = useState(false);
+  const [classes, setClasses] = useState([]);
 
+  const fetchAllClass = async () => {
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/olclass`);
+    setClasses(response.data);
+  }
+  useState(() => {
+    fetchAllClass();
+  })
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
@@ -41,26 +50,15 @@ const Class = () => {
         </p>
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
-          <Card
-            label="Software Engineering"
-            judul="Judul"
-            tanggal="22 Sept - 20 Okt 2024"
-          />
-          <Card
-            label="Software Engineering"
-            judul="Judul"
-            tanggal="22 Sept - 20 Okt 2024"
-          />
-          <Card
-            label="Software Engineering"
-            judul="Judul"
-            tanggal="22 Sept - 20 Okt 2024"
-          />
-          <Card
-            label="Software Engineering"
-            judul="Judul"
-            tanggal="22 Sept - 20 Okt 2024"
-          />
+          {classes.map((item) => (
+            <Link key={item._id} href={`/class/${item.slug}`}>
+                <Card
+                  label={item.title}
+                  judul={item.title} //Use appropriate fields from the data
+                  tanggal={item.waktu ? item.waktu : "TBA"} // Example of how you can handle missing fields
+                />
+            </Link>
+          ))}
         </div>
       </ContainerLarge>
     </>
