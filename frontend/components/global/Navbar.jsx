@@ -12,16 +12,16 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-// declare nav items
-const navItems = [
-  { href: "/about", label: "About Us" },
-  { href: "/class", label: "OLClass" },
-];
-
-export default function Navbar({ className, ...props }) {
+export default function Navbar({ className, loggedIn = false, ...props }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
+  const navItems = loggedIn
+    ? [{ href: "/logout", label: "Keluar" }]
+    : [
+        { href: "/about", label: "About Us" },
+        { href: "/class", label: "OLClass" },
+      ];
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -34,9 +34,7 @@ export default function Navbar({ className, ...props }) {
     <>
       <nav
         className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${
-          isScrolled
-            ? "bg-white/75 shadow-md backdrop-blur-[8px]"
-            : "bg-white"
+          isScrolled ? "bg-white/75 shadow-md backdrop-blur-[8px]" : "bg-white"
         } ${className}`}
         {...props}
       >
@@ -56,7 +54,15 @@ export default function Navbar({ className, ...props }) {
             <div className="hidden sm:block">
               <div className="ml-10 flex items-baseline space-x-4">
                 {navItems.map((item) => (
-                  <Button key={item.href} variant={item.label === 'OLClass' ? '' : 'ghost'} asChild>
+                  <Button
+                    key={item.href}
+                    variant={
+                      item.label === "OLClass" || item.label === "Keluar"
+                        ? ""
+                        : "ghost"
+                    }
+                    asChild
+                  >
                     <Link href={item.href}>{item.label}</Link>
                   </Button>
                 ))}
@@ -92,7 +98,7 @@ export default function Navbar({ className, ...props }) {
               <Link
                 key={item.href}
                 href={item.href}
-                className="block rounded-md px-3 py-2 text-lg text-gray-500 hover:bg-gray-100 hover:text-gray-900 transition-all"
+                className="block rounded-md px-3 py-2 text-lg text-gray-500 transition-all hover:bg-gray-100 hover:text-gray-900"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.label}

@@ -11,7 +11,7 @@ const Class = () => {
   const Router = useRouter();
   return (
     <>
-      <Navbar />
+      <Navbar loggedIn />
       <ContainerLarge>
         <h1 className="pb-10 text-3xl font-semibold sm:text-4xl">
           Halo,

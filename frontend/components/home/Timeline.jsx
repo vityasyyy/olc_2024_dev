@@ -9,14 +9,16 @@ const Timeline = () => {
         <Tag>Timeline</Tag>
         <div className="flex flex-col items-center gap-6">
           {/* wrapper on big screens so it turns into a 4x4 grid */}
-          <div className="w-full grid grid-cols-1 px-[10%] lg:px-0 sm:grid-cols-2 gap-6 lg:grid-cols-4">
+          <div className="grid w-full grid-cols-1 gap-6 px-[10%] sm:grid-cols-2 lg:grid-cols-4 lg:px-0">
             <Card smallCard />
             <Card smallCard />
             <Card smallCard />
             <Card smallCard />
           </div>
-          <Card />
-          <Card />
+          <div className="flex w-full flex-col gap-6 px-[10%] lg:px-0">
+            <Card />
+            <Card />
+          </div>
         </div>
       </Container>
     </>
@@ -34,14 +36,18 @@ const Card = ({
   return (
     // 2 divs that will always be square
     <div
-      className={`flex h-72 relative w-full flex-col justify-end rounded-md border border-black bg-white p-4 text-black ${className}`}
+      className={`relative flex h-72 w-full flex-col justify-end rounded-md border border-black bg-white p-3 text-black ${className}`}
     >
       {/* day label */}
-      <p className="absolute left-2 top-2 mb-4 w-fit rounded-md bg-[#656161] px-4 py-1 text-sm text-black">
+      <p className="absolute left-3 top-3 mb-4 w-fit rounded-md bg-[#656161] px-4 py-1 text-sm text-black">
         Day {day}
       </p>
 
-      <h1 className={`text-3xl font-semibold ${judulClass} ${smallCard ? 'lg:text-2xl' : 'sm:text-4xl'}`}>{judul}</h1>
+      <h1
+        className={`text-3xl font-semibold ${judulClass} ${smallCard ? "lg:text-2xl" : "sm:text-4xl"}`}
+      >
+        {judul}
+      </h1>
 
       {/* tanggal dan lokasi */}
       <div className="mt-4 flex flex-col gap-2 text-sm font-medium">
