@@ -5,6 +5,8 @@ import Image from "next/image";
 import BackButton from "@/components/global/BackButton";
 import { Progress } from "@/components/ui/progress";
 import ContainerLarge from "@/components/global/ContainerLarge";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const Detail = () => {
   let enrolled = 10;
@@ -59,6 +61,7 @@ const Detail = () => {
               <Card />
               <Card />
               <Card />
+              <JoinCard />
             </div>
           </div>
         </div>
@@ -77,21 +80,33 @@ const Card = ({
   return (
     <div className="flex h-52 w-full flex-col justify-between rounded-xl border-[2px] border-black p-4 shadow-sm">
       <p className="text-base font-semibold">Sesi {sesi}</p>
-
-      <div>
-        <p className="text-3xl font-semibold">{judul}</p>
-        <div className="flex justify-between text-sm font-medium">
-          <div>
+      <p className="text-3xl font-semibold">{judul}</p>
+      <div className="flex justify-between text-sm font-medium">
+        <div>
             <p>{jam}</p>
             <p>{tanggal}</p>
-          </div>
-          <div className="flex items-end">
+        </div>
+        <div className="flex items-end">
             <p>{tempat}</p>
-          </div>
+        </div>
         </div>
       </div>
-    </div>
   );
 };
+
+const JoinCard = ({
+    judul = "Ayo Bergabung Sekarang!",
+    desc = "Slot kelas terbatas"
+  }) => {
+    return (
+    <div className="flex flex-col gap-2 mt-9">
+        <p className="text-3xl font-semibold">{judul}</p>
+        <p className="text-base font-medium">{desc}</p>
+        <Button className="w-full border-black mt-4" variant="outline" asChild>
+            <Link href="/auth/register">Daftar Sekarang</Link>
+        </Button>
+    </div>
+    );
+  };
 
 export default Detail;
