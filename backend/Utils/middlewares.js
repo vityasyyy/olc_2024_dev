@@ -1,4 +1,6 @@
+require('dotenv').config();
 const jwt = require('jsonwebtoken');
+const nodemailer = require('nodemailer');
 const BlacklistedToken = require('../Models/tokenBlacklist');
 
 module.exports.isAuthenticated = async (req, res, next) => {
@@ -14,7 +16,7 @@ module.exports.isAuthenticated = async (req, res, next) => {
 
         // Check if token has expired
         if (Date.now() >= decoded.exp * 1000) {
-            return res.status(401).json({ error: 'Token has expired.' });
+            return res.status(401).json({ error: 'Token has expired, please log in again' });
         }
 
         // Check if token is blacklisted

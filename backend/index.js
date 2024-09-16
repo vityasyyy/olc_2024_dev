@@ -4,6 +4,9 @@ const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const cors = require('cors');
 const connectDB = require('./Models/connectDB');
+
+const olclassRoutes = require('./Routes/olclassRoutes');
+const olconRoutes = require('./Routes/olconRoutes');
 const userRoutes = require('./Routes/userRoutes');
 
 const app = express();
@@ -22,6 +25,8 @@ app.use(express.urlencoded({extended: true}));
 app.use(mongoSanitize());
 
 app.use('/auth', userRoutes);
+app.use('/olcon', olconRoutes);
+app.use('/olclass', olclassRoutes);
 
 app.use((err, req, res, next) => {
   const { statusCode = 500 } = err;

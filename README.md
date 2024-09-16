@@ -16,6 +16,15 @@ cd frontend
 npm i
 ```
 
+### Component Folder Structure
+
+![image](https://github.com/user-attachments/assets/529231c0-94dc-436d-bc04-e1b331794343)
+
+* kalo component nya di banyak page (reusable): `components > global > ReusableComponent.jsx`
+* kalo component nya hanya di page itu: `components > nama-halaman > YourComponent.jsx`
+
+biar rapih hehe
+
 ## Commit Message Convention
 
 ```
