@@ -4,6 +4,13 @@ const bcrypt = require('bcryptjs');
 
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const nimRegex = /^\d{2}\/\d{6}\/[A-Z]{2}\/\d{5}$/;
+
+const paymentSchema = new Schema({
+    url: String,
+    filename: String,
+    hasPaid: Boolean
+});
+
 const userSchema = new Schema({
     email: {
         type: String,
@@ -21,11 +28,6 @@ const userSchema = new Schema({
         unique: true,
         match: [nimRegex, 'Please fill a valid NIM']
     },
-    nomorHP: {
-        type: String,
-        required: true,
-        unique: true
-    },
     password: {
         type: String,
         required: true
@@ -34,16 +36,18 @@ const userSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: "Event"
     },
-    assignments: [{
-        type: Schema.Types.ObjectId,
-        ref: "Assignment"
-    }],
+    isDike: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
     resetToken: {
         type: String
     },
     resetTokenExpiration: {
         type: Date
-    }
+    },
+    payment: paymentSchema
 });
 
 // Hash password before saving
