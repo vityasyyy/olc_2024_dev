@@ -10,7 +10,6 @@ import { Fullscreen } from "lucide-react";
 
 const Class = () => {
   const Router = useRouter();
-
   return (
     <div className="px-4 py-6">
       <Navbar />
@@ -25,7 +24,7 @@ const Class = () => {
       <p className="text-xl sm:text-2xl font-bold pt-10">Kelas Tersedia</p>
       <p className="pb-6">Kamu hanya dapat memilih satu kelas dan pendaftar akan langsung mendapat akses OLConvention</p>
       
-      <div className="flex flex-wrap gap-6 justify-center">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <Card 
           label="Software Engineering"
           judul="Judul"
@@ -54,7 +53,7 @@ const Class = () => {
 
 const Card = ({ label = "Software Engineering", judul = "Judul", tanggal = "22 Sept - 20 Okt 2024" }) => {
   return (
-    <div className="border-[2px] border-black rounded-xl w-[22rem] shadow-sm justify-between">
+    <div className="border-[2px] border-black rounded-xl w-full shadow-sm justify-between ">
       <div className="relative rounded-t-xl overflow-hidden h-32 w-full">
         <Image
           src="/placeholder.svg"
