@@ -2,59 +2,66 @@
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import Container from "@/components/global/Container";
 import Navbar from "@/components/global/Navbar";
 import Image from "next/image";
-import Tag from "@/components/global/Tag";  
-import { Fullscreen } from "lucide-react";
+import Tag from "@/components/global/Tag";
+import ContainerLarge from "@/components/global/ContainerLarge";
 
 const Class = () => {
   const Router = useRouter();
   return (
-    <div className="px-4 py-6">
+    <>
       <Navbar />
-      <h1 className="text-3xl sm:text-4xl font-semibold pb-10">
-        Halo, 
-        <br />
-        Sultan Tampan Suyudi
-      </h1>
+      <ContainerLarge>
+        <h1 className="pb-10 text-3xl font-semibold sm:text-4xl">
+          Halo,
+          <br />
+          Sultan Tampan Suyudi
+        </h1>
 
-      <Tag>OLClass</Tag>
+        <Tag>OLClass</Tag>
 
-      <p className="text-xl sm:text-2xl font-bold pt-10">Kelas Tersedia</p>
-      <p className="pb-6">Kamu hanya dapat memilih satu kelas dan pendaftar akan langsung mendapat akses OLConvention</p>
-      
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Card 
-          label="Software Engineering"
-          judul="Judul"
-          tanggal="22 Sept - 20 Okt 2024"
-        />
-        <Card 
-          label="Software Engineering"
-          judul="Judul"
-          tanggal="22 Sept - 20 Okt 2024"
-        />
-        <Card 
-          label="Software Engineering"
-          judul="Judul"
-          tanggal="22 Sept - 20 Okt 2024"
-        />
-        <Card 
-          label="Software Engineering"
-          judul="Judul"
-          tanggal="22 Sept - 20 Okt 2024"
-        />
-      </div>
-      
-    </div>
+        <p className="pt-10 text-xl font-bold sm:text-2xl">Kelas Tersedia</p>
+        <p className="pb-6">
+          Kamu hanya dapat memilih satu kelas dan pendaftar akan langsung
+          mendapat akses OLConvention
+        </p>
+
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
+          <Card
+            label="Software Engineering"
+            judul="Judul"
+            tanggal="22 Sept - 20 Okt 2024"
+          />
+          <Card
+            label="Software Engineering"
+            judul="Judul"
+            tanggal="22 Sept - 20 Okt 2024"
+          />
+          <Card
+            label="Software Engineering"
+            judul="Judul"
+            tanggal="22 Sept - 20 Okt 2024"
+          />
+          <Card
+            label="Software Engineering"
+            judul="Judul"
+            tanggal="22 Sept - 20 Okt 2024"
+          />
+        </div>
+      </ContainerLarge>
+    </>
   );
 };
 
-const Card = ({ label = "Software Engineering", judul = "Judul", tanggal = "22 Sept - 20 Okt 2024" }) => {
+const Card = ({
+  label = "Software Engineering",
+  judul = "Judul",
+  tanggal = "22 Sept - 20 Okt 2024",
+}) => {
   return (
-    <div className="border-[2px] border-black rounded-xl w-full shadow-sm justify-between ">
-      <div className="relative rounded-t-xl overflow-hidden h-32 w-full">
+    <div className="w-full justify-between rounded-xl border-[2px] border-black shadow-sm">
+      <div className="relative h-32 w-full overflow-hidden rounded-t-xl">
         <Image
           src="/placeholder.svg"
           alt="Kelas"
@@ -62,16 +69,16 @@ const Card = ({ label = "Software Engineering", judul = "Judul", tanggal = "22 S
           objectFit="cover"
           className="rounded-t-xl"
         />
-        <span className="absolute top-2 left-2 bg-gray-100 px-2 py-1 text-sm font-medium rounded-md">
+        <span className="absolute left-2 top-2 rounded-md bg-gray-100 px-2 py-1 text-sm font-medium">
           {label}
         </span>
       </div>
 
       <div className="p-4">
-        <h2 className="text-xl sm:text-2xl font-bold mb-2">{judul}</h2>
-        <p className="text-sm mb-4 pb-10">{tanggal}</p>
-        
-        <button className="w-full py-2 border-[2px] border-black rounded-md hover:bg-gray-100">
+        <h2 className="mb-2 text-xl font-bold sm:text-2xl">{judul}</h2>
+        <p className="mb-4 pb-10 text-sm">{tanggal}</p>
+
+        <button className="w-full rounded-md border-[2px] border-black py-2 hover:bg-gray-100">
           Daftar Sekarang
         </button>
       </div>
