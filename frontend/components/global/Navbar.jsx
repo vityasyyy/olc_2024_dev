@@ -1,73 +1,105 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Menu, School, BookA } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { DropdownMenuGroup } from "@radix-ui/react-dropdown-menu";
+
+// declare nav items
+const navItems = [
+  { href: "/about", label: "About Us" },
+  { href: "/class", label: "OLClass" },
+];
 
 export default function Navbar({ className, ...props }) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <>
       <nav
-        className={`fixed left-0 right-0 top-0 z-50 flex bg-white/75 p-4 backdrop-blur-[8px] ${className}`}
+        className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${
+          isScrolled
+            ? "bg-white/75 shadow-md backdrop-blur-[8px]"
+            : "bg-white"
+        } ${className}`}
         {...props}
       >
-        {/* logo */}
-        <Image
-          className="h-9 w-9"
-          src="/placeholder.svg"
-          alt="Logo"
-          height={32}
-          width={32}
-        />
-
-        {/* buttons go here */}
-        <div className="ml-auto hidden gap-2 sm:flex">
-          <Button variant="ghost" asChild>
-            <Link href="/about">About Us</Link>
-          </Button>
-
-          <Button asChild>
-            <Link href="/olclass">OLClass</Link>
-          </Button>
+        <div className="mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex h-16 items-center justify-between">
+            <div className="flex items-center">
+              <Link href="/" className="flex-shrink-0">
+                <Image
+                  className="h-8 w-auto"
+                  src="/placeholder.svg"
+                  alt="Logo"
+                  width={32}
+                  height={32}
+                />
+              </Link>
+            </div>
+            <div className="hidden sm:block">
+              <div className="ml-10 flex items-baseline space-x-4">
+                {navItems.map((item) => (
+                  <Button key={item.href} variant={item.label === 'OLClass' ? '' : 'ghost'} asChild>
+                    <Link href={item.href}>{item.label}</Link>
+                  </Button>
+                ))}
+              </div>
+            </div>
+            <div className="-mr-2 flex sm:hidden">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                aria-expanded={isMenuOpen}
+                aria-label="Toggle menu"
+              >
+                <span className="sr-only">Open main menu</span>
+                {isMenuOpen ? (
+                  <X className="block h-6 w-6" aria-hidden="true" />
+                ) : (
+                  <Menu className="block h-6 w-6" aria-hidden="true" />
+                )}
+              </Button>
+            </div>
+          </div>
         </div>
 
-        {/* mobile dropdown menu, using shadcn */}
-        <DropdownMenu>
-          <DropdownMenuTrigger
-            asChild
-            className="ml-auto inline-block sm:hidden"
-          >
-            <Button variant="ghost">
-              <Menu className="h-9 w-9" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="mr-4 w-56">
-            <DropdownMenuLabel>Navigation</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuGroup>
-              <DropdownMenuItem asChild>
-                <Link href="about">
-                  <BookA className="mr-2 h-4 w-4" />
-                  <span>About Us</span>
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link href="/olclass">
-                  <School className="mr-2 h-4 w-4" />
-                  <span>OLClass</span>
-                </Link>
-              </DropdownMenuItem>
-            </DropdownMenuGroup>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        {/* dropdown menu on mobile */}
+        <div
+          className={`sm:hidden ${
+            isMenuOpen ? "block" : "hidden"
+          } transition-all duration-300 ease-in-out`}
+        >
+          <div className="space-y-2 px-2 pb-3 pt-2 sm:px-3">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="block rounded-md px-3 py-2 text-lg text-gray-500 hover:bg-gray-100 hover:text-gray-900 transition-all"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+        </div>
       </nav>
 
       {/* spacer, acts like a margin */}
