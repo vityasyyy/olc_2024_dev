@@ -1,4 +1,5 @@
 "use client";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -9,6 +10,16 @@ import ContainerLarge from "@/components/global/ContainerLarge";
 
 const Class = () => {
   const Router = useRouter();
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <>
       <Navbar loggedIn />
@@ -16,7 +27,9 @@ const Class = () => {
         <h1 className="pb-10 text-3xl font-semibold sm:text-4xl">
           Halo,
           <br />
-          Sultan Tampan Suyudi
+          <span className={`${isVisible ? 'opacity-100' : 'opacity-0'} transition-all duration-1000 ease-in-out`}>
+            Sultan Tampan Suyudi
+          </span>
         </h1>
 
         <Tag>OLClass</Tag>
@@ -79,9 +92,7 @@ const Card = ({
         <p className="mb-4 pb-10 text-sm">{tanggal}</p>
 
         <Button className="w-full border-black" variant="outline" asChild>
-          <Link href="/auth/register">
-          Daftar Sekarang
-          </Link>
+          <Link href="/auth/register">Daftar Sekarang</Link>
         </Button>
       </div>
     </div>
