@@ -1,44 +1,57 @@
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
-const nodemailer = require('nodemailer');
 const User = require('../Models/users');
 const BlacklistedToken = require('../Models/tokenBlacklist');
 const Mahasiswa = require('../Models/mahasiswa');
-
-const transporter = nodemailer.createTransport({
-    host: 'smtp-relay.brevo.com',
-    port: 587,
-    secure: false,
-    auth: {
-        user: process.env.BREVO_SMTP_USER,
-        pass: process.env.BREVO_SMTP_PASS
-    }
-});
+const resetPasswordEmail = require('../Utils/reusedFunc').resetPasswordEmail;
 
 module.exports.register = async (req, res) => {
     try {
-        const { email, username, password, nomorHP, NIM } = req.body;
+        const { email, username, password, NIM, isDike = false } = req.body;
+
+        // Check if a user with the provided email or username already exists
         const existingUser = await User.findOne({ $or: [{ email }, { username }] }).lean();
-        if (existingUser) return res.status(400).json({ error: 'User already exists' });
-        if(NIM) {
-            const existingNim = await Mahasiswa.findOne({NIM}).lean();
-            if (!existingNim) return res.status(400).json({ error: 'NIM not found' });
+        if (existingUser) {
+            return res.status(400).json({ error: 'User already exists' });
         }
-        const user = await User.create({ email, username, password, nomorHP, NIM });
-        const token = jwt.sign({
+
+        // Validate NIM if isDike is true
+        if (isDike) {
+            const validNIM = await Mahasiswa.findOne({ NIM }).lean();
+            if (!validNIM) {
+                return res.status(400).json({ error: 'Invalid NIM for Mahasiswa' });
+            }
+        }
+
+        // Define user data to be saved
+        const userData = { email, username, password, isDike };
+        if (isDike) {
+            userData.NIM = NIM; // Add NIM only if isDike is true and valid
+        }
+
+        // Create the new user
+        const user = await User.create(userData);
+
+        // Generate JWT token
+        const tokenPayload = {
             _id: user._id,
             email: user.email,
             username: user.username,
-            nomorHP: user.nomorHP,
-            NIM: user.NIM
-        }, process.env.JWT_SECRET, { expiresIn: '1d' });
+            isDike: user.isDike
+        };
+        if (isDike) {
+            tokenPayload.NIM = user.NIM; // Add NIM to token payload only if isDike is true
+        }
+        const token = jwt.sign(tokenPayload, process.env.JWT_SECRET, { expiresIn: '1d' });
 
-        res.status(201).json({ 
+        // Respond with success message, token, and user data
+        res.status(201).json({
             message: "Registration successful",
             token,
-            user: { ...user.toObject(), password: undefined }
+            user: { ...user.toObject(), password: undefined } // Remove password from user object
         });
+
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -51,7 +64,7 @@ module.exports.login = async (req, res) => {
         if (!user || !(await user.comparePassword(password))) {
             return res.status(400).json({ error: 'Invalid email or password' });
         }
-
+        
         const token = jwt.sign({
             _id: user._id,
             email: user.email,
@@ -100,7 +113,7 @@ module.exports.requestPasswordReset = async (req, res) => {
         });
 
         const resetUrl = `${req.protocol}://${req.get('host')}/reset-password/${resetToken}`;
-        await sendResetEmail(user.email, resetUrl);
+        await resetPasswordEmail(user.email, resetUrl);
 
         res.status(200).json({ message: 'Password reset email sent' });
     } catch (error) {
@@ -130,19 +143,3 @@ module.exports.resetPassword = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
-async function sendResetEmail(email, resetUrl) {
-    const mailOptions = {
-        from: '"OmahTI Learning Center 2024 Password Reset" <noreply-password-reset-olc2024@omahti.web.id>',
-        to: email,
-        subject: 'Password Reset Request',
-        html: `
-            <h1>Password Reset Request</h1>
-            <p>You requested a password reset. Click the button below to reset your password:</p>
-            <a href="${resetUrl}" style="background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;">Reset Password</a>
-            <p>If you did not request this, please ignore this email.</p>
-            <p>This link will expire in 1 hour.</p>
-        `
-    };
-
-    await transporter.sendMail(mailOptions);
-}
