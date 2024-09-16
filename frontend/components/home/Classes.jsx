@@ -20,11 +20,11 @@ const Classes = () => {
       </div>
 
       {/* class cards */}
-      <div className="flex flex-col gap-6">
+      <div  className="flex flex-col gap-6">
         <Card label="Software Engineering" />
         <Card label="Cyber Security" />
         <Card label="Data Science" />
-        <Card />
+        <Card label="UI/UX" />
       </div>
     </Container>
   );

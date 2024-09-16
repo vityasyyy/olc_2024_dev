@@ -2,18 +2,9 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import BackButton from "@/components/global/BackButton";
-import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 const Register = () => {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, 100);
-
-    return () => clearTimeout(timer);
-  }, []);
 
   return (
     <div className="fixed inset-0 flex h-screen w-screen flex-col sm:flex-row">
@@ -23,11 +14,15 @@ const Register = () => {
       </div>
 
       {/* form bottom / right side */}
-      <div className={`flex flex-col content-center justify-center gap-2 p-4 text-center sm:h-screen sm:w-1/2 transition-all duration-1000 ease-in-out ${isVisible ? 'opacity-100' : 'opacity-0'} `}>
+      <motion.div 
+      className={`flex flex-col content-center justify-center gap-2 p-4 text-center sm:h-screen sm:w-1/2`}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      >
         <h1 className="text-2xl font-bold sm:text-4xl">Daftar OLClass</h1>
         <p>Bergabung untuk bantu kamu meraih mimpimu</p>
         <Form
-          className={`}`}
         />
         <p>
           Sudah punya akun?
@@ -38,7 +33,7 @@ const Register = () => {
             </Link>
           </span>
         </p>
-      </div>
+      </motion.div>
     </div>
   );
 };
@@ -46,7 +41,7 @@ const Register = () => {
 const Form = ({ className, ...props }) => {
   return (
     <form
-      className={`mx-auto my-2 flex flex-col gap-2 border-[2px] border-black p-4 ${className}`}
+      className={`mx-auto my-2 w-full flex flex-col gap-2 border-[2px] sm:w-4/5 md:w-3/5 border-black p-4 ${className}`}
       {...props}
     >
       <h3 className="font-semibold">Pendaftaran</h3>
