@@ -69,18 +69,20 @@ const Card = ({
           objectFit="cover"
           className="rounded-t-xl"
         />
-        <span className="absolute left-2 top-2 rounded-md bg-gray-100 px-2 py-1 text-sm font-medium">
+        <span className="absolute left-3 top-3 rounded-md bg-gray-100 px-2 py-1 text-sm font-medium">
           {label}
         </span>
       </div>
 
-      <div className="p-4">
+      <div className="p-3">
         <h2 className="mb-2 text-xl font-bold sm:text-2xl">{judul}</h2>
         <p className="mb-4 pb-10 text-sm">{tanggal}</p>
 
-        <button className="w-full rounded-md border-[2px] border-black py-2 hover:bg-gray-100">
+        <Button className="w-full border-black" variant="outline" asChild>
+          <Link href="/auth/register">
           Daftar Sekarang
-        </button>
+          </Link>
+        </Button>
       </div>
     </div>
   );

@@ -13,12 +13,12 @@ const Benefits = () => {
 
         <div className="flex flex-col gap-6 sm:flex-row">
           <Card
-            judul="Kelas dengan bimbingan profesional industri"
-            text="Kamu akan mendapatkan bimbingan dari para profesional industri yang sudah berpengalaman di bidangnya."
+            judul="Hands On Project"
+            text="memungkinkan pembelajaran praktis yang memperkuat keterampilan, kreativitas, dan pemahaman melalui pengalaman langsung serta kolaborasi, mendorong inovasi dan problem-solving efektif dalam situasi nyata."
           />
           <Card
-            judul="Materi yang akan kamu pelajari"
-            text="Kamu akan mendapatkan materi yang akan kamu pelajari selama mengikuti kelas di OLC."
+            judul="Sertifikat"
+            text="memungkinkan pembelajaran praktis yang memperkuat keterampilan, kreativitas, dan pemahaman melalui pengalaman langsung serta kolaborasi, mendorong inovasi dan problem-solving efektif dalam situasi nyata."
           />
         </div>
       </Container>

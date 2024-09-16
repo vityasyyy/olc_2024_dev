@@ -24,7 +24,7 @@ const Register = () => {
 
       {/* form bottom / right side */}
       <div className={`flex flex-col content-center justify-center gap-2 p-4 text-center sm:h-screen sm:w-1/2 transition-all duration-1000 ease-in-out ${isVisible ? 'opacity-100' : 'opacity-0'} `}>
-        <h1 className="text-2xl font-bold">Daftar OLClass</h1>
+        <h1 className="text-2xl font-bold sm:text-4xl">Daftar OLClass</h1>
         <p>Bergabung untuk bantu kamu meraih mimpimu</p>
         <Form
           className={`}`}
