@@ -1,13 +1,60 @@
 import Container from "../global/Container";
 import Tag from "../global/Tag";
+import { Calendar, MapPin } from "lucide-react";
 
 const Timeline = () => {
   return (
     <>
-      <Container>
+      <Container className="flex flex-col gap-6">
         <Tag>Timeline</Tag>
+        <div className="flex flex-col items-center gap-6">
+          {/* wrapper on big screens so it turns into a 4x4 grid */}
+          <div className="w-full grid grid-cols-1 px-[10%] lg:px-0 sm:grid-cols-2 gap-6 lg:grid-cols-4">
+            <Card smallCard />
+            <Card smallCard />
+            <Card smallCard />
+            <Card smallCard />
+          </div>
+          <Card />
+          <Card />
+        </div>
       </Container>
     </>
+  );
+};
+
+const Card = ({
+  day = "1",
+  judul = "OLConvention",
+  waktu = "Kamis 24 November 2024",
+  className,
+  judulClass,
+  smallCard = false,
+}) => {
+  return (
+    // 2 divs that will always be square
+    <div
+      className={`flex h-72 relative w-full flex-col justify-end rounded-md border border-black bg-white p-4 text-black ${className}`}
+    >
+      {/* day label */}
+      <p className="absolute left-2 top-2 mb-4 w-fit rounded-md bg-[#656161] px-4 py-1 text-sm text-black">
+        Day {day}
+      </p>
+
+      <h1 className={`text-3xl font-semibold ${judulClass} ${smallCard ? 'lg:text-2xl' : 'sm:text-4xl'}`}>{judul}</h1>
+
+      {/* tanggal dan lokasi */}
+      <div className="mt-4 flex flex-col gap-2 text-sm font-medium">
+        <p className="flex items-center">
+          <Calendar className="mr-2 h-4 w-4" />
+          <span>{waktu}</span>
+        </p>
+        <p className="flex items-center">
+          <MapPin className="mr-2 h-4 w-4" />
+          <span>DIKE FMIPA UGM</span>
+        </p>
+      </div>
+    </div>
   );
 };
 
