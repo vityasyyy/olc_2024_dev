@@ -86,3 +86,15 @@ module.exports.getOneClass = async (req, res) => {
         res.status(500).json({ error: 'An error occurred while fetching the class' });
     }
 };
+
+module.exports.getIdFromSlug = async(req, res) => {
+    try {
+        const classDetail = await Olclass.findOne({ slug: req.params.slug });
+        if (!classDetail) {
+          return res.status(404).json({ message: "Class not found" });
+        }
+        res.json(classDetail._id);
+      } catch (error) {
+        res.status(500).json({ message: "Error fetching class", error });
+      }
+}

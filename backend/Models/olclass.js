@@ -37,7 +37,19 @@ const olclassSchema = new Schema({
         default: 40
     },
     mentor: mentorSchema,
-    sesi: [sessionSchema]
+    sesi: [sessionSchema],
+    slug: String
 });
+
+olclassSchema.pre('save', function(next) {
+    if (this.title) {
+      // Generate the slug when saving
+      this.slug = this.title
+        .split(' ')
+        .map(word => word.toLowerCase())
+        .join('-');
+    }
+    next();
+  });
 
 module.exports = mongoose.model('Olclass', olclassSchema);
