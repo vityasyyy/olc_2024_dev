@@ -7,7 +7,7 @@ const AboutOLC = () => {
     <Container id="#about" className="flex flex-col content-center gap-6">
 
       {/* starting tag */}
-      <Tag >Tentang OLC</Tag>
+      <Tag blue>Tentang OLC</Tag>
 
       {/* header text */}
       <h1 className="text-4xl font-semibold sm:font-medium">
@@ -16,12 +16,16 @@ const AboutOLC = () => {
 
       <div className="flex flex-col sm:flex-row gap-6 sm:mt-4">
         {/* big image */}
+        <div
+          className="relative mx-auto my-4 h-72 w-[30rem] sm:shrink-0 sm:my-0"
+        >
+
         <Image
-          className="mx-auto my-4 h-72 w-72 sm:my-0"
-          src="placeholder.svg"
-          height={32}
-          width={32}
+          src="/hero/macbook.png"
+          objectFit="contain"
+          layout="fill"
         />
+        </div>
 
         {/* body text */}
         <div className="flex flex-col gap-6">

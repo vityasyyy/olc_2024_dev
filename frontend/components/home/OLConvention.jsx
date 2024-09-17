@@ -8,7 +8,7 @@ const OLConvention = () => {
     <>
       <Container className="flex flex-col gap-6">
         <div className="flex flex-col gap-4">
-          <Tag>OLConvention</Tag>
+          <Tag blue>OLConvention</Tag>
           <p className="font-semibold">
             Seminar offline dengan professional di bidang IT
           </p>
@@ -32,6 +32,12 @@ const Card = ({
   return (
     // 2 divs that will always be square
     <div className="relative w-full pb-[100%] sm:mx-auto sm:h-96 sm:w-96 sm:pb-0 md:w-full md:pb-[50%]">
+      <Image
+        src="placeholder.svg"
+        objectFit="cover"
+        layout="fill"
+        className="z-0"
+      ></Image>
       <div className="absolute inset-0 flex flex-col justify-end border border-black bg-[#656161] p-3 text-white">
         {/* day label */}
         <p className="absolute left-3 top-3 mb-4 w-fit rounded-md bg-white px-4 py-1 text-sm text-black">
@@ -43,7 +49,7 @@ const Card = ({
         <h1 className="text-3xl font-semibold sm:text-4xl">{judul}</h1>
 
         {/* tanggal dan lokasi */}
-        <div className="flex mt-4 flex-col gap-2 text-xs sm:flex-row sm:justify-between sm:items-center lg:text-base">
+        <div className="mt-4 flex flex-col gap-2 text-xs sm:flex-row sm:items-center sm:justify-between lg:text-base">
           <p className="flex items-center">
             <Calendar className="mr-2 h-4 w-4" />
             <span>{waktu}</span>

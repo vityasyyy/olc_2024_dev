@@ -6,7 +6,7 @@ const Timeline = () => {
   return (
     <>
       <Container className="flex flex-col gap-6">
-        <Tag>Timeline</Tag>
+        <Tag blue>Timeline</Tag>
         <div className="flex flex-col items-center gap-6">
           {/* wrapper on big screens so it turns into a 4x4 grid */}
           <div className="grid w-full grid-cols-1 gap-6 px-[10%] sm:grid-cols-2 lg:grid-cols-4 lg:px-0">
@@ -36,10 +36,10 @@ const Card = ({
   return (
     // 2 divs that will always be square
     <div
-      className={`relative flex h-72 w-full flex-col justify-end rounded-md border border-black bg-white p-3 text-black ${className}`}
+      className={`relative flex h-72 w-full flex-col justify-end rounded-md bg-custom-blue-dark p-3 text-white ${className}`}
     >
       {/* day label */}
-      <p className="absolute left-3 top-3 mb-4 w-fit rounded-md bg-[#656161] px-4 py-1 text-sm text-black">
+      <p className="absolute left-3 top-3 mb-4 w-fit rounded-md bg-custom-blue-light px-4 py-1 text-sm text-black">
         Day {day}
       </p>
 

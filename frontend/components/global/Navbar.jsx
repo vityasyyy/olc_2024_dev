@@ -21,7 +21,7 @@ export default function Navbar({
     <>
       <nav
         className={`fixed left-0 right-0 top-0 z-50
-          bg-white/75 backdrop-blur-[8px] ${className}`}
+          bg-custom-blue-dark/75 backdrop-blur-[8px] ${className}`}
         {...props}
       >
         <div className="mx-auto flex h-16 w-[90vw] items-center justify-between sm:w-full sm:px-6">
@@ -47,7 +47,7 @@ export default function Navbar({
                 </Button>
               ) : (
                 <>
-                  <Button aschild className="bg-brown-light">
+                  <Button aschild className="bg-custom-brown-light font-semibold text-custom-black hover:bg-custom-brown-light/80">
                     <Link href="/class">OLClass</Link>
                   </Button>
                 </>
@@ -72,7 +72,7 @@ export default function Navbar({
       </nav>
 
       {/* spacer, acts like a margin */}
-      <div className="h-16"></div>
+      <div className="h-16 bg-custom-blue-dark"></div>
     </>
   );
 }

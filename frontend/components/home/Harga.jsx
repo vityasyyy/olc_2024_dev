@@ -15,7 +15,7 @@ const Harga = () => {
   return (
     <>
       <Container className="flex flex-col gap-6">
-        <Tag>Harga</Tag>
+        <Tag blue>Harga</Tag>
         <div className="flex flex-col gap-6 md:flex-row">
           <Card judul="OLConvention Only" description={olcononly} />
           <Card judul="OLConvention + OLClass" description={olconolclass} />
@@ -46,7 +46,7 @@ const Card = ({
           </ul>
         </div>
 
-        <Button variant="secondary" asChild>
+        <Button variant="secondary" className="bg-custom-brown-light" asChild>
           <Link href="/auth/register">
           Daftar Sekarang
           </Link>
