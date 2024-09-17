@@ -47,8 +47,7 @@ export default function Navbar({
                 </Button>
               ) : (
                 <>
-                  <Button variant="ghost">About Us</Button>
-                  <Button aschild>
+                  <Button aschild className="bg-brown-light">
                     <Link href="/class">OLClass</Link>
                   </Button>
                 </>
