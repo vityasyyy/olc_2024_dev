@@ -58,3 +58,10 @@ biar rapih hehe
 ### References:
 
 [conventional-commit-messages](https://gist.github.com/qoomon/5dfcdf8eec66a051ecd85625518cfd13)
+
+
+## BACKEND 
+Guys don't forget to install and configure mongodb in ur device ya. Also, you have to paste in the .env file also from our what'sapp group, paste .env backend ke directory backend, dan paste .env frontend ke directory frontend habis itu nyalain backend pake ```npm start```,
+jangan lupa ``` npm install ``` di directory backend buat download dependencies nya dulu.
+
+baru bisa nyalain websitenya di local. Thanks!! kalo ada problem tolong chat di group wasaf
