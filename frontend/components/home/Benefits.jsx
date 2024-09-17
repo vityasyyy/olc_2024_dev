@@ -7,6 +7,7 @@ const Benefits = () => {
       <Container
         parentClass="bg-custom-blue-dark text-white"
         className="flex flex-col gap-6"
+        diamonds
       >
         {/* tags */}
         <div className="flex flex-col gap-4">

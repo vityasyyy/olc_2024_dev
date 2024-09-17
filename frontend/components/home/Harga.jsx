@@ -46,7 +46,7 @@ const Card = ({
           </ul>
         </div>
 
-        <Button variant="secondary" className="bg-custom-brown-light" asChild>
+        <Button asChild>
           <Link href="/auth/register">
           Daftar Sekarang
           </Link>

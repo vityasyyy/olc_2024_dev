@@ -13,6 +13,7 @@ const Classes = () => {
     <Container
       parentClass="bg-custom-blue-dark"
       className="flex flex-col gap-6"
+      diamonds
     >
       {/* tag */}
       <div className="flex flex-col gap-4 text-white">
