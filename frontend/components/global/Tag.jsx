@@ -6,7 +6,7 @@ const Tag = ({ children, className, image, blue = false, ...props }) => {
       <div
         className={`h-9 w-9 ${blue ? "bg-custom-blue-dark" : "bg-custom-brown-light"}`}
       ></div>
-      <p className={`mt-1 text-xl font-semibold ${blue ? 'text-custom-black' : 'text-white'}`}>{children}</p>
+      <p className={`mt-1 text-xl font-semibold ${blue ? 'text-custom-black' : 'text-white'} ${className}`}>{children}</p>
     </div>
   );
 };

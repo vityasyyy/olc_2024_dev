@@ -2,14 +2,14 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 import Navbar from "@/components/global/Navbar";
-import CardDrawer from "@/components/class/Card";
+import Card from "@/components/class/Card";
 import Tag from "@/components/global/Tag";
 import ContainerLarge from "@/components/global/ContainerLarge";
 import CardLoading from "@/components/class/CardLoading";
+import Footer from "@/components/global/Footer";
 import { motion } from "framer-motion";
-import { Skeleton } from "@/components/ui/skeleton"; 
+import { Skeleton } from "@/components/ui/skeleton";
 
 const Class = () => {
   const Router = useRouter();
@@ -39,24 +39,32 @@ const Class = () => {
     <>
       <Navbar loggedIn />
       <ContainerLarge>
-        <h1 className="pb-10 text-3xl font-semibold sm:text-4xl">
+        <h1 className="pb-10 text-3xl font-semibold text-custom-blue-dark sm:text-4xl">
           Halo,
           <br />
           {loading ? (
             <>
-              <Skeleton className="h-8 w-96 mt-2" />
+              <Skeleton className="mt-2 h-8 w-96" />
             </>
           ) : (
-            <motion.p initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }}>
+            <motion.p
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7 }}
+            >
               Sultan Tampan Suyudi
             </motion.p>
           )}
         </h1>
 
-        <Tag>OLClass</Tag>
+        <Tag blue className="text-custom-blue-dark">
+          OLClass
+        </Tag>
 
-        <p className="pt-10 text-xl font-bold sm:text-2xl">Kelas Tersedia</p>
-        <p className="pb-6">
+        <p className="pt-10 text-xl font-bold text-custom-blue-dark sm:text-2xl">
+          Kelas Tersedia
+        </p>
+        <p className="pb-6 font-medium">
           Kamu hanya dapat memilih satu kelas dan pendaftar akan langsung
           mendapat akses OLConvention
         </p>
@@ -68,16 +76,17 @@ const Class = () => {
             </>
           ) : (
             classes.map((item) => (
-                <CardDrawer
-                  label={item.title}
-                  judul={item.title} //Use appropriate fields from the data
-                  tanggal={item.waktu ? item.waktu : "TBA"} // Example of how you can handle missing fields
-                  href={`/class/${item.slug}`}
-                />
+              <Card
+                label={item.title}
+                judul={item.title} //Use appropriate fields from the data
+                tanggal={item.waktu ? item.waktu : "TBA"} // Example of how you can handle missing fields
+                href={`/class/${item.slug}`}
+              />
             ))
           )}
         </div>
       </ContainerLarge>
+      <Footer />
     </>
   );
 };

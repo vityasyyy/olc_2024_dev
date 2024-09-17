@@ -1,5 +1,11 @@
+import localFont from "@next/font/local";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+
+const magicRetro = localFont({
+  src: "../public/fonts/MagicRetro.ttf",
+  variable: '--font-magicretro'
+});
 
 const poppins = Poppins({
   weight: ["300", "400", "500", "600", "700", "800", "900"],
@@ -15,7 +21,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={poppins.className}>{children}</body>
+      <body className={`${poppins.className} ${magicRetro.variable}`}>{children}</body>
     </html>
   );
 }

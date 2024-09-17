@@ -1,23 +1,12 @@
 "use client";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useRouter, useParams } from "next/navigation";
+import { useParams } from "next/navigation";
 import Image from "next/image";
 import BackButton from "@/components/global/BackButton";
 import { Progress } from "@/components/ui/progress";
 import ContainerLarge from "@/components/global/ContainerLarge";
 import CardDrawer from "@/components/class/slug/Card";
-import { Button } from "@/components/ui/button";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
 
 const ClassDetail = () => {
   const params = useParams();
@@ -57,13 +46,19 @@ const ClassDetail = () => {
   }, [slug]);
 
   if (loading || !classDetail) {
-    return <p>Loading class details...</p>;
+    return (
+      <>
+        <ContainerLarge>
+          <BackButton />
+        </ContainerLarge>
+      </>
+    ) 
   }
 
   return (
     <>
       <div className="bg-white">
-        <ContainerLarge>
+        <ContainerLarge className="text-custom-blue-dark">
           <BackButton />
           <h1 className="my-8 text-4xl font-bold">{classDetail.title}</h1>
 
@@ -91,10 +86,12 @@ const ClassDetail = () => {
 
             {/* right side */}
             <div className="flex w-full flex-col gap-4">
-              <p className="text-2xl font-semibold">Slot Tersedia :</p>
+              <p className="text-2xl font-semibold text-black">
+                Slot Tersedia :
+              </p>
               <div className="flex flex-wrap gap-3">
                 <Progress value={progress} />
-                <p className="text-xl font-semibold">
+                <p className="text-xl font-semibold text-black">
                   {classDetail.enrolled}/{classDetail.slot}
                 </p>
               </div>

@@ -16,8 +16,8 @@ const AboutOLC = () => {
 
       <div className="flex flex-col sm:flex-row gap-6 sm:mt-4">
         {/* big image */}
-        <div
-          className="relative mx-auto my-4 h-72 w-[30rem] sm:shrink-0 sm:my-0"
+        {/* <div
+          className="relative mx-auto my-4 h-72 w-[30rem] sm:my-0"
         >
 
         <Image
@@ -25,7 +25,7 @@ const AboutOLC = () => {
           objectFit="contain"
           layout="fill"
         />
-        </div>
+        </div> */}
 
         {/* body text */}
         <div className="flex flex-col gap-6">
