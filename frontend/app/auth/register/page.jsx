@@ -16,7 +16,10 @@ const Register = () => {
         </div>
 
         {/* right/bottom/form */}
-        <div className="flex flex-col gap-1 overscroll-contain bg-white px-[min(5vw,32px)] py-8 md:overflow-auto md:overscroll-y-contain">
+        <motion.div className="flex flex-col gap-1 overscroll-contain bg-white px-[min(5vw,32px)] py-8 md:overflow-auto md:overscroll-y-contain"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+        >
           {/* title and subtitle */}
           <div className="flex flex-col gap-1 md:mt-8">
             <h1 className="text-center text-2xl font-semibold text-custom-blue-dark lg:text-4xl">
@@ -39,7 +42,7 @@ const Register = () => {
               </Button>
             </span>
           </p>
-        </div>
+        </motion.div>
       </div>
     </>
   );
@@ -57,7 +60,7 @@ const Form = ({ className, ...props }) => {
 
   return (
     <form
-      className={`mx-auto my-2 flex w-full flex-col gap-2 rounded-xl border-[0.5px] border-black bg-white p-4 text-sm font-semibold sm:w-4/5 lg:w-3/5 ${className}`}
+      className={`mx-auto shadow-md my-2 flex w-full flex-col gap-2 rounded-xl border-[0.5px] border-black bg-white p-4 text-sm font-semibold sm:w-4/5 lg:w-3/5 ${className}`}
       {...props}
       onSubmit={handleSubmit(onSubmit)}
     >

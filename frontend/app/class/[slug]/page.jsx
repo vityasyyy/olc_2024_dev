@@ -7,6 +7,35 @@ import BackButton from "@/components/global/BackButton";
 import { Progress } from "@/components/ui/progress";
 import ContainerLarge from "@/components/global/ContainerLarge";
 import CardDrawer from "@/components/class/slug/Card";
+import { motion } from "framer-motion";
+import SkeletonFull from "@/components/global/SkeletonFull";
+import { Skeleton } from "@/components/ui/skeleton";
+
+const parentVariants = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const childVariants = {
+  hidden: {
+    opacity: 0,
+    x: 20,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.5,
+    },
+  },
+};
 
 const ClassDetail = () => {
   const params = useParams();
@@ -49,17 +78,18 @@ const ClassDetail = () => {
     return (
       <>
         <ContainerLarge>
-          <BackButton />
+          <BackButton black />
+            <SkeletonFull />
         </ContainerLarge>
       </>
-    ) 
+    );
   }
 
   return (
     <>
       <div className="bg-white">
         <ContainerLarge className="text-custom-blue-dark">
-          <BackButton />
+          <BackButton black />
           <h1 className="my-8 text-4xl font-bold">{classDetail.title}</h1>
 
           <div className="flex flex-col gap-6 md:flex-row">
@@ -89,32 +119,39 @@ const ClassDetail = () => {
               <p className="text-2xl font-semibold text-black">
                 Slot Tersedia :
               </p>
-              <div className="flex flex-wrap gap-3">
-                <Progress value={progress} />
+              <div className="flex flex-row w-full gap-3">
+                <Progress value={progress} className="w-full" />
                 <p className="text-xl font-semibold text-black">
                   {classDetail.enrolled}/{classDetail.slot}
                 </p>
               </div>
 
               {/* session cards */}
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <motion.div
+                variants={parentVariants}
+                className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
+                initial="hidden"
+                animate="visible"
+              >
                 {classDetail.sesi.map((session, index) => (
-                  <CardDrawer
-                    key={index}
-                    sesi={`${index + 1}`}
-                    judul={session.judulSesi}
-                    tanggal={new Date(session.waktu).toLocaleDateString(
-                      "id-ID",
-                      { day: "2-digit", month: "long", year: "numeric" },
-                    )}
-                    jam={new Date(session.waktu).toLocaleTimeString("id-ID", {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}
-                    tempat={session.platform}
-                  />
+                  <motion.div variants={childVariants}>
+                    <CardDrawer
+                      key={index}
+                      sesi={`${index + 1}`}
+                      judul={session.judulSesi}
+                      tanggal={new Date(session.waktu).toLocaleDateString(
+                        "id-ID",
+                        { day: "2-digit", month: "long", year: "numeric" },
+                      )}
+                      jam={new Date(session.waktu).toLocaleTimeString("id-ID", {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })}
+                      tempat={session.platform}
+                    />
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
             </div>
           </div>
         </ContainerLarge>
