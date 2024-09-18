@@ -16,13 +16,13 @@ const ContainerLarge = ({
       {diamonds ? (
         <>
           <div className="absolute left-0 right-0 top-8 h-16 w-full">
-            <div className="relative inset-0 h-6 w-full">
-              <Image src="hero/diamonds.svg" objectFit="cover" layout="fill" />
+            <div className="relative inset-0 h-6 w-full object-cover">
+              <Image src="hero/diamonds.svg" fill/>
             </div>
           </div>
           <div className="absolute bottom-1 left-0 right-0 h-16 w-full">
-            <div className="relative inset-0 h-6 w-full">
-              <Image src="hero/diamonds.svg" objectFit="cover" layout="fill" />
+            <div className="relative inset-0 h-6 w-full object-cover">
+              <Image src="hero/diamonds.svg" fill />
             </div>
           </div>
         </>
