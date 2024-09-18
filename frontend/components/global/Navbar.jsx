@@ -26,7 +26,7 @@ export default function Navbar({ className, loggedIn = false, ...props }) {
             <div className="flex items-baseline space-x-4">
               {loggedIn ? (
                 <Link href="/">
-                  <Button>Keluar</Button>
+                  <Button variant="outline" className="border-custom-blue-dark text-custom-blue-dark">Keluar</Button>
                 </Link>
               ) : (
                 <>

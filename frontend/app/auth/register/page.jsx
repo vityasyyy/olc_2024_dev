@@ -16,7 +16,7 @@ const Register = () => {
         </div>
 
         {/* right/bottom/form */}
-        <motion.div className="flex flex-col gap-1 overscroll-contain bg-white px-[min(5vw,32px)] py-8 md:overflow-auto md:overscroll-y-contain"
+        <motion.div className="flex flex-col justify-center gap-1 overscroll-contain bg-white px-[min(5vw,32px)] py-8 md:overflow-auto md:overscroll-y-contain"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
         >
@@ -60,7 +60,7 @@ const Form = ({ className, ...props }) => {
 
   return (
     <form
-      className={`mx-auto shadow-md my-2 flex w-full flex-col gap-2 rounded-xl border-[0.5px] border-black bg-white p-4 text-sm font-semibold sm:w-4/5 lg:w-3/5 ${className}`}
+      className={`mx-auto shadow-md my-2 flex w-full max-w-md flex-col gap-2 rounded-xl border-[0.5px] border-black bg-white p-4 text-sm font-semibold ${className}`}
       {...props}
       onSubmit={handleSubmit(onSubmit)}
     >
@@ -71,9 +71,9 @@ const Form = ({ className, ...props }) => {
       {/* Nama */}
       <p className="text-custom-blue mt-1 text-start">Nama</p>
       <input
-        className="w-full rounded-lg border-[0.5px] border-black p-2"
+        className="w-full rounded-lg border-[0.5px] border-black p-2 focus:outline-none focus:ring-2 focus:ring-custom-blue-dark focus:border-transparent"
         type="text"
-        placeholder="Nama Lengkap"
+        placeholder="Nama"
         {...register("Nama", { required: "Nama harus diisi." })}
       />
       {errors.Nama && (
@@ -85,9 +85,9 @@ const Form = ({ className, ...props }) => {
       {/* Email */}
       <p className="text-custom-blue mt-1 text-start">Email</p>
       <input
-        className="w-full rounded-lg border-[0.5px] border-black p-2"
+        className="w-full rounded-lg border-[0.5px] border-black p-2 focus:outline-none focus:ring-2 focus:ring-custom-blue-dark focus:border-transparent"
         type="text"
-        placeholder="fahmi@mail.ugm.ac.id"
+        placeholder="Email"
         {...register("Email", {
           required: "Email harus diisi.",
           pattern: {
@@ -105,7 +105,7 @@ const Form = ({ className, ...props }) => {
       {/* Password */}
       <p className="text-custom-blue mt-1 text-start">Password</p>
       <input
-        className="w-full rounded-lg border-[0.5px] border-black p-2"
+        className="w-full rounded-lg border-[0.5px] border-black p-2 focus:outline-none focus:ring-2 focus:ring-custom-blue-dark focus:border-transparent"
         type="password"
         placeholder="Password"
         {...register("Password", { required: "Password harus diisi." })}
@@ -119,9 +119,9 @@ const Form = ({ className, ...props }) => {
       {/* Confirm Password */}
       <p className="text-custom-blue mt-1 text-start">Refill Password</p>
       <input
-        className="w-full rounded-lg border-[0.5px] border-black p-2 text-sm"
+        className="w-full rounded-lg border-[0.5px] border-black p-2 text-sm focus:outline-none focus:ring-2 focus:ring-custom-blue-dark focus:border-transparent"
         type="password"
-        placeholder="Konfirmasi Password"
+        placeholder="Refill Password"
         {...register("confirmPassword", {
           required: "Password harus diisi ulang.",
           validate: (value) =>
@@ -152,9 +152,9 @@ const Form = ({ className, ...props }) => {
         <>
           <p className="text-custom-blue mt-1 text-start">NIM</p>
           <input
-            className="w-full rounded-lg border-[0.5px] border-black p-2 text-sm"
+            className="w-full rounded-lg border-[0.5px] border-black p-2 text-sm focus:outline-none focus:ring-2 focus:ring-custom-blue-dark focus:border-transparent"
             type="text"
-            placeholder="24/XXXXXX/PA/XXXXX"
+            placeholder="NIM"
             {...register("NIM", {
               pattern: {
                 required: "NIM harus diisi.",

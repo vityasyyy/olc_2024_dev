@@ -6,78 +6,91 @@ import { motion } from "framer-motion";
 import React from "react";
 import { useForm } from "react-hook-form";
 
-const Login = () => {
+const Register = () => {
   return (
-    <div className="fixed inset-0 flex h-screen w-screen flex-col sm:flex-row">
-      {/* top side / left side */}
-      <div className="h-1/2 w-screen bg-custom-blue-dark p-4 sm:h-screen sm:w-1/2">
-        <BackButton />
-      </div>
-
-      {/* form bottom / right side */}
-      <motion.div
-        className={`flex flex-col content-center justify-center gap-4 p-4 text-center sm:h-screen sm:w-1/2`}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        {/* title and subtitle */}
-        <div className="font-semibold">
-          <h1 className="text-2xl text-custom-blue-dark sm:text-4xl">
-            Daftar OLClass
-          </h1>
-          <p>Bergabung untuk bantu kamu meraih mimpimu</p>
+    <>
+      <div className="grid grid-cols-1 md:h-screen md:grid-cols-2 md:overflow-hidden">
+        {/* left/top */}
+        <div className="h-[50vh] bg-custom-blue-darker px-[min(5vw,32px)] py-8 md:h-screen">
+          <BackButton />
         </div>
-        <Form />
-        <p className="font-medium">
-          Sudah punya akun?
-          <span>
-            <Link
-              className="font-semibold text-custom-blue-dark hover:underline"
-              href="/auth/login"
-            >
-              {" "}
-              Masuk
-            </Link>
-          </span>
-        </p>
-      </motion.div>
-    </div>
+
+        {/* right/bottom/form */}
+        <motion.div className="flex flex-col justify-center gap-1 overscroll-contain bg-white px-[min(5vw,32px)] py-8 md:overflow-auto md:overscroll-y-contain"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+        >
+          {/* title and subtitle */}
+          <div className="flex flex-col gap-1 md:mt-8">
+            <h1 className="text-center text-2xl font-semibold text-custom-blue-dark lg:text-4xl">
+              Masuk OLClass
+            </h1>
+            <p className="text-center font-semibold text-black">
+              Selamat datang kembali!
+            </p>
+          </div>
+
+          {/* formn */}
+          <Form />
+        </motion.div>
+      </div>
+    </>
   );
 };
 
 const Form = ({ className, ...props }) => {
   const {
     register,
+    watch,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const isDike = watch("isDike");
   const onSubmit = (data) => console.log(data);
-  console.log(errors);
+
   return (
     <form
-      className={`mx-auto my-2 flex w-full flex-col gap-2 rounded-xl border-[0.5px] border-black p-4 text-sm font-semibold sm:w-4/5 md:w-3/5 ${className}`}
+      className={`mx-auto shadow-md my-2 flex w-full max-w-md flex-col gap-2 rounded-xl border-[0.5px] border-black bg-white p-4 text-sm font-semibold ${className}`}
       {...props}
       onSubmit={handleSubmit(onSubmit)}
     >
-      <h3 className="my-1 font-semibold text-custom-blue-dark">Pendaftaran</h3>
+      <h3 className="my-1 text-center font-semibold text-custom-blue-dark">
+        Pendaftaran
+      </h3>
+
+      {/* Email */}
       <p className="text-custom-blue mt-1 text-start">Email</p>
       <input
-        className="w-full rounded-lg border-[0.5px] border-black p-2"
+        className="w-full rounded-lg border-[0.5px] border-black p-2 focus:outline-none focus:ring-2 focus:ring-custom-blue-dark focus:border-transparent"
         type="text"
-        placeholder="fahmi@mail.ugm.ac.id"
+        placeholder="Email"
         {...register("Email", {
-          required: true,
-          pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+          required: "Email harus diisi.",
+          pattern: {
+            value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+            message: "Format email invalid.",
+          },
         })}
       />
+      {errors.Email && (
+        <p className="text-start text-xs font-normal text-red-500">
+          {errors.Email.message}
+        </p>
+      )}
+
+      {/* Password */}
       <p className="text-custom-blue mt-1 text-start">Password</p>
       <input
-        className="w-full rounded-lg border-[0.5px] border-black p-2"
-        type="text"
-        placeholder="Fill"
-        {...register("Password", {})}
+        className="w-full rounded-lg border-[0.5px] border-black p-2 focus:outline-none focus:ring-2 focus:ring-custom-blue-dark focus:border-transparent"
+        type="password"
+        placeholder="Password"
+        {...register("Password", { required: "Password harus diisi." })}
       />
+      {errors.Password && (
+        <p className="text-start text-xs font-normal text-red-500">
+          {errors.Password.message}
+        </p>
+      )}
 
       <Button variant="secondary" type="submit" className="mt-4 rounded-lg">
         Submit
@@ -86,4 +99,4 @@ const Form = ({ className, ...props }) => {
   );
 };
 
-export default Login;
+export default Register;

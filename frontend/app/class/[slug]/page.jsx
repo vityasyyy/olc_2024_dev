@@ -9,7 +9,8 @@ import ContainerLarge from "@/components/global/ContainerLarge";
 import CardDrawer from "@/components/class/slug/Card";
 import { motion } from "framer-motion";
 import SkeletonFull from "@/components/global/SkeletonFull";
-import { Skeleton } from "@/components/ui/skeleton";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 const parentVariants = {
   hidden: {
@@ -32,7 +33,7 @@ const childVariants = {
     opacity: 1,
     x: 0,
     transition: {
-      duration: 0.5,
+      duration: 0.7,
     },
   },
 };
@@ -79,7 +80,7 @@ const ClassDetail = () => {
       <>
         <ContainerLarge>
           <BackButton black />
-            <SkeletonFull />
+          <SkeletonFull />
         </ContainerLarge>
       </>
     );
@@ -92,34 +93,22 @@ const ClassDetail = () => {
           <BackButton black />
           <h1 className="my-8 text-4xl font-bold">{classDetail.title}</h1>
 
-          <div className="flex flex-col gap-6 md:flex-row">
+          <div className="flex flex-col gap-6 lg:flex-row">
+            {classDetail.map}
             {/* speaker and image section */}
-            <div className="relative flex w-full flex-row gap-2 md:w-1/3 md:flex-col">
-              <Image
-                className="h-24 w-auto object-cover md:h-auto md:w-full"
-                src={classDetail.image || "/placeholder.svg"}
-                alt={classDetail.mentor?.nama || "Speaker Image"}
-                width={500}
-                height={600}
-              />
-
-              <div className="flex flex-col sm:gap-2">
-                <p className="font-medium">Speaker</p>
-                <p className="text-xl font-semibold sm:text-2xl">
-                  {classDetail.mentor?.nama || "Speaker Name"}
-                </p>
-                <p className="font-medium text-gray-500">
-                  {classDetail.mentor?.deskripsi || "Speaker Position"}
-                </p>
-              </div>
-            </div>
+            <Avatar
+              nama={classDetail.mentor?.nama}
+              deskripsi={classDetail.mentor?.deskripsi}
+              src={classDetail.mentor?.image}
+              alt={classDetail.mentor?.nama}
+            />
 
             {/* right side */}
             <div className="flex w-full flex-col gap-4">
               <p className="text-2xl font-semibold text-black">
                 Slot Tersedia :
               </p>
-              <div className="flex flex-row w-full gap-3">
+              <div className="flex w-full flex-row items-center gap-3">
                 <Progress value={progress} className="w-full" />
                 <p className="text-xl font-semibold text-black">
                   {classDetail.enrolled}/{classDetail.slot}
@@ -129,10 +118,15 @@ const ClassDetail = () => {
               {/* session cards */}
               <motion.div
                 variants={parentVariants}
-                className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
+                className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 sm:grid-rows-3 lg:grid-rows-2"
                 initial="hidden"
                 animate="visible"
               >
+                {/* join card on small screens */}
+                <motion.div variants={childVariants} className="md:hidden">
+                  <JoinCard />
+                </motion.div>
+
                 {classDetail.sesi.map((session, index) => (
                   <motion.div variants={childVariants}>
                     <CardDrawer
@@ -151,10 +145,66 @@ const ClassDetail = () => {
                     />
                   </motion.div>
                 ))}
+
+                {/* join card on large screens */}
+                <motion.div variants={childVariants} className="hidden md:flex">
+                  <JoinCard />
+                </motion.div>
               </motion.div>
             </div>
           </div>
         </ContainerLarge>
+      </div>
+    </>
+  );
+};
+
+const JoinCard = ({
+  judul = "Ayo Bergabung Sekarang!",
+  desc = "slot kelas terbatas",
+  className,
+}) => {
+  return (
+    <div
+      className={`flex h-full w-full flex-col justify-end gap-2 md:gap-6 md:p-4 ${className}`}
+    >
+      {/* judul dan desc */}
+      <div className="flex flex-col gap-2">
+        <p className="text-3xl font-semibold">{judul}</p>
+        <p className="text-base font-medium">{desc}</p>
+      </div>
+      <Button variant="secondary" asChild>
+        <Link href="/auth/register">Daftar Sekarang</Link>
+      </Button>
+    </div>
+  );
+};
+
+const Avatar = ({
+  src = "/placeholder.svg",
+  alt = "Speaker Image",
+  nama = "Speaker Name",
+  deskripsi = "Speaker Position",
+  className,
+}) => {
+  return (
+    <>
+      <div
+        className={`relative flex w-full flex-col gap-2 text-custom-blue-darker md:flex-row md:gap-6 lg:w-1/3`}
+      >
+        <Image
+          className="relative h-96 w-full rounded-xl sm:w-1/2 md:w-2/5 lg:h-full lg:w-full"
+          src={src}
+          alt={alt}
+          width={500}
+          height={600}
+        />
+
+        <div className="flex flex-col sm:gap-2 md:mt-auto lg:absolute lg:bottom-4 lg:left-4 lg:text-white">
+          <p className="font-medium lg:text-lg">Speaker</p>
+          <p className="text-2xl font-semibold lg:text-3xl">{nama}</p>
+          <p className="font-medium lg:text-lg">{deskripsi}</p>
+        </div>
       </div>
     </>
   );

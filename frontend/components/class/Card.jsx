@@ -19,7 +19,7 @@ const Card = ({
           className="rounded-t-xl"
         />
         {/* label */}
-        <span className="bg-custom-blue-light absolute left-3 top-3 rounded-md px-2 py-1 text-sm font-medium">
+        <span className="bg-custom-blue absolute left-3 top-3 rounded-md px-2 py-1 text-sm font-medium">
           {label}
         </span>
       </div>
@@ -28,7 +28,7 @@ const Card = ({
         <h2 className="text-xl font-bold sm:text-2xl">{judul}</h2>
         <p className="text-sm">{tanggal}</p>
 
-        <Button className="w-full bg-custom-blue-dark text-white hover:bg-custom-blue-dark/90" asChild>
+        <Button variant="secondary" className="ml-auto" asChild>
           <Link href={href}>Lihat Kelas</Link>
         </Button>
       </div>
