@@ -22,8 +22,8 @@ const CardLoading = () => {
         <Skeleton className="h-8 w-full" />
         <Skeleton className="h-8 w-full" />
         <Skeleton className="h-4 w-1/2" />
-        <Button className="w-full border-custom-blue-dark" variant="outline">
-          <Skeleton className="h-4 w-full" />
+        <Button className="ml-auto px-4 border-custom-blue-dark" variant="outline">
+          <Skeleton className="h-4 w-24" />
         </Button>
       </div>
     </div>

@@ -78,7 +78,7 @@ const ClassDetail = () => {
   if (loading || !classDetail) {
     return (
       <>
-        <ContainerLarge>
+        <ContainerLarge parentClass="bg-white">
           <BackButton black />
           <SkeletonFull />
         </ContainerLarge>
@@ -88,7 +88,6 @@ const ClassDetail = () => {
 
   return (
     <>
-      <div className="bg-white">
         <ContainerLarge className="text-custom-blue-dark">
           <BackButton black />
           <h1 className="my-8 text-4xl font-bold">{classDetail.title}</h1>
@@ -154,7 +153,6 @@ const ClassDetail = () => {
             </div>
           </div>
         </ContainerLarge>
-      </div>
     </>
   );
 };

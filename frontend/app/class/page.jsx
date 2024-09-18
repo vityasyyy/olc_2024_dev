@@ -64,7 +64,7 @@ const Class = () => {
   return (
     <>
       <Navbar loggedIn />
-      <ContainerLarge>
+      <ContainerLarge parentClass="bg-white">
         <h1 className="pb-10 text-3xl font-semibold text-custom-blue-dark sm:text-4xl">
           Halo,
           <br />

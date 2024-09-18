@@ -4,7 +4,7 @@ import Tag from "../global/Tag";
 
 const AboutOLC = () => {
   return (
-    <Container id="#about" className="flex flex-col content-center gap-6">
+    <Container id="#about" parentClass="bg-white" className="flex flex-col content-center gap-6">
 
       {/* starting tag */}
       <Tag blue>Tentang OLC</Tag>

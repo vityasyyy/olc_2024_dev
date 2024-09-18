@@ -73,22 +73,34 @@ export default function NavbarLegacy({ className, loggedIn = false, ...props }) 
             </div>
 
             {/* hamburger button  */}
-            <div className="flex sm:hidden">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                aria-expanded={isMenuOpen}
-                aria-label="Toggle menu"
-              >
-                <span className="sr-only">Open main menu</span>
-                {isMenuOpen ? (
-                  <X className="block h-6 w-6" aria-hidden="true" />
-                ) : (
-                  <Menu className="block h-6 w-6" aria-hidden="true" />
-                )}
-              </Button>
-            </div>
+          {/* hamburger menu on mobile */}
+          <Drawer direction="right" className="block sm:hidden">
+            <DrawerTrigger className="block sm:hidden">
+              <Menu className="text-custom-brown-light" />
+            </DrawerTrigger>
+            <DrawerContent
+              noThumb
+              className="ml-[10vw] h-full w-[90vw] flex flex-col items-center rounded-none rounded-l-[10px] py-12 text-custom-blue-dark"
+            >
+              <DrawerHeader>
+                <DrawerTitle className="w-full font-logo text-7xl text-center text-custom-blue-dark">
+                  OLC
+                </DrawerTitle>
+                <DrawerDescription>
+                  <div className="w-full flex flex-col items-center gap-4 text-custom-blue-dark">
+                    <p>OmahTI Learning Center</p>
+                    <Button variant="outline" className="w-full mt-16">Masuk</Button>
+                    <Button className="w-full">Daftar</Button>
+                  </div>
+                </DrawerDescription>
+              </DrawerHeader>
+              <DrawerFooter className="w-full">
+                <DrawerClose className="flex justify-center">
+                  <CircleX className="text-custom-blue-dark h-8 w-8" />
+                </DrawerClose>
+              </DrawerFooter>
+            </DrawerContent>
+          </Drawer>
           </div>
 
         {/* dropdown menu on mobile */}

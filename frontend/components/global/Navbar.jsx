@@ -1,7 +1,17 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import localFont from "next/font/local";
+import { Menu } from "lucide-react";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
+import { CircleX } from "lucide-react";
 
 export default function Navbar({ className, loggedIn = false, ...props }) {
   return (
@@ -15,31 +25,63 @@ export default function Navbar({ className, loggedIn = false, ...props }) {
           <div className="flex items-center">
             <Link
               href="/"
-              className={`font-logo flex-shrink-0 text-3xl ${loggedIn ? "text-custom-blue-dark" : "text-white"}`}
+              className={`flex-shrink-0 font-logo text-3xl ${loggedIn ? "text-custom-blue-dark" : "text-white"}`}
             >
               olc
             </Link>
           </div>
 
           {/* buttons */}
-          <div>
-            <div className="flex items-baseline space-x-4">
-              {loggedIn ? (
-                <Link href="/">
-                  <Button variant="outline" className="border-custom-blue-dark text-custom-blue-dark">Keluar</Button>
+          <div className="hidden items-baseline space-x-4 sm:flex">
+            {loggedIn ? (
+              <Link href="/">
+                <Button
+                  variant="outline"
+                  className="border-custom-blue-dark text-custom-blue-dark"
+                >
+                  Keluar
+                </Button>
+              </Link>
+            ) : (
+              <>
+                <Link href="/auth/login">
+                  <Button variant="outline">Masuk</Button>
                 </Link>
-              ) : (
-                <>
-                  <Link href="/auth/login">
-                    <Button variant="outline">Masuk</Button>
-                  </Link>
-                  <Link href="/auth/register">
-                    <Button>Daftar</Button>
-                  </Link>
-                </>
-              )}
-            </div>
+                <Link href="/auth/register">
+                  <Button>Daftar</Button>
+                </Link>
+              </>
+            )}
           </div>
+
+          {/* hamburger menu on mobile */}
+          <Drawer direction="right" className="block sm:hidden">
+            <DrawerTrigger className="block sm:hidden">
+              <Menu className="text-custom-brown-light" />
+            </DrawerTrigger>
+            <DrawerContent
+              noThumb
+              className="ml-[10vw] h-full w-[90vw] flex flex-col items-center rounded-none rounded-l-[10px] py-12 text-custom-blue-dark"
+            >
+              <DrawerHeader>
+                <DrawerTitle className="w-full font-logo text-7xl text-center text-custom-blue-dark">
+                  OLC
+                </DrawerTitle>
+                <DrawerDescription>
+                  <div className="w-full flex flex-col items-center gap-4 text-custom-blue-dark">
+                    <p>OmahTI Learning Center</p>
+                    <Button variant="outline" className="w-full mt-16">Masuk</Button>
+                    <Button className="w-full">Daftar</Button>
+                  </div>
+                </DrawerDescription>
+              </DrawerHeader>
+              <DrawerFooter className="w-full">
+                <DrawerClose className="flex justify-center">
+                  <CircleX className="text-custom-blue-dark h-8 w-8" />
+                </DrawerClose>
+              </DrawerFooter>
+            </DrawerContent>
+          </Drawer>
         </div>
       </nav>
 

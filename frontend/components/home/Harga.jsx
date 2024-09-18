@@ -14,7 +14,7 @@ const Harga = () => {
 
   return (
     <>
-      <Container className="flex flex-col gap-6">
+      <Container parentClass="bg-white" className="flex flex-col gap-6">
         <Tag blue>Harga</Tag>
         <div className="flex flex-col gap-6 md:flex-row">
           <Card judul="OLConvention Only" description={olcononly} />

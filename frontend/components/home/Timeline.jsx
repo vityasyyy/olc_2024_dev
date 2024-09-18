@@ -5,7 +5,7 @@ import { Calendar, MapPin } from "lucide-react";
 const Timeline = () => {
   return (
     <>
-      <Container className="flex flex-col gap-6">
+      <Container parentClass="bg-white" className="flex flex-col gap-6">
         <Tag blue>Timeline</Tag>
         <div className="flex flex-col items-center gap-6">
           {/* wrapper on big screens so it turns into a 4x4 grid */}

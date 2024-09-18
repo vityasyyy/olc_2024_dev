@@ -6,7 +6,7 @@ import { Calendar, MapPin } from "lucide-react";
 const OLConvention = () => {
   return (
     <>
-      <Container className="flex flex-col gap-6">
+      <Container parentClass="bg-white" className="flex flex-col gap-6">
         <div className="flex flex-col gap-4">
           <Tag blue>OLConvention</Tag>
           <p className="font-semibold">

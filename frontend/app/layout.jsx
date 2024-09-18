@@ -4,7 +4,7 @@ import "./globals.css";
 
 const magicRetro = localFont({
   src: "../public/fonts/MagicRetro.ttf",
-  variable: '--font-magicretro'
+  variable: "--font-magicretro",
 });
 
 const poppins = Poppins({
@@ -21,7 +21,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${poppins.className} ${magicRetro.variable}`}>{children}</body>
+      <body className={`${poppins.className} ${magicRetro.variable} bg-white`}>
+        {children}
+      </body>
     </html>
   );
 }
