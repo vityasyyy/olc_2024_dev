@@ -8,6 +8,8 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import {useState} from "react";
 import { Info } from "lucide-react";
+import {useRouter} from "next/navigation";
+
 const Register = () => {
   return (
     <>
@@ -46,6 +48,7 @@ const Form = ({ className, ...props }) => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const router = useRouter();
   const [error, setError] = useState('');
   const onSubmit = async (data) => {
     try {
@@ -53,6 +56,7 @@ const Form = ({ className, ...props }) => {
       if(response.status === 200){
         localStorage.setItem('token', response.data.token);
       }
+      router.push('/class');
     } catch (error) {
       setError(error.response.data.error);
     }

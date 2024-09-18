@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import {useState} from "react";
 import { Info } from "lucide-react";
+import { useRouter } from "next/navigation";
 const Register = () => {
   return (
     <>
@@ -59,6 +60,7 @@ const Form = ({ className, ...props }) => {
   } = useForm();
   const isDike = watch("isDike");
   const [error, setError] = useState('');
+  const router = useRouter();
   const onSubmit = async (data) => {
     try {
       const transformedData = {
@@ -69,8 +71,9 @@ const Form = ({ className, ...props }) => {
         `${process.env.NEXT_PUBLIC_API_URL}/auth/register`,
         transformedData
       );
-      if(response.status === 201) {
+      if(response.status === 200) {
         localStorage.setItem('token', response.data.token);
+        router.push('/class')
       }
       // Handle successful registration, e.g., redirect to login or show a success message
     } catch (error) {
