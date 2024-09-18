@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
+import { useState, useEffect } from "react";
 import {
   Drawer,
   DrawerClose,
@@ -14,16 +15,44 @@ import {
 } from "@/components/ui/drawer";
 import { CircleX } from "lucide-react";
 import axios from "axios";
-export default function Navbar({ className, loggedIn = false, ...props }) {
+
+export default function Navbar({ className, ...props }) {
+  const[loggedIn, setLoggedIn] = useState(false);
+  useEffect(() => {
+    const checkUserLoggedIn = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        if (!token) {
+          setLoggedIn(false); // No token means user is not logged in
+          return;
+        }
+
+        const checkLoggedIn = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL}/auth/validate`,
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+        
+        if (checkLoggedIn.status === 200) {
+          setLoggedIn(true); // If token is valid, set user as logged in
+        }
+      } catch (error) {
+        console.error('Error checking login status:', error);
+        setLoggedIn(false); // If there's an error, assume user is not logged in
+      }
+    };
+
+    checkUserLoggedIn(); // Call the function when the component is mounted
+  }, []);
 
   const onSubmitLogout = async () => {
     try{
       const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/logout`, {}, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } });
       if(response.status === 200) {
         localStorage.removeItem('token');
+        location.reload();
       }
     } catch (error) {
-      
+
     }
   }
   return (
@@ -48,6 +77,7 @@ export default function Navbar({ className, loggedIn = false, ...props }) {
             {loggedIn ? (
               <Link href="/">
                 <Button
+                  onClick={onSubmitLogout}
                   variant="outline"
                   className="border-custom-blue-dark text-custom-blue-dark"
                 >
