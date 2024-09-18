@@ -78,7 +78,7 @@ const Class = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7 }}
             >
-              Sultan Tampan Suyudi
+              Gisellma Shampurno
             </motion.p>
           )}
         </h1>
@@ -95,7 +95,11 @@ const Class = () => {
           mendapat akses OLConvention
         </p>
 
-        <motion.div variants={parentVariants} animate="visible" className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
+        <motion.div
+          variants={parentVariants}
+          animate="visible"
+          className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4"
+        >
           {loading ? (
             <>
               <CardLoading />
@@ -105,13 +109,17 @@ const Class = () => {
             </>
           ) : (
             classes.map((item) => (
-              <motion.div variants={childVariants} initial="hidden" animate="visible">
-              <Card
-                label={item.title}
-                judul={item.title} //Use appropriate fields from the data
-                tanggal={item.waktu ? item.waktu : "TBA"} // Example of how you can handle missing fields
-                href={`/class/${item.slug}`}
-              />
+              <motion.div
+                variants={childVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                <Card
+                  label={item.title}
+                  judul={item.title} //Use appropriate fields from the data
+                  tanggal={item.waktu ? item.waktu : "TBA"} // Example of how you can handle missing fields
+                  href={`/class/${item.slug}`}
+                />
               </motion.div>
             ))
           )}

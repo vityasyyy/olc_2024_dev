@@ -123,7 +123,7 @@ const ClassDetail = () => {
                 animate="visible"
               >
                 {/* join card on small screens */}
-                <motion.div variants={childVariants} className="md:hidden">
+                <motion.div variants={childVariants} className="sm:hidden">
                   <JoinCard />
                 </motion.div>
 
@@ -147,7 +147,7 @@ const ClassDetail = () => {
                 ))}
 
                 {/* join card on large screens */}
-                <motion.div variants={childVariants} className="hidden md:flex">
+                <motion.div variants={childVariants} className="hidden sm:flex">
                   <JoinCard />
                 </motion.div>
               </motion.div>
