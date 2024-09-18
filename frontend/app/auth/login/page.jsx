@@ -5,7 +5,9 @@ import BackButton from "@/components/global/BackButton";
 import { motion } from "framer-motion";
 import React from "react";
 import { useForm } from "react-hook-form";
-
+import axios from "axios";
+import {useState} from "react";
+import { Info } from "lucide-react";
 const Register = () => {
   return (
     <>
@@ -41,12 +43,20 @@ const Register = () => {
 const Form = ({ className, ...props }) => {
   const {
     register,
-    watch,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const isDike = watch("isDike");
-  const onSubmit = (data) => console.log(data);
+  const [error, setError] = useState('');
+  const onSubmit = async (data) => {
+    try {
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, data, { headers: {'Content-Type': 'application/json'} });
+      if(response.status === 200){
+        localStorage.setItem('token', response.data.token);
+      }
+    } catch (error) {
+      setError(error.response.data.error);
+    }
+  }
 
   return (
     <form
@@ -64,7 +74,7 @@ const Form = ({ className, ...props }) => {
         className="w-full rounded-lg border-[0.5px] border-black p-2 focus:outline-none focus:ring-2 focus:ring-custom-blue-dark focus:border-transparent"
         type="text"
         placeholder="Email"
-        {...register("Email", {
+        {...register("email", {
           required: "Email harus diisi.",
           pattern: {
             value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
@@ -84,7 +94,7 @@ const Form = ({ className, ...props }) => {
         className="w-full rounded-lg border-[0.5px] border-black p-2 focus:outline-none focus:ring-2 focus:ring-custom-blue-dark focus:border-transparent"
         type="password"
         placeholder="Password"
-        {...register("Password", { required: "Password harus diisi." })}
+        {...register("password", { required: "Password harus diisi." })}
       />
       {errors.Password && (
         <p className="text-start text-xs font-normal text-red-500">
@@ -95,6 +105,8 @@ const Form = ({ className, ...props }) => {
       <Button variant="secondary" type="submit" className="mt-4 rounded-lg">
         Submit
       </Button>
+      {error && <p className="text-red-500 text-xs font-normal text-center flex flex-row items-center justify-center gap-2">
+        <Info className="h-4 w-4"/>{error}</p>}
     </form>
   );
 };

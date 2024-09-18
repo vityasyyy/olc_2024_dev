@@ -1,9 +1,21 @@
+"use client"
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import localFont from "next/font/local";
+import axios from "axios";
+export default function Navbar({ className, loggedIn = true, ...props }) {
 
-export default function Navbar({ className, loggedIn = false, ...props }) {
+  const onSubmitLogout = async () => {
+    try{
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/logout`, {}, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } });
+      if(response.status === 200) {
+        localStorage.removeItem('token');
+      }
+    } catch (error) {
+      
+    }
+  }
   return (
     <>
       <nav
@@ -26,7 +38,7 @@ export default function Navbar({ className, loggedIn = false, ...props }) {
             <div className="flex items-baseline space-x-4">
               {loggedIn ? (
                 <Link href="/">
-                  <Button variant="outline" className="border-custom-blue-dark text-custom-blue-dark">Keluar</Button>
+                  <Button onClick={onSubmitLogout} variant="outline" className="border-custom-blue-dark text-custom-blue-dark">Keluar</Button>
                 </Link>
               ) : (
                 <>
