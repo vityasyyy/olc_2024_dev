@@ -2,6 +2,7 @@ import Container from "../global/Container";
 import Tag from "../global/Tag";
 import Link from "next/link";
 import { Button } from "../ui/button";
+import Image from "next/image";
 
 const Harga = () => {
   let olcononly = ["Gratis biaya pendaftaran", "40 Kursi Tersedia"];
@@ -29,11 +30,25 @@ const Card = ({
   judul = "Introduction to IT World",
   description,
   href = "#",
+  src = "/hero/macbook.png",
 }) => {
   return (
     // 2 divs that will always be square
-    <div className="relative w-full pb-[100%] sm:mx-auto sm:h-96 sm:w-96 sm:pb-0 md:w-full md:pb-[50%]">
-      <div className="absolute inset-0 flex flex-col justify-end border border-black bg-[#656161] p-4 text-white">
+    <div className="relative w-full pb-[100%] rounded-lg overflow-hidden sm:mx-auto sm:h-96 sm:w-96 sm:pb-0 md:w-full md:pb-[50%]">
+
+      {/* image */}
+      <Image
+        src={src}
+        width={500}
+        height={500}
+        className="z-0 object-cover layout-fill"
+      ></Image>
+
+      {/* gradient */}
+      <div className="inset-0 absolute bg-gradient-to-t from-custom-blue-darker to-transparent" />
+
+      {/* content */}
+      <div className="absolute z-20 inset-0 flex flex-col justify-end p-4 text-white">
         {/* judul */}
         <h1 className="text-3xl font-semibold sm:text-4xl">{judul}</h1>
 

@@ -15,7 +15,7 @@ const Timeline = () => {
             <Card smallCard />
             <Card smallCard />
           </div>
-          <div className="flex w-full flex-col gap-6 px-[10%] lg:px-0">
+          <div className="grid grid-cols-1 lg:grid-cols-2 w-full gap-6 px-[10%] lg:px-0">
             <Card />
             <Card />
           </div>
@@ -36,7 +36,7 @@ const Card = ({
   return (
     // 2 divs that will always be square
     <div
-      className={`relative flex h-72 w-full flex-col justify-end rounded-md bg-custom-blue-dark p-3 text-white ${className}`}
+      className={`relative flex h-fit ${smallCard || 'h-fit sm:h-72'} pt-14 w-full flex-col justify-end rounded-md bg-custom-blue-dark p-3 text-white ${className}`}
     >
       {/* day label */}
       <p className="absolute left-3 top-3 mb-4 w-fit rounded-md bg-custom-blue-light px-4 py-1 text-sm text-black">
@@ -44,7 +44,7 @@ const Card = ({
       </p>
 
       <h1
-        className={`text-3xl font-semibold ${judulClass} ${smallCard ? "lg:text-2xl" : "sm:text-4xl"}`}
+        className={`font-semibold text-2xl ${judulClass}`}
       >
         {judul}
       </h1>

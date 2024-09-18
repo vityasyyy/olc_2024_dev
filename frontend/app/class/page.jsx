@@ -1,7 +1,6 @@
 "use client";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import Navbar from "@/components/global/Navbar";
 import Card from "@/components/class/Card";
 import Tag from "@/components/global/Tag";
@@ -37,9 +36,7 @@ const childVariants = {
   },
 };
 
-const Class = () => {
-  const Router = useRouter();
-  const [isVisible, setIsVisible] = useState(false);
+const Class = async () => {
   const [classes, setClasses] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -53,13 +50,6 @@ const Class = () => {
   useState(() => {
     fetchAllClass();
   });
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, 100);
-
-    return () => clearTimeout(timer);
-  }, []);
 
   return (
     <>

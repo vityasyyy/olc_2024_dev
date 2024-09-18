@@ -15,10 +15,10 @@ export default function Hero() {
 
         {/* title text */}
         <div className="z-20 mt-12 flex w-full flex-col sm:mt-0 sm:max-w-[60vh] md:max-w-none md:gap-1">
-          <h1 className="text-center text-xl font-medium text-white sm:text-start sm:text-4xl lg:text-6xl">
+          <h1 className="text-center text-2xl font-medium text-white sm:text-start sm:text-4xl lg:text-6xl">
             Tingkatkan Skill IT Bersama{" "}
           </h1>
-          <h1 className="text-center text-xl font-bold text-white sm:text-start sm:text-4xl lg:text-6xl">
+          <h1 className="text-center text-2xl font-bold text-white sm:text-start sm:text-4xl lg:text-6xl">
             Professional Industri
           </h1>
         </div>
