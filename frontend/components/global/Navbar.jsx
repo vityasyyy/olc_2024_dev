@@ -1,3 +1,4 @@
+"use client"
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
@@ -12,8 +13,19 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { CircleX } from "lucide-react";
+import axios from "axios";
+export default function Navbar({ className, loggedIn = true, ...props }) {
 
-export default function Navbar({ className, loggedIn = false, ...props }) {
+  const onSubmitLogout = async () => {
+    try{
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/logout`, {}, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } });
+      if(response.status === 200) {
+        localStorage.removeItem('token');
+      }
+    } catch (error) {
+      
+    }
+  }
   return (
     <>
       <nav

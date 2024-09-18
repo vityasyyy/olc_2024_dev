@@ -5,7 +5,9 @@ import BackButton from "@/components/global/BackButton";
 import { motion } from "framer-motion";
 import React from "react";
 import { useForm } from "react-hook-form";
-
+import axios from "axios";
+import {useState} from "react";
+import { Info } from "lucide-react";
 const Register = () => {
   return (
     <>
@@ -38,7 +40,7 @@ const Register = () => {
             Sudah punya akun?{" "}
             <span className="font-semibold text-custom-blue-dark">
               <Button variant="link" className="p-0 text-base">
-                <Link href="auth/masuk">Masuk</Link>
+                <Link href="/auth/login">Masuk</Link>
               </Button>
             </span>
           </p>
@@ -56,7 +58,26 @@ const Form = ({ className, ...props }) => {
     formState: { errors },
   } = useForm();
   const isDike = watch("isDike");
-  const onSubmit = (data) => console.log(data);
+  const [error, setError] = useState('');
+  const onSubmit = async (data) => {
+    try {
+      const transformedData = {
+        ...data,
+        isDike: data.isDike === "1" ? true : false, // Transform the isDike value
+      };
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/auth/register`,
+        transformedData
+      );
+      if(response.status === 201) {
+        localStorage.setItem('token', response.data.token);
+      }
+      // Handle successful registration, e.g., redirect to login or show a success message
+    } catch (error) {
+        setError(error.response.data.error);
+      // Handle error, e.g., show an error notification to the user
+    }
+  };
 
   return (
     <form
@@ -74,11 +95,11 @@ const Form = ({ className, ...props }) => {
         className="w-full rounded-lg border-[0.5px] border-black p-2 focus:outline-none focus:ring-2 focus:ring-custom-blue-dark focus:border-transparent"
         type="text"
         placeholder="Nama"
-        {...register("Nama", { required: "Nama harus diisi." })}
+        {...register("username", { required: "Nama harus diisi." })}
       />
-      {errors.Nama && (
+      {errors.nama && (
         <p className="text-start text-xs font-normal text-red-500">
-          {errors.Nama.message}
+          {errors.username.message}
         </p>
       )}
 
@@ -88,7 +109,7 @@ const Form = ({ className, ...props }) => {
         className="w-full rounded-lg border-[0.5px] border-black p-2 focus:outline-none focus:ring-2 focus:ring-custom-blue-dark focus:border-transparent"
         type="text"
         placeholder="Email"
-        {...register("Email", {
+        {...register("email", {
           required: "Email harus diisi.",
           pattern: {
             value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
@@ -96,9 +117,9 @@ const Form = ({ className, ...props }) => {
           },
         })}
       />
-      {errors.Email && (
+      {errors.email && (
         <p className="text-start text-xs font-normal text-red-500">
-          {errors.Email.message}
+          {errors.email.message}
         </p>
       )}
 
@@ -108,11 +129,11 @@ const Form = ({ className, ...props }) => {
         className="w-full rounded-lg border-[0.5px] border-black p-2 focus:outline-none focus:ring-2 focus:ring-custom-blue-dark focus:border-transparent"
         type="password"
         placeholder="Password"
-        {...register("Password", { required: "Password harus diisi." })}
+        {...register("password", { required: "Password harus diisi." })}
       />
-      {errors.Password && (
+      {errors.password && (
         <p className="text-start text-xs font-normal text-red-500">
-          {errors.Password.message}
+          {errors.password.message}
         </p>
       )}
 
@@ -125,7 +146,7 @@ const Form = ({ className, ...props }) => {
         {...register("confirmPassword", {
           required: "Password harus diisi ulang.",
           validate: (value) =>
-            value === watch("Password") || "Password tidak sama.",
+            value === watch("password") || "Password tidak sama.",
         })}
       />
       {errors.confirmPassword && (
@@ -134,16 +155,16 @@ const Form = ({ className, ...props }) => {
         </p>
       )}
 
-      {/* radio buttons for dike and non */}
+      {/* radio buttons for DIKE and non-DIKE */}
 
       <div className="text-custom-black text-sm mt-2 flex flex-row gap-4 font-normal md:text-xs md:mt-0">
         <div className="flex flex-row gap-2">
           <input {...register("isDike")} type="radio" id="dike" value="1" />
-          <label for="dike">Mahasiswa DIKE</label>
+          <label htmlFor="dike">Mahasiswa DIKE</label>
         </div>
         <div className="flex flex-row gap-2">
           <input {...register("isDike")} type="radio" id="umum" value="0" />
-          <label for="umum">Peserta Umum</label>
+          <label htmlFor="umum">Peserta Umum</label>
         </div>
       </div>
 
@@ -174,8 +195,9 @@ const Form = ({ className, ...props }) => {
       <Button variant="secondary" type="submit" className="mt-4 rounded-lg">
         Submit
       </Button>
+      {error && <p className="text-red-500 text-xs font-normal text-center flex flex-row items-center justify-center gap-2">
+        <Info className="h-4 w-4"/>{error}</p>}
     </form>
   );
 };
-
 export default Register;
