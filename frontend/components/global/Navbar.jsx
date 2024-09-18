@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/drawer";
 import { CircleX } from "lucide-react";
 import axios from "axios";
-export default function Navbar({ className, loggedIn = true, ...props }) {
+export default function Navbar({ className, loggedIn = false, ...props }) {
 
   const onSubmitLogout = async () => {
     try{
