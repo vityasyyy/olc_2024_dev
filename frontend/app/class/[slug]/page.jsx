@@ -1,54 +1,40 @@
-"use client";
 import axios from "axios";
-import { useState, useEffect } from "react";
-import { useParams } from "next/navigation";
 import Image from "next/image";
 import BackButton from "@/components/global/BackButton";
 import { Progress } from "@/components/ui/progress";
 import ContainerLarge from "@/components/global/ContainerLarge";
 import CardDrawer from "@/components/class/slug/Card";
 import SkeletonFull from "@/components/global/SkeletonFull";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
-const ClassDetail = () => {
-  const params = useParams();
-  const slug = params.slug; // Get the slug from the URL
-  const [classDetail, setClassDetail] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [progress, setProgress] = useState(0);
+const ClassDetail = async ({ params }) => {
+  const slug = await params.slug; // Get the slug from the URL
+  let classDetail;
 
-  useEffect(() => {
-    if (!slug) return; // Wait for slug to be available
+  // Fetch class id by slug
+  try {
+    // Fetch class data by slug to retrieve the id
+    const slugResponse = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_URL}/olclass/slug/${slug}`,
+    );
+    // console.log(slugResponse);
+    const classId = await slugResponse.data; // Assuming your response contains the ID
 
-    // Fetch class id by slug
-    const fetchClassIdBySlug = async () => {
-      try {
-        // Fetch class data by slug to retrieve the id
-        const slugResponse = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_URL}/olclass/slug/${slug}`,
-        );
-        console.log(slugResponse);
-        const classId = slugResponse.data; // Assuming your response contains the ID
+    // Now fetch the class details using the id
+    const classResponse = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_URL}/olclass/${classId}`,
+    );
+    classDetail = await classResponse.data;
+    console.log(classDetail);
+    // setProgress((classResponse.data.enrolled / classResponse.data.slot) * 100);
+    // setLoading(false);
+  } catch (error) {
+    console.error("Error fetching class detail:", error);
+  }
 
-        // Now fetch the class details using the id
-        const classResponse = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_URL}/olclass/${classId}`,
-        );
-        setClassDetail(classResponse.data);
-        setProgress(
-          (classResponse.data.enrolled / classResponse.data.slot) * 100,
-        );
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching class detail:", error);
-      }
-    };
+  let progress = (classDetail.enrolledBy.length / classDetail.slots) * 100;
 
-    fetchClassIdBySlug();
-  }, [slug]);
-
-  if (loading || !classDetail) {
+  if (!classDetail) {
     return (
       <>
         <ContainerLarge parentClass="bg-white">
@@ -61,45 +47,77 @@ const ClassDetail = () => {
 
   return (
     <>
-      <ContainerLarge className="text-custom-blue-dark">
+      <ContainerLarge className="text-custom-blue-dark" parentClass="bg-white">
         <BackButton black />
         <h1 className="my-8 text-4xl font-bold">{classDetail.title}</h1>
 
-        <div className="flex flex-col gap-6 lg:flex-row">
-          {classDetail.map}
-          {/* speaker and image section */}
-          <Avatar
-            nama={classDetail.mentor?.nama}
-            deskripsi={classDetail.mentor?.deskripsi}
-            src={classDetail.mentor?.image}
-            alt={classDetail.mentor?.nama}
-          />
+        <div className="grid w-full grid-cols-1 gap-6 lg:grid-cols-4 lg:flex-row">
+          {/* {classDetail.map} */}
+          {/* left side, speaker and image section */}
+          <div className="flex flex-row gap-6">
+            <Avatar
+              nama={classDetail.mentor?.nama}
+              deskripsi={classDetail.mentor?.deskripsi}
+              // src={classDetail.mentor?.image}
+              // src="/hero/macbook.png"
+              alt={classDetail.mentor?.nama}
+            />
+
+            {/* ON MEDIUM SCREENS */}
+            {/* ----------------------------------------------------- */}
+
+            {/* group progress and button together */}
+            <div className="hidden w-full flex-col justify-end gap-1 md:flex lg:hidden">
+              <p className="text-lg font-semibold text-black">
+                Slot Tersedia :
+              </p>
+
+              {/* progress bar */}
+              <div className="mb-3 flex flex-row items-center gap-3">
+                <Progress value={progress} className="h-6 w-full" />
+                <p className="text-lg font-semibold text-black">
+                  {classDetail.enrolledBy.length} / {classDetail.slots}
+                </p>
+              </div>
+
+              {/* daftar sekarang */}
+              <Button variant="secondary" className="w-full">
+                Daftar Sekarang
+              </Button>
+            </div>
+            {/* -------------------------------------------------------- */}
+          </div>
 
           {/* right side */}
-          <div className="flex w-full flex-col gap-4">
-            <p className="text-2xl font-semibold text-black">Slot Tersedia :</p>
-            <div className="flex w-full flex-row items-center gap-3">
-              <Progress value={progress} className="w-full" />
-              <p className="text-xl font-semibold text-black">
-                {classDetail.enrolled}/{classDetail.slot}
-              </p>
+          <div className="flex w-full flex-col gap-4 lg:col-span-3">
+            <p className="text-2xl font-semibold text-black md:hidden lg:block">
+              Slot Tersedia :
+            </p>
+
+            {/* group progress and button together */}
+            <div className="grid grid-cols-1 gap-4 md:hidden md:grid-cols-3 lg:grid">
+              {/* progress bar */}
+              <div className="col-span-2 flex w-full flex-row items-center gap-3">
+                <Progress value={progress} className="w-full" />
+                <p className="text-xl font-semibold text-black">
+                  {classDetail.enrolledBy.length}/{classDetail.slots}
+                </p>
+              </div>
+
+              {/* daftar sekarang */}
+              <Button variant="secondary" className="w-full">
+                Daftar Sekarang
+              </Button>
             </div>
 
             {/* session cards */}
-            <div
-              className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:grid-rows-3 lg:grid-cols-3 lg:grid-rows-2"
-              initial="hidden"
-              animate="visible"
-            >
-              {/* join card on small screens */}
-              <div className="sm:hidden">
-                <JoinCard />
-              </div>
-
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:grid-rows-3 lg:grid-cols-3 lg:grid-rows-2">
               {classDetail.sesi.map((session, index) => (
-                <div>
+                <div
+                  className="duration-700 animate-in fade-in slide-in-from-bottom-10"
+                  key={index}
+                >
                   <CardDrawer
-                    key={index}
                     sesi={`${index + 1}`}
                     judul={session.judulSesi}
                     tanggal={new Date(session.waktu).toLocaleDateString(
@@ -110,41 +128,16 @@ const ClassDetail = () => {
                       hour: "2-digit",
                       minute: "2-digit",
                     })}
+                    deskripsi={session.deskripsiSingkat}
                     tempat={session.platform}
                   />
                 </div>
               ))}
-
-              {/* join card on large screens */}
-              <div className="hidden sm:flex">
-                <JoinCard />
-              </div>
             </div>
           </div>
         </div>
       </ContainerLarge>
     </>
-  );
-};
-
-const JoinCard = ({
-  judul = "Ayo Bergabung Sekarang!",
-  desc = "slot kelas terbatas",
-  className,
-}) => {
-  return (
-    <div
-      className={`flex h-full w-full flex-col justify-end gap-2 md:gap-6 md:p-4 ${className}`}
-    >
-      {/* judul dan desc */}
-      <div className="flex flex-col gap-2">
-        <p className="text-3xl font-semibold">{judul}</p>
-        <p className="text-base font-medium">{desc}</p>
-      </div>
-      <Button variant="secondary" asChild>
-        <Link href="/auth/register">Daftar Sekarang</Link>
-      </Button>
-    </div>
   );
 };
 
@@ -158,17 +151,19 @@ const Avatar = ({
   return (
     <>
       <div
-        className={`relative flex w-full flex-col gap-2 text-custom-blue-darker md:flex-row md:gap-6 lg:w-1/3`}
+        className={`relative flex h-[60vh] w-full max-w-md flex-col items-end gap-2 overflow-hidden rounded-lg text-custom-blue-darker lg:h-full`}
       >
         <Image
-          className="relative h-96 w-full rounded-xl sm:w-1/2 md:w-2/5 lg:h-full lg:w-full"
+          className="relative h-full w-full rounded-xl"
           src={src}
           alt={alt}
           width={500}
           height={600}
         />
 
-        <div className="flex flex-col sm:gap-2 md:mt-auto lg:absolute lg:bottom-4 lg:left-4 lg:text-white">
+        <div className="absolute inset-0 bg-gradient-to-t from-custom-blue-darker to-transparent" />
+
+        <div className="absolute bottom-4 left-4 right-4 flex flex-col gap-2 text-white">
           <p className="font-medium lg:text-lg">Speaker</p>
           <p className="text-2xl font-semibold lg:text-3xl">{nama}</p>
           <p className="font-medium lg:text-lg">{deskripsi}</p>

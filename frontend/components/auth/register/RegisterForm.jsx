@@ -151,15 +151,16 @@ const RegisterForm = ({ className, ...props }) => {
         </>
       )}
 
-      <Button variant="secondary" type="submit" className="mt-4 rounded-lg">
-        Submit
-      </Button>
       {error && (
-        <p className="flex flex-row items-center justify-center gap-2 text-center text-xs font-normal text-red-500">
+        <p className="flex flex-row items-center justify-center gap-2 text-center text-xs font-medium text-red-500">
           <Info className="h-4 w-4" />
           {error}
         </p>
       )}
+
+      <Button variant="secondary" type="submit" className="mt-4 rounded-lg">
+        Submit
+      </Button>
     </form>
   );
 };

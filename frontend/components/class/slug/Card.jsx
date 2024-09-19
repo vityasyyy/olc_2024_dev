@@ -53,7 +53,7 @@ const CardDrawer = ({
 const CardBase = ({ sesi, judul, jam, tanggal, tempat, className }) => {
   return (
     <div
-      className={`flex min-h-64 h-full w-full flex-col justify-between rounded-xl border-[2px] border-custom-blue-dark p-4 text-left shadow-sm transition-all hover:bg-custom-blue-light/20 ${className}`}
+      className={`flex min-h-64 h-full w-full flex-col justify-between rounded-xl border-[2px] border-custom-blue-dark p-4 text-left shadow-sm transition-all hover:bg-custom-blue-light/30 ${className}`}
     >
       <p className="text-base font-semibold">Sesi {sesi}</p>
 
