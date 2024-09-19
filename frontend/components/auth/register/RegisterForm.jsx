@@ -152,8 +152,8 @@ const RegisterForm = ({ className, ...props }) => {
       )}
 
       {error && (
-        <p className="flex flex-row items-center justify-center gap-2 text-center text-xs font-medium text-red-500">
-          <Info className="h-4 w-4" />
+        <p className="flex flex-row items-center gap-2 text-start text-xs font-medium text-red-500">
+          <Info className="h-3 w-3 font-semibold" />
           {error}
         </p>
       )}

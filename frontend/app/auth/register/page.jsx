@@ -13,7 +13,7 @@ const Register = () => {
         </div>
 
         {/* right/bottom/form */}
-        <div className="flex flex-col animate-in fade-in duration-700 justify-center gap-1 overscroll-contain bg-white px-[min(5vw,32px)] py-8 md:overflow-auto md:overscroll-y-contain">
+        <div className="flex flex-col animate-in fade-in duration-700 justify-center gap-1 py-8 overscroll-contain bg-white px-[min(5vw,32px)] md:pt-56 md:pb-24 md:overflow-auto md:overscroll-y-contain">
           {/* title and subtitle */}
           <div className="flex flex-col gap-1 md:mt-8">
             <h1 className="text-center text-2xl font-semibold text-custom-blue-dark lg:text-4xl">

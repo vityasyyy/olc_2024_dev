@@ -10,7 +10,7 @@ const ContainerLarge = ({
 }) => {
   return (
     <div
-      className={`relative flex justify-center py-8 ${parentClass}`}
+      className={`relative flex overflow-hidden justify-center py-8 ${parentClass}`}
       {...props}
     >
       <div className={`mx-[min(5vw,32px)] w-full ${className}`}>{children}</div>

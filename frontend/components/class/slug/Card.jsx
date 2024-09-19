@@ -14,6 +14,7 @@ const CardDrawer = ({
   sesi,
   judul,
   deskripsi = "Belum ada deskripsi.",
+  kurikulum = "Kurikulum belum tersedia.",
   jam,
   tanggal,
   tempat,
@@ -35,7 +36,12 @@ const CardDrawer = ({
         <div className="mx-auto w-full max-w-xl">
           <DrawerHeader>
             <DrawerTitle>{judul}</DrawerTitle>
-            <DrawerDescription>{deskripsi}</DrawerDescription>
+            <DrawerDescription>
+              {deskripsi}
+              <br />
+              <p>{" "} </p>
+              <p className="mt-2">Curriculum: {kurikulum}</p>
+              </DrawerDescription>
           </DrawerHeader>
           <DrawerFooter>
             <DrawerClose>

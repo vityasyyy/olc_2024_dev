@@ -76,14 +76,7 @@ async function runMigration() {
   await connectToMongoDB();
   // Provide paths to multiple CSV files
   const csvFilePaths = [
-    path.resolve(os.homedir(), 'Downloads', 'Ilkom 2024.xlsx - Daftar Mahasiswa.csv'),
     path.resolve(os.homedir(), 'Downloads', 'Ilkom 2023.xlsx - Daftar Mahasiswa.csv'),
-    path.resolve(os.homedir(), 'Downloads', 'Ilkom 2022.xlsx - Daftar Mahasiswa.csv'),
-    path.resolve(os.homedir(), 'Downloads', 'Ilkom 2021.xlsx - Daftar Mahasiswa.csv'),
-    path.resolve(os.homedir(), 'Downloads', 'Elins 2024.xlsx - Daftar Mahasiswa.csv'),
-    path.resolve(os.homedir(), 'Downloads', 'Elins 2023.xlsx - Daftar Mahasiswa.csv'),
-    path.resolve(os.homedir(), 'Downloads', 'Elins 2022.xlsx - Daftar Mahasiswa.csv'),
-    path.resolve(os.homedir(), 'Downloads', 'Elins 2021.xlsx - Daftar Mahasiswa.csv')
     // Add more file paths as needed
   ];
   await migrateCsvToMongoDB(csvFilePaths);

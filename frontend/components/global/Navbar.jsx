@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
@@ -16,52 +16,31 @@ import {
 import { CircleX } from "lucide-react";
 import axios from "axios";
 
-export default function Navbar({ className, ...props }) {
-  const[loggedIn, setLoggedIn] = useState(false);
-  useEffect(() => {
-    const checkUserLoggedIn = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        if (!token) {
-          setLoggedIn(false); // No token means user is not logged in
-          return;
-        }
+export default function Navbar({ className, loggedIn = false, ...props }) {
 
-        const checkLoggedIn = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_URL}/auth/validate`,
-          { headers: { Authorization: `Bearer ${token}` } }
-        );
-        
-        if (checkLoggedIn.status === 200) {
-          setLoggedIn(true); // If token is valid, set user as logged in
-        }
-      } catch (error) {
-        console.error('Error checking login status:', error);
-        setLoggedIn(false); // If there's an error, assume user is not logged in
-      }
-    };
-
-    checkUserLoggedIn(); // Call the function when the component is mounted
-  }, []);
-
+  // logout function
   const onSubmitLogout = async () => {
-    try{
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/logout`, {}, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } });
-      if(response.status === 200) {
-        localStorage.removeItem('token');
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/auth/logout`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        },
+      );
+      if (response.status === 200) {
+        localStorage.removeItem("token");
         location.reload();
       }
-    } catch (error) {
-
-    }
-  }
+    } catch (error) {}
+  };
   return (
     <>
       <nav
-        className={`fixed left-0 right-0 top-0 z-50 ${loggedIn ? "border-b-[1.5px] border-custom-blue-dark bg-white/75" : "bg-custom-blue-dark/75"} backdrop-blur-[8px] ${className}`}
+        className={`fixed flex justify-center w-screen left-0 right-0 top-0 z-50 ${loggedIn ? "border-b-[1.5px] border-custom-blue-dark bg-white/75" : "bg-custom-blue-dark/75"} backdrop-blur-[8px] ${className}`}
         {...props}
       >
-        <div className="mx-auto flex h-16 w-[90vw] items-center justify-between sm:w-full sm:px-6">
+        <div className="flex h-16 w-[90vw] items-center justify-between sm:w-full sm:px-6">
           {/* logo */}
           <div className="flex items-center">
             <Link
@@ -103,23 +82,25 @@ export default function Navbar({ className, ...props }) {
             </DrawerTrigger>
             <DrawerContent
               noThumb
-              className="ml-[10vw] h-full w-[90vw] flex flex-col items-center rounded-none rounded-l-[10px] py-12 text-custom-blue-dark"
+              className="ml-[10vw] flex h-full w-[90vw] flex-col items-center rounded-none rounded-l-[10px] py-12 text-custom-blue-dark"
             >
               <DrawerHeader>
-                <DrawerTitle className="w-full font-logo text-7xl text-center text-custom-blue-dark">
+                <DrawerTitle className="w-full text-center font-logo text-7xl text-custom-blue-dark">
                   OLC
                 </DrawerTitle>
                 <DrawerDescription>
-                  <div className="w-full flex flex-col items-center gap-4 text-custom-blue-dark">
+                  <div className="flex w-full flex-col items-center gap-4 text-custom-blue-dark">
                     <p>OmahTI Learning Center</p>
-                    <Button variant="outline" className="w-full mt-16">Masuk</Button>
+                    <Button variant="outline" className="mt-16 w-full">
+                      Masuk
+                    </Button>
                     <Button className="w-full">Daftar</Button>
                   </div>
                 </DrawerDescription>
               </DrawerHeader>
               <DrawerFooter className="w-full">
                 <DrawerClose className="flex justify-center">
-                  <CircleX className="text-custom-blue-dark h-8 w-8" />
+                  <CircleX className="h-8 w-8 text-custom-blue-dark" />
                 </DrawerClose>
               </DrawerFooter>
             </DrawerContent>

@@ -3,15 +3,14 @@ import Navbar from "@/components/global/Navbar";
 import Card from "@/components/class/Card";
 import Tag from "@/components/global/Tag";
 import ContainerLarge from "@/components/global/ContainerLarge";
-import CardLoading from "@/components/class/CardLoading";
 import Footer from "@/components/global/Footer";
 
 const Class = async () => {
   const response = await axios.get(
     `${process.env.NEXT_PUBLIC_API_URL}/olclass`,
   );
-  const classes = await response.data;
 
+  const classes = await response.data;
   return (
     <>
       <Navbar loggedIn />

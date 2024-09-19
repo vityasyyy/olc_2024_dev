@@ -4,12 +4,11 @@ import BackButton from "@/components/global/BackButton";
 import { Progress } from "@/components/ui/progress";
 import ContainerLarge from "@/components/global/ContainerLarge";
 import CardDrawer from "@/components/class/slug/Card";
-import SkeletonFull from "@/components/global/SkeletonFull";
 import { Button } from "@/components/ui/button";
 import { notFound } from "next/navigation";
 
 const ClassDetail = async ({ params }) => {
-  const slug = await params.slug; // Get the slug from the URL
+  const slug = await params.slug;
   let classDetail;
 
   // Fetch class id by slug
@@ -18,20 +17,17 @@ const ClassDetail = async ({ params }) => {
     const slugResponse = await axios.get(
       `${process.env.NEXT_PUBLIC_API_URL}/olclass/slug/${slug}`,
     );
-    // console.log(slugResponse);
     const classId = await slugResponse.data; // Assuming your response contains the ID
-
     // Now fetch the class details using the id
     const classResponse = await axios.get(
       `${process.env.NEXT_PUBLIC_API_URL}/olclass/${classId}`,
     );
     classDetail = await classResponse.data;
-    // setProgress((classResponse.data.enrolled / classResponse.data.slot) * 100);
-    // setLoading(false);
   } catch (error) {
     console.error("Error fetching class detail:", error);
   }
 
+  // catch error if user enters a page that does not exist
   if (!classDetail) {
     return notFound(); 
   }
@@ -68,7 +64,7 @@ const ClassDetail = async ({ params }) => {
               {/* progress bar */}
               <div className="mb-3 flex flex-row items-center gap-3">
                 <Progress value={progress} className="h-6 w-full" />
-                <p className="text-lg font-semibold text-black">
+                <p className="text-lg font-semibold text-black text-nowrap">
                   {classDetail.enrolledBy.length} / {classDetail.slots}
                 </p>
               </div>
@@ -121,7 +117,8 @@ const ClassDetail = async ({ params }) => {
                       hour: "2-digit",
                       minute: "2-digit",
                     })}
-                    deskripsi={session.deskripsiSingkat}
+                    deskripsi={session.deskripsiLengkap}
+                    kurikulum={session.kurikulum}
                     tempat={session.platform}
                   />
                 </div>

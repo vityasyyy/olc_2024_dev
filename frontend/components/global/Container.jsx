@@ -9,7 +9,7 @@ const Container = ({
   ...props
 }) => {
   return (
-    <div className={`relative py-28 ${parentClass}`} {...props}>
+    <div className={`relative overflow-hidden py-28 ${parentClass}`} {...props}>
       <div className={`mx-auto w-[90vw] max-w-[1114px] ${className}`}>
         {children}
       </div>
