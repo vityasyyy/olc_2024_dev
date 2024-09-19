@@ -6,6 +6,7 @@ import ContainerLarge from "@/components/global/ContainerLarge";
 import CardDrawer from "@/components/class/slug/Card";
 import SkeletonFull from "@/components/global/SkeletonFull";
 import { Button } from "@/components/ui/button";
+import { notFound } from "next/navigation";
 
 const ClassDetail = async ({ params }) => {
   const slug = await params.slug; // Get the slug from the URL
@@ -25,25 +26,17 @@ const ClassDetail = async ({ params }) => {
       `${process.env.NEXT_PUBLIC_API_URL}/olclass/${classId}`,
     );
     classDetail = await classResponse.data;
-    console.log(classDetail);
     // setProgress((classResponse.data.enrolled / classResponse.data.slot) * 100);
     // setLoading(false);
   } catch (error) {
     console.error("Error fetching class detail:", error);
   }
 
-  let progress = (classDetail.enrolledBy.length / classDetail.slots) * 100;
-
   if (!classDetail) {
-    return (
-      <>
-        <ContainerLarge parentClass="bg-white">
-          <BackButton black />
-          <SkeletonFull />
-        </ContainerLarge>
-      </>
-    );
+    return notFound(); 
   }
+  
+  let progress = (classDetail.enrolledBy.length / classDetail.slots) * 100;
 
   return (
     <>
