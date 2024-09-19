@@ -1,4 +1,5 @@
 import Image from "next/image";
+import diamondsSrc from "../../public/hero/diamonds.svg";
 
 const Container = ({
   children,
@@ -14,14 +15,16 @@ const Container = ({
       </div>
       {diamonds ? (
         <>
-          <div className="absolute left-0 right-0 top-8 h-16 w-full">
-            <div className="relative inset-0 h-6 w-full">
-              <Image src="hero/diamonds.svg" objectFit="cover" layout="fill" />
+          <div className="absolute left-0 right-0 top-8 h-16 w-2xl">
+            <div className="relative flex flex-row inset-0 z-10 h-6 w-full object-cover">
+              <Image src={diamondsSrc} className="object-cover" alt="diamonds" />
+              <Image src={diamondsSrc} className="object-cover" alt="diamonds" />
             </div>
           </div>
-          <div className="absolute bottom-1 left-0 right-0 h-16 w-full">
-            <div className="relative inset-0 h-6 w-full">
-              <Image src="hero/diamonds.svg" objectFit="cover" layout="fill" />
+          <div className="absolute bottom-1 left-0 right-0 h-16 w-2xl">
+            <div className="relative flex flex-row inset-0 h-6 w-full object-cover bg-repeat-x">
+              <Image src={diamondsSrc} className="object-cover" alt="diamonds" />
+              <Image src={diamondsSrc} className="object-cover" alt="diamonds" />
             </div>
           </div>
         </>

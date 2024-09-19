@@ -37,6 +37,7 @@ const Card = ({
         src={src}
         width={500}
         height={500}
+        alt="OLConvention" 
         className="z-0 object-cover layout-fill"
       ></Image>
 

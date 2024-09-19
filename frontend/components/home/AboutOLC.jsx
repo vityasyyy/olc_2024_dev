@@ -36,6 +36,7 @@ const AboutOLC = () => {
             <Image
               className="h-4 w-4 mt-1"
               src="placeholder.svg"
+              alt="macbook"
               width={32}
               height={32}
             />

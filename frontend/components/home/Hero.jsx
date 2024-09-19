@@ -6,10 +6,9 @@ import { Menu } from "lucide-react";
 export default function Hero() {
   return (
     <div className="relative w-full bg-custom-blue-dark">
-      <ContainerLarge
-        diamonds
-        className="flex h-[80vh] flex-col justify-between gap-0 sm:justify-around"
-      >
+      <ContainerLarge 
+      diamonds
+      className="flex h-[80vh] flex-col justify-between gap-0 sm:justify-around">
         {/* hidden block for positioning */}
         <div className="hidden sm:block"></div>
 
@@ -37,6 +36,8 @@ export default function Hero() {
         <Image
           src="/hero/circle.svg"
           className="absolute bottom-[20%] left-[-6rem] hidden sm:block"
+          alt="circle"
+          priority
           width={250}
           height={250}
         />

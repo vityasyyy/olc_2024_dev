@@ -47,7 +47,7 @@ const Card = ({
         <div className="flex h-72 w-full flex-col overflow-hidden rounded-t-2xl sm:h-48 sm:flex-row">
           {/* image */}
           <div className="relative h-1/2 w-full sm:h-full sm:w-[200px]">
-            <Image src="placeholder.svg" layout="fill" objectFit="cover" />
+            <Image src="placeholder.svg" width={200} height={200} className="object-cover layout-fill" alt="Class Image" />
           </div>
           <div className="flex h-1/2 w-full flex-col justify-between gap-1 bg-custom-blue-darker p-4 text-white sm:h-full sm:w-full">
             {/* label */}

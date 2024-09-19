@@ -42,6 +42,7 @@ const Card = ({
         width={500}
         height={500}
         className="z-0 object-cover layout-fill"
+        alt="OLConvention"
       ></Image>
 
       {/* gradient */}

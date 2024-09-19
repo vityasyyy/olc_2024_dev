@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
 
-const Card = ({
+const Card = async ({
   label = "Nama Pelajaran",
   judul = "Judul",
   tanggal = "22 Sept - 20 Okt 2024",
@@ -19,7 +19,7 @@ const Card = ({
           className="rounded-t-xl"
         />
         {/* label */}
-        <span className="bg-custom-blue absolute left-3 top-3 rounded-md px-2 py-1 text-sm font-medium">
+        <span className="absolute left-3 top-3 rounded-md bg-custom-blue px-2 py-1 text-sm font-medium">
           {label}
         </span>
       </div>
