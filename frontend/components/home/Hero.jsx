@@ -1,5 +1,5 @@
 import ContainerLarge from "../global/ContainerLarge";
-import { Button } from "../ui/Button";
+import { Button } from "../ui/button";
 import Image from "next/image";
 import { Menu } from "lucide-react";
 
