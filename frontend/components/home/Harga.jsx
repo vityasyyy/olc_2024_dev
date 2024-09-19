@@ -34,39 +34,36 @@ const Card = ({
 }) => {
   return (
     // 2 divs that will always be square
-    <div className="relative w-full pb-[100%] rounded-lg overflow-hidden sm:mx-auto sm:h-96 sm:w-96 sm:pb-0 md:w-full md:pb-[50%]">
-
+    <div className="relative w-full overflow-hidden rounded-lg pb-[100%] sm:mx-auto sm:h-96 sm:w-96 sm:pb-0 md:w-full md:pb-[50%]">
       {/* image */}
       <Image
         src={src}
         width={500}
         height={500}
-        className="z-0 object-cover layout-fill"
+        className="layout-fill z-0 object-cover"
         alt="OLConvention"
       ></Image>
 
       {/* gradient */}
-      <div className="inset-0 absolute bg-gradient-to-t from-custom-blue-darker to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-custom-blue-darker to-transparent" />
 
       {/* content */}
-      <div className="absolute z-20 inset-0 flex flex-col justify-end p-4 text-white">
+      <div className="absolute inset-0 z-20 flex flex-col justify-end p-4 text-white">
         {/* judul */}
         <h1 className="text-3xl font-semibold sm:text-4xl">{judul}</h1>
 
         {/* bullet points */}
         <div className="my-4 flex flex-col gap-2">
-          <ul className="flex list-disc flex-col ml-4 gap-2">
+          <ul className="ml-4 flex list-disc flex-col gap-2">
             {description.map((desc, i) => (
               <li key={i}>{desc}</li>
             ))}
           </ul>
         </div>
 
-        <Button asChild>
-          <Link href="/auth/register">
-          Daftar Sekarang
-          </Link>
-          </Button>
+        <Link href="/auth/login" className="w-full">
+          <Button className="w-full">Daftar Sekarang</Button>
+        </Link>
       </div>
     </div>
   );

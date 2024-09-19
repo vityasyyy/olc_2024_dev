@@ -27,12 +27,12 @@ const Register = () => {
           {/* formn */}
           <RegisterForm />
 
-          {/* login if the user doesnt have an account */}
+          {/* login if the user has an account */}
           <p className="text-center font-medium">
             Sudah punya akun?{" "}
             <span className="font-semibold text-custom-blue-dark">
               <Button variant="link" className="p-0 text-base">
-                <Link href="/auth/login">Masuk</Link>
+                <Link href="/auth/register">Masuk</Link>
               </Button>
             </span>
           </p>

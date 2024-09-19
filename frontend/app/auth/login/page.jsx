@@ -1,5 +1,7 @@
 import BackButton from "@/components/global/BackButton";
 import LoginForm from "@/components/auth/login/LoginForm";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const Register = () => {
   return (
@@ -24,6 +26,16 @@ const Register = () => {
 
           {/* formn */}
           <LoginForm />
+
+          {/* register if the user doesnt have an account */}
+          <p className="text-center font-medium">
+            Belum punya akun?{" "}
+            <span className="font-semibold text-custom-blue-dark">
+              <Button variant="link" className="p-0 text-base">
+                <Link href="/auth/login">Daftar</Link>
+              </Button>
+            </span>
+          </p>
         </div>
       </div>
     </>
