@@ -5,8 +5,7 @@ const {isAuthenticated} = require('../Utils/middlewares');
 
 
 router.get('/', getAllClasses);
-router.get('/slug/:slug', getIdFromSlug);
-router.get('/:id', getOneClass);
-router.post('/:id/enroll', isAuthenticated, enroll);
+router.get('/:slug', getOneClass);
+router.post('/:slug/enroll', isAuthenticated, enroll);
 
 module.exports = router;
