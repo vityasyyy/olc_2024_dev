@@ -5,21 +5,22 @@ const sendTicket = require('../Utils/reusedFunc').sendTicket;
 
 module.exports.enroll = async (req, res) => {
     try {
-        const { id: olClassId } = req.params;
+        const { slug: olClassSlug } = req.params; // Get the slug from the request parameters
         const userId = req.user._id;
         const email = req.user.email;
         const username = req.user.username;
         const payment = req.body.payment;
 
         const [olClass, user, olCon] = await Promise.all([
-            Olclass.findById(olClassId),
+            Olclass.findOne({ slug: olClassSlug }), // Use findOne to search by slug
             User.findById(userId),
             Olcon.findOne({})
         ]);
+
         if (olCon.email.includes(email)) {
             // Ensure you await the update operation to guarantee it's executed
-            const result = await Olcon.updateOne(
-                { _id: olCon._id },  // Ensure you target the specific document
+            await Olcon.updateOne(
+                { _id: olCon._id },
                 { 
                     $pull: { email: email }, // Remove the email from the array
                     $inc: { slots: 1 }  // Increment slots by 1
@@ -46,21 +47,25 @@ module.exports.enroll = async (req, res) => {
         if (user.enrolledTo) {
             return res.status(400).json({ error: 'You are already enrolled in another olClass' });
         }
+
         // Enroll user in the olClass and update slots
         olClass.enrolledBy.push(userId);
         olClass.slots -= 1;
 
         // Add olClass to user's enrolled list
         user.payment = payment;
-        user.enrolledTo = olClassId;
+        user.enrolledTo = olClass._id; // Use olClass._id here
+
         // Save both olClass and user
         await Promise.all([olClass.save(), user.save(), olCon.save(), sendTicket(email, username)]);
 
         res.status(200).json({ message: 'User enrolled successfully', olClass });
     } catch (error) {
-        res.status(500).json({ error: 'An error occurred while enrolling user'});
+        console.error(error); // Log the error for debugging
+        res.status(500).json({ error: 'An error occurred while enrolling user' });
     }
 };
+
 
 module.exports.getAllClasses = async (req, res) => {
     try {
@@ -73,9 +78,9 @@ module.exports.getAllClasses = async (req, res) => {
 
 module.exports.getOneClass = async (req, res) => {
     try {
-        const { id: olClassId } = req.params;
+        const { slug: olClassSlug } = req.params;
 
-        const OLClass = await Olclass.findById(olClassId)
+        const OLClass = await Olclass.findOne({slug: olClassSlug})
 
         if (!OLClass) {
             return res.status(404).json({ error: 'class not found' });
@@ -86,15 +91,3 @@ module.exports.getOneClass = async (req, res) => {
         res.status(500).json({ error: 'An error occurred while fetching the class' });
     }
 };
-
-module.exports.getIdFromSlug = async(req, res) => {
-    try {
-        const classDetail = await Olclass.findOne({ slug: req.params.slug });
-        if (!classDetail) {
-          return res.status(404).json({ message: "Class not found" });
-        }
-        res.json(classDetail._id);
-      } catch (error) {
-        res.status(500).json({ message: "Error fetching class", error });
-      }
-}
