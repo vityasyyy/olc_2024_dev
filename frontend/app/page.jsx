@@ -7,19 +7,8 @@ import Timeline from "@/components/home/Timeline";
 import Harga from "@/components/home/Harga";
 import Benefits from "@/components/home/Benefits";
 import Footer from "@/components/global/Footer";
-import useUser from "../hooks/useUser";
 
 export default function Home() {
-  const [user] = useUser();
-  console.log("user: ", user);
-
-  if (user)
-    return (
-      <>
-        <Navbar />
-      </>
-    );
-
   return (
     <>
       <Navbar />
