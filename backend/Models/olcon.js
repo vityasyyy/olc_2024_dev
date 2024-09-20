@@ -38,7 +38,7 @@ const olconSchema = new Schema({
         default: 40
     },
     mentor: mentorSchema,
-    sesi: sessionSchema,
+    sesi: [sessionSchema],
     slug: String
 });
 
