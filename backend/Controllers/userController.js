@@ -2,6 +2,7 @@ require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const User = require('../Models/users');
+const Olcon = require('../Models/olcon');
 const BlacklistedToken = require('../Models/tokenBlacklist');
 const Mahasiswa = require('../Models/mahasiswa');
 const resetPasswordEmail = require('../Utils/reusedFunc').resetPasswordEmail;
@@ -96,6 +97,34 @@ module.exports.logout = async (req, res) => {
 
 module.exports.validate = (req, res) => {
     res.json({ message: "Authenticated", user: { id: req.user._id, email: req.user.email, username: req.user.username } });
+};
+
+module.exports.getEnrolledClass = async (req, res) => {
+    try {
+        const userId = req.user._id;  // Ensure consistency with route parameter name
+
+        // Validate that userId is provided
+        if (!userId) {
+            return res.status(400).json({ message: "User ID is required" });
+        }
+        // Find the user and populate enrolledTo field
+        const user = await User.findById(userId).populate('enrolledTo');
+        const olcon = await Olcon.findOne({});
+
+        if(!olcon) {
+            return res.status(404).json({ message: "OLCon not found" });
+        }
+        if(!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        res.json({
+            enrolledTo: user.enrolledTo,
+            olcon: olcon
+        });
+    } catch (error) {
+        res.status(500).json({ message: error});
+    }
 };
 
 module.exports.requestPasswordReset = async (req, res) => {

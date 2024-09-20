@@ -34,7 +34,7 @@ const userSchema = new Schema({
     },
     enrolledTo: {
             type: Schema.Types.ObjectId,
-            ref: "Event"
+            ref: "Olclass"
     },
     isDike: {
         type: Boolean,
