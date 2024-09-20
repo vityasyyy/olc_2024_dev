@@ -39,7 +39,10 @@ const olconSchema = new Schema({
     },
     mentor: mentorSchema,
     sesi: [sessionSchema],
-    slug: String
+    slug: {
+      type: String,
+      unique: true
+    }
 });
 
 module.exports = mongoose.model('Olcon', olconSchema);
