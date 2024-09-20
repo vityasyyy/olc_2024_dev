@@ -10,6 +10,9 @@ mongoose
   .catch((err) => {
     console.log("MongoDB connection error!", err);
   });
+
+
+
 const newClass = [
   { 
     slug: "full-stack-web-development",
@@ -238,35 +241,36 @@ const newClass = [
 const seedOlclass = async () => {
   await Olclass.deleteMany({}); // Clear any existing Olclass data
   await Olclass.insertMany(newClass);
+  console.log("Olclass seeded");
 };
 
-const seedOlcon = async () => {
+const newConference = [{
+  slug: "javascript-conference-2024",
+  title: "JavaScript Conference 2024",
+  email: ["example1@example.com", "example2@example.com"], // Example emails
+  slots: 100,
+  mentor: {
+    nama: "Jane Smith",
+    fotoMentor: {
+      url: "https://example.com/photoMentor.jpg", // Example URL
+      filename: "photoMentor.jpg",
+    },
+    deskripsi: "Expert in JavaScript and modern web frameworks.",
+  },
+  sesi: {
+    judulSesi: "Advanced JavaScript Patterns",
+    waktu: new Date("2024-10-01T09:00:00Z"),
+    platform: "Zoom",
+    deskripsi:
+      "Dive deep into advanced patterns and best practices in JavaScript development.",
+  },
+}];
+
+const seedOlcon = async() => {
   await Olcon.deleteMany({}); // Clear any existing Olcon data
-
-  const newConference = new Olcon({
-    title: "JavaScript Conference 2024",
-    email: ["example1@example.com", "example2@example.com"], // Example emails
-    slots: 100,
-    mentor: {
-      nama: "Jane Smith",
-      fotoMentor: {
-        url: "https://example.com/photoMentor.jpg", // Example URL
-        filename: "photoMentor.jpg",
-      },
-      deskripsi: "Expert in JavaScript and modern web frameworks.",
-    },
-    sesi: {
-      judulSesi: "Advanced JavaScript Patterns",
-      waktu: new Date("2024-10-01T09:00:00Z"),
-      platform: "Zoom",
-      deskripsi:
-        "Dive deep into advanced patterns and best practices in JavaScript development.",
-    },
-  });
-
-  await newConference.save();
+  await Olcon.insertMany(newConference);
   console.log("Olcon seed data created successfully!");
-};
+}
 
 const seedDatabase = async () => {
   await seedOlclass();
