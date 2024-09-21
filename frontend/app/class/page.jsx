@@ -3,7 +3,7 @@ import Card from "@/components/class/Card";
 import Tag from "@/components/global/Tag";
 import ContainerLarge from "@/components/global/ContainerLarge";
 import Footer from "@/components/global/Footer";
-import UserName from "@/components/csrcomponents/UserName";
+import UserName from "@/components/class/UserName";
 import Classes from "@/components/class/Classes";
 
 const Class = async () => {
@@ -14,7 +14,7 @@ const Class = async () => {
   const classes = await response.json();
   return (
     <>
-      <Navbar loggedIn />
+      <Navbar variant="white" />
       <ContainerLarge parentClass="bg-white">
         <h1 className="pb-10 text-3xl font-semibold text-custom-blue-dark sm:text-4xl">
           Halo,

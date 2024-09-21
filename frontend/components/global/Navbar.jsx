@@ -1,43 +1,11 @@
-"use client";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Menu } from "lucide-react";
-import { useState, useEffect } from "react";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
-import { CircleX } from "lucide-react";
-import axios from "axios";
+import NavbarButtons from "./NavbarButtons";
 
-export default function Navbar({ className, loggedIn = false, ...props }) {
-
-  // logout function
-  const onSubmitLogout = async () => {
-    try {
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/auth/logout`,
-        {},
-        {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        },
-      );
-      if (response.status === 200) {
-        localStorage.removeItem("token");
-        location.reload();
-      }
-    } catch (error) {}
-  };
+export default function Navbar({ className, variant="blue", ...props }) {
   return (
     <>
       <nav
-        className={`fixed flex justify-center w-screen left-0 right-0 top-0 z-50 ${loggedIn ? "border-b-[1.5px] border-custom-blue-dark bg-white/75" : "bg-custom-blue-dark/75"} backdrop-blur-[8px] ${className}`}
+        className={`fixed left-0 right-0 top-0 z-50 flex w-screen justify-center ${variant === "white" ? "border-b-[1.5px] border-custom-blue-dark bg-white/75" : "bg-custom-blue-dark/75"} backdrop-blur-[8px] ${className}`}
         {...props}
       >
         <div className="flex h-16 w-[90vw] items-center justify-between sm:w-full sm:px-6">
@@ -45,71 +13,18 @@ export default function Navbar({ className, loggedIn = false, ...props }) {
           <div className="flex items-center">
             <Link
               href="/"
-              className={`flex-shrink-0 font-logo text-3xl ${loggedIn ? "text-custom-blue-dark" : "text-white"}`}
+              className={`flex-shrink-0 font-logo text-3xl ${variant === "white" ? "text-custom-blue-dark" : "text-white"}`}
             >
               olc
             </Link>
           </div>
-
           {/* buttons */}
-          <div className="hidden items-baseline space-x-4 sm:flex">
-            {loggedIn ? (
-              <Link href="/">
-                <Button
-                  onClick={onSubmitLogout}
-                  variant="outline"
-                  className="border-custom-blue-dark text-custom-blue-dark"
-                >
-                  Keluar
-                </Button>
-              </Link>
-            ) : (
-              <>
-                <Link href="/auth/login">
-                  <Button variant="outline">Masuk</Button>
-                </Link>
-                <Link href="/auth/register">
-                  <Button>Daftar</Button>
-                </Link>
-              </>
-            )}
-          </div>
-
-          {/* hamburger menu on mobile */}
-          <Drawer direction="right" className="block sm:hidden">
-            <DrawerTrigger className="block sm:hidden">
-              <Menu className="text-custom-brown-light" />
-            </DrawerTrigger>
-            <DrawerContent
-              noThumb
-              className="ml-[10vw] flex h-full w-[90vw] flex-col items-center rounded-none rounded-l-[10px] py-12 text-custom-blue-dark"
-            >
-              <DrawerHeader>
-                <DrawerTitle className="w-full text-center font-logo text-7xl text-custom-blue-dark">
-                  OLC
-                </DrawerTitle>
-                <DrawerDescription>
-                  <div className="flex w-full flex-col items-center gap-4 text-custom-blue-dark">
-                    <p>OmahTI Learning Center</p>
-                    <Button variant="outline" className="mt-16 w-full">
-                      Masuk
-                    </Button>
-                    <Button className="w-full">Daftar</Button>
-                  </div>
-                </DrawerDescription>
-              </DrawerHeader>
-              <DrawerFooter className="w-full">
-                <DrawerClose className="flex justify-center">
-                  <CircleX className="h-8 w-8 text-custom-blue-dark" />
-                </DrawerClose>
-              </DrawerFooter>
-            </DrawerContent>
-          </Drawer>
+          <NavbarButtons variant={variant} />
         </div>
       </nav>
 
       {/* spacer, acts like a margin */}
-      <div className={`h-16 ${loggedIn ? "" : "bg-custom-blue-dark"} `}></div>
+      <div className={`h-16 ${variant === "white" ? "" : "bg-custom-blue-dark"} `}></div>
     </>
   );
 }
