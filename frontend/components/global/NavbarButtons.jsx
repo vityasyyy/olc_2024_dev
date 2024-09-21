@@ -147,7 +147,7 @@ export default function NavbarButtons({ variant = "blue" }) {
             className="ml-[10vw] flex h-full w-[90vw] flex-col items-center rounded-none rounded-l-[10px] border-none bg-custom-blue-dark py-12 text-custom-blue-dark"
           >
             <DrawerHeader>
-              <DrawerTitle className="w-full text-center font-logo text-8xl text-custom-blue-dark text-white">
+              <DrawerTitle className="w-full text-center font-logo text-8xl text-white">
                 olc
               </DrawerTitle>
               <DrawerDescription>
