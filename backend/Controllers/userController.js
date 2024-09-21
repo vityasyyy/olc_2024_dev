@@ -141,7 +141,7 @@ module.exports.requestPasswordReset = async (req, res) => {
             resetTokenExpiration: resetTokenExpires
         });
 
-        const resetUrl = `${req.protocol}://${req.get('host')}/reset-password/${resetToken}`;
+        const resetUrl = `http://localhost:3000/reset-password/${resetToken}`;
         await resetPasswordEmail(user.email, resetUrl);
 
         res.status(200).json({ message: 'Password reset email sent' });
