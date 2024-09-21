@@ -1,9 +1,8 @@
 'use client'
 import { Button } from "@/components/ui/button";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { useState } from "react";
 import { Info } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -38,6 +37,21 @@ const RegisterForm = ({ className, ...props }) => {
       // Handle error, e.g., show an error notification to the user
     }
   };
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const isLoggedIn = async () => {
+      if(token) {
+        try{
+          const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/validate`, {method: "GET", headers: {Authorization: `Bearer ${token}`}})
+          if(response.ok) router.push('/class')
+        } catch (error) {
+          console.log("User are okay to register")
+        }
+      }
+    }
+
+    isLoggedIn();
+  }, [])
 
   return (
     <form
