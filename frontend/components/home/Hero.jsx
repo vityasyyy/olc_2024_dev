@@ -1,14 +1,14 @@
 import ContainerLarge from "../global/ContainerLarge";
-import { Button } from "../ui/button";
 import Image from "next/image";
-import Link from "next/link";
+import Toast from "@/components/home/Toast";
 
 export default function Hero() {
   return (
     <div className="relative w-full bg-custom-blue-dark">
-      <ContainerLarge 
-      diamonds
-      className="flex h-[80vh] flex-col justify-between gap-0 sm:justify-around">
+      <ContainerLarge
+        diamonds
+        className="flex h-[80vh] flex-col justify-between gap-0 sm:justify-around"
+      >
         {/* hidden block for positioning */}
         <div className="hidden sm:block"></div>
 
@@ -22,17 +22,7 @@ export default function Hero() {
           </h1>
         </div>
 
-        {/* toast and cta */}
-        <div className="z-20 mx-auto flex w-full max-w-sm flex-col items-center gap-2.5 rounded-lg bg-white p-2.5 text-sm sm:mx-0 sm:w-fit sm:max-w-xl sm:flex-row sm:px-4">
-          <p className="text-center font-semibold sm:text-nowrap">
-            Gabung dengan OLClass sekarang
-          </p>
-          <Link href="/auth/login">
-          <Button className="w-full font-medium sm:w-fit">
-            Daftar OLClass
-          </Button>
-          </Link>
-        </div>
+        <Toast />
 
         {/* circle for background */}
         <Image

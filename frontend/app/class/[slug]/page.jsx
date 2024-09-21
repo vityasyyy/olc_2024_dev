@@ -70,7 +70,7 @@ const ClassDetail = async ({ params }) => {
               {/* progress bar */}
               <div className="col-span-2 flex w-full flex-row items-center gap-3">
                 <Progress value={progress} className="w-full" />
-                <p className="text-xl font-semibold text-black">
+                <p className="text-xl font-semibold text-black text-nowrap">
                   {classDetail.enrolledBy.length}/ 40 
                 </p>
               </div>

@@ -17,37 +17,28 @@ import {
 import { CircleX } from "lucide-react";
 import axios from "axios";
 
-export default function NavbarButtons({
-  className,
-  variant = "blue",
-  ...props
-}) {
+export default function NavbarButtons({ variant = "blue" }) {
   const [loggedIn, setLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
 
   // check if user has logged in
   useEffect(() => {
-    const fetchUser = async () => {
+    async function fetchUser() {
       const token = localStorage.getItem("token");
-      try {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/auth/validate`,
-          {
-            method: "GET",
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/auth/validate`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
           },
-        );
-        if (response.ok) {
-          setLoggedIn(true);
-        }
-      } catch (err) {
-        setError(err.message || "An error occurred.");
-      } finally {
-        setLoading(false);
+        },
+      );
+      if (response.ok) {
+        setLoggedIn(true);
       }
-    };
+      setLoading(false);
+    }
 
     fetchUser();
   }, []);
@@ -91,7 +82,11 @@ export default function NavbarButtons({
         // halaman class, logout
         buttons = (
           <Link href="/">
-            <Button onClick={onSubmitLogout} variant="outline" className="border-custom-blue-dark text-custom-blue-dark">
+            <Button
+              onClick={onSubmitLogout}
+              variant="outline"
+              className="border-custom-blue-dark text-custom-blue-dark"
+            >
               Keluar
             </Button>
           </Link>
