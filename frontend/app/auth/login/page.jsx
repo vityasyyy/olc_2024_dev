@@ -32,7 +32,7 @@ const Register = () => {
             Belum punya akun?{" "}
             <span className="font-semibold text-custom-blue-dark">
               <Button variant="link" className="p-0 text-base">
-                <Link href="/auth/login">Daftar</Link>
+                <Link href="/auth/register">Daftar</Link>
               </Button>
             </span>
           </p>
