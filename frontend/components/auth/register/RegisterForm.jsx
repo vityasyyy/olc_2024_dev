@@ -29,7 +29,6 @@ const RegisterForm = ({ className, ...props }) => {
         `${process.env.NEXT_PUBLIC_API_URL}/auth/register`,
         transformedData
       );
-      console.log(response)
       if (response.status === 201) {
         localStorage.setItem("token", response.data.token);
         router.push("/class");
