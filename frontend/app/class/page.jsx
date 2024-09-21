@@ -1,5 +1,4 @@
 import Navbar from "@/components/global/Navbar";
-import Card from "@/components/class/Card";
 import Tag from "@/components/global/Tag";
 import ContainerLarge from "@/components/global/ContainerLarge";
 import Footer from "@/components/global/Footer";
