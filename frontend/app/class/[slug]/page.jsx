@@ -1,4 +1,3 @@
-import axios from "axios";
 import Image from "next/image";
 import BackButton from "@/components/global/BackButton";
 import { Progress } from "@/components/ui/progress";
@@ -10,19 +9,11 @@ import { notFound } from "next/navigation";
 const ClassDetail = async ({ params }) => {
   const slug = await params.slug;
   let classDetail;
-
-  // Fetch class id by slug
   try {
-    // Fetch class data by slug to retrieve the id
-    const slugResponse = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/olclass/slug/${slug}`,
+    const classResponse = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/olclass/${slug}`, {method: "GET"}
     );
-    const classId = await slugResponse.data; // Assuming your response contains the ID
-    // Now fetch the class details using the id
-    const classResponse = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/olclass/${classId}`,
-    );
-    classDetail = await classResponse.data;
+    classDetail = await classResponse.json();
   } catch (error) {
     console.error("Error fetching class detail:", error);
   }
@@ -65,7 +56,7 @@ const ClassDetail = async ({ params }) => {
               <div className="mb-3 flex flex-row items-center gap-3">
                 <Progress value={progress} className="h-6 w-full" />
                 <p className="text-lg font-semibold text-black text-nowrap">
-                  {classDetail.enrolledBy.length} / {classDetail.slots}
+                  {classDetail.enrolledBy.length} / 40
                 </p>
               </div>
 
@@ -89,7 +80,7 @@ const ClassDetail = async ({ params }) => {
               <div className="col-span-2 flex w-full flex-row items-center gap-3">
                 <Progress value={progress} className="w-full" />
                 <p className="text-xl font-semibold text-black">
-                  {classDetail.enrolledBy.length}/{classDetail.slots}
+                  {classDetail.enrolledBy.length}/ 40 
                 </p>
               </div>
 
