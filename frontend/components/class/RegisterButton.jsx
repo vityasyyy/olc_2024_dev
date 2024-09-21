@@ -7,7 +7,7 @@ const RegisterButton = ({ classSlug }) => {
   const [loading, setLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const router = useRouter();
-  const [isEnrolled, setIsEnroled] = useState(false);
+  const [isEnrolled, setIsEnroled] = useState(false)
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -27,7 +27,30 @@ const RegisterButton = ({ classSlug }) => {
         })
         .catch(() => setIsLoggedIn(false));
     }
+    const fetchEnrolledClass = async () => {
+      const token = localStorage.getItem("token");
+      try {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/auth/get-enrolled-class`,
+          {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+        );
+        const responseJSON = await response.json();
+        if (responseJSON.enrolledTo) {
+          setIsEnroled(true);
+        }
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+
+    fetchEnrolledClass();
   }, []);
+
 
   const handleAction = async () => {
     setLoading(true);
@@ -47,7 +70,7 @@ const RegisterButton = ({ classSlug }) => {
     <Button
       variant="secondary"
       onClick={handleAction}
-      disabled={loading}
+      disabled={loading || isEnrolled}
     >
       {loading ? "Loading..." : isLoggedIn ? "Enroll" : "Daftar Sekarang"}
     </Button>
