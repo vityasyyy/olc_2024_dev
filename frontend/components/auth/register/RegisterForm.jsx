@@ -19,9 +19,10 @@ const RegisterForm = ({ className, ...props }) => {
   const router = useRouter();
   const onSubmit = async (data) => {
     try {
+      // ambil data isDike dari form, convert ke boolean value
       const transformedData = {
         ...data,
-        isDike: data.isDike === "1" ? true : false, // Transform the isDike value
+        isDike: data.isDike === "1" ? true : false,
       };
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/auth/register`,

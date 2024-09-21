@@ -12,7 +12,6 @@ export default function Page() {
         <Skeleton className="my-8 h-9 w-1/3" />
 
         <div className="grid w-full grid-cols-1 gap-6 lg:grid-cols-4 lg:flex-row">
-          {/* {classDetail.map} */}
           {/* left side, speaker and image section */}
           <Skeleton className="h-full w-full rounded-xl" />
 

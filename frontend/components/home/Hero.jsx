@@ -1,7 +1,7 @@
 import ContainerLarge from "../global/ContainerLarge";
 import { Button } from "../ui/button";
 import Image from "next/image";
-import { Menu } from "lucide-react";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -27,9 +27,11 @@ export default function Hero() {
           <p className="text-center font-semibold sm:text-nowrap">
             Gabung dengan OLClass sekarang
           </p>
+          <Link href="/auth/login">
           <Button className="w-full font-medium sm:w-fit">
             Daftar OLClass
           </Button>
+          </Link>
         </div>
 
         {/* circle for background */}

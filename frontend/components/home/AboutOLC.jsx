@@ -4,8 +4,11 @@ import Tag from "../global/Tag";
 
 const AboutOLC = () => {
   return (
-    <Container id="#about" parentClass="bg-white" className="flex flex-col content-center gap-6">
-
+    <Container
+      id="#about"
+      parentClass="bg-white"
+      className="flex flex-col content-center gap-6"
+    >
       {/* starting tag */}
       <Tag blue>Tentang OLC</Tag>
 
@@ -14,7 +17,7 @@ const AboutOLC = () => {
         OmahTI Learning Center is Here!
       </h1>
 
-      <div className="flex flex-col sm:flex-row gap-6 sm:mt-4">
+      <div className="flex flex-col gap-6 sm:mt-4 sm:flex-row">
         {/* big image */}
         {/* <div
           className="relative mx-auto my-4 h-72 w-[30rem] sm:my-0"
@@ -29,17 +32,11 @@ const AboutOLC = () => {
 
         {/* body text */}
         <div className="flex flex-col gap-6">
-          <p className="text-center font-semibold sm:text-2xl sm:text-left">
+          <p className="text-center font-semibold sm:text-left sm:text-2xl">
             Pelatihan Hardskill IT bersama Profesional langsung bersama industri
           </p>
           <div className="flex gap-4">
-            <Image
-              className="h-4 w-4 mt-1"
-              src="placeholder.svg"
-              alt="macbook"
-              width={32}
-              height={32}
-            />
+            <div className="mt-1 h-4 w-4 shrink-0 bg-custom-blue-dark" />
             <p className="text-justify">
               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente
               placeat hic, quam natus velit neque. Ex, id praesentium
