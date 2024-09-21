@@ -96,7 +96,7 @@ module.exports.logout = async (req, res) => {
 };
 
 module.exports.validate = (req, res) => {
-    res.json({ message: "Authenticated", user: { id: req.user._id, email: req.user.email, username: req.user.username } });
+    res.json({ message: "Authenticated", user: { id: req.user._id, email: req.user.email, username: req.user.username, isDike: req.user.isDike } });
 };
 
 module.exports.getEnrolledClass = async (req, res) => {

@@ -30,6 +30,7 @@ module.exports.isAuthenticated = async (req, res, next) => {
             _id: decoded?._id,
             email: decoded?.email,
             username: decoded?.username,
+            isDike: decoded?.isDike,
             iat: decoded?.iat,
             exp: decoded?.exp
             // Add any other fields you need here
