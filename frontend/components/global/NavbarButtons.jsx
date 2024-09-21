@@ -92,11 +92,18 @@ export default function NavbarButtons({ variant = "blue" }) {
           </Link>
         );
       } else {
-        // dashboard
+        // landing page, udah log in, dashboard
         buttons = (
-          <Link href="/class">
-            <Button>Dashboard</Button>
-          </Link>
+          <>
+            <Link href={`https://youtube.com`}>
+              <Button className={`px-4`} variant="ghost">
+                Guidebook
+              </Button>
+            </Link>
+            <Link href="/class">
+              <Button className={`px-4`}>Dashboard</Button>
+            </Link>
+          </>
         );
       }
     } else {
@@ -104,6 +111,11 @@ export default function NavbarButtons({ variant = "blue" }) {
         // landing page, belom log in
         buttons = (
           <>
+            <Link href="https://youtube.com">
+              <Button className={`px-4`} variant="ghost">
+                Guidebook
+              </Button>
+            </Link>
             <Link href="/auth/login">
               <Button variant="outline">Masuk</Button>
             </Link>
@@ -112,47 +124,65 @@ export default function NavbarButtons({ variant = "blue" }) {
             </Link>
           </>
         );
-      } else {
-        // nothing, belom log in dan putih ga ada case
-        buttons = <></>;
       }
     }
   }
   return (
     <>
       {/* buttons */}
-      <div className="hidden items-baseline space-x-4 sm:flex">{buttons}</div>
+      <div
+        className={`${variant === "white" && loggedIn ? "flex" : "hidden"} items-center space-x-4 sm:flex`}
+      >
+        {buttons}
+      </div>
 
       {/* hamburger menu on mobile */}
-      <Drawer direction="right" className="block sm:hidden">
-        <DrawerTrigger className="block sm:hidden">
-          <Menu className="text-custom-brown-light" />
-        </DrawerTrigger>
-        <DrawerContent
-          noThumb
-          className="ml-[10vw] flex h-full w-[90vw] flex-col items-center rounded-none rounded-l-[10px] py-12 text-custom-blue-dark"
-        >
-          <DrawerHeader>
-            <DrawerTitle className="w-full text-center font-logo text-7xl text-custom-blue-dark">
-              OLC
-            </DrawerTitle>
-            <DrawerDescription>
-              <div className="flex w-full flex-col items-center gap-4 text-custom-blue-dark">
-                <p>OmahTI Learning Center</p>
-                <Button variant="outline" className="mt-16 w-full">
-                  Masuk
-                </Button>
-                <Button className="w-full">Daftar</Button>
-              </div>
-            </DrawerDescription>
-          </DrawerHeader>
-          <DrawerFooter className="w-full">
-            <DrawerClose className="flex justify-center">
-              <CircleX className="h-8 w-8 text-custom-blue-dark" />
-            </DrawerClose>
-          </DrawerFooter>
-        </DrawerContent>
-      </Drawer>
+      {variant === "blue" && (
+        <Drawer direction="right" className="block sm:hidden">
+          <DrawerTrigger className="block sm:hidden">
+            <Menu className="text-custom-brown-light" />
+          </DrawerTrigger>
+          <DrawerContent
+            noThumb
+            className="ml-[10vw] flex h-full w-[90vw] flex-col items-center rounded-none rounded-l-[10px] border-none bg-custom-blue-dark py-12 text-custom-blue-dark"
+          >
+            <DrawerHeader>
+              <DrawerTitle className="w-full text-center font-logo text-8xl text-custom-blue-dark text-white">
+                olc
+              </DrawerTitle>
+              <DrawerDescription>
+                <div className="flex w-full flex-col items-center gap-4 text-custom-blue-dark">
+                  <p className={`mb-16 text-white`}>OmahTI Learning Center</p>
+                  <Link href={`https://youtube.com`}>
+                    <Button variant="ghost">Guidebook</Button>
+                  </Link>
+                  {loggedIn ? (
+                    <Link href={`/class`} className={`w-full`}>
+                      <Button className="w-full">Dashboard</Button>
+                    </Link>
+                  ) : (
+                    <>
+                      <Link href={`/auth/login`} className={`w-full`}>
+                        <Button variant="outline" className="w-full">
+                          Masuk
+                        </Button>
+                      </Link>
+                      <Link href={`/auth/register`} className={`w-full`}>
+                        <Button className="w-full">Daftar</Button>
+                      </Link>
+                    </>
+                  )}
+                </div>
+              </DrawerDescription>
+            </DrawerHeader>
+            <DrawerFooter className="w-full">
+              <DrawerClose className="flex justify-center">
+                <CircleX className="h-8 w-8 text-white" />
+              </DrawerClose>
+            </DrawerFooter>
+          </DrawerContent>
+        </Drawer>
+      )}
     </>
   );
 }
