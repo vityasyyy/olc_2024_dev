@@ -39,8 +39,6 @@ export default function NavbarButtons({
             },
           },
         );
-        console.log("ini auth", response);
-
         if (response.ok) {
           setLoggedIn(true);
         }
