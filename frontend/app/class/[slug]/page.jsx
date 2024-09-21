@@ -1,4 +1,3 @@
-import axios from "axios";
 import Image from "next/image";
 import BackButton from "@/components/global/BackButton";
 import { Progress } from "@/components/ui/progress";
@@ -11,28 +10,13 @@ import clsx from "clsx";
 const ClassDetail = async ({ params }) => {
   const slug = await params.slug;
   let classDetail;
-
-  // fetch class detail from api
-    const slugResponse = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/olclass/slug/${slug}`,
-      { method: "GET" },
-    ).catch(error => console.error(error));
-
-    const slugResponseJSON = await slugResponse.json();
-
-    const classId = await slugResponseJSON;
-    // fetch class id
+  try {
     const classResponse = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/olclass/${classId}`,
-      { method: "GET" },
-    ).catch(error => console.error(error));
-    const classResponseJSON = await classResponse.json();
-
-    classDetail = await classResponseJSON;
-
-  // show not found page if fetch returns nothing
-  if (!classDetail) {
-    return notFound();
+      `${process.env.NEXT_PUBLIC_API_URL}/olclass/${slug}`, {method: "GET"}
+    );
+    classDetail = await classResponse.json();
+  } catch (error) {
+    console.error("Error fetching class detail:", error);
   }
 
   let progress = (classDetail.enrolledBy.length / classDetail.slots) * 100;
@@ -67,8 +51,8 @@ const ClassDetail = async ({ params }) => {
               {/* progress bar */}
               <div className="mb-3 flex flex-row items-center gap-3">
                 <Progress value={progress} className="h-6 w-full" />
-                <p className="text-nowrap text-lg font-semibold text-black">
-                  {classDetail.enrolledBy.length} / {classDetail.slots}
+                <p className="text-lg font-semibold text-black text-nowrap">
+                  {classDetail.enrolledBy.length} / 40
                 </p>
               </div>
 
@@ -92,7 +76,7 @@ const ClassDetail = async ({ params }) => {
               <div className="col-span-2 flex w-full flex-row items-center gap-3">
                 <Progress value={progress} className="w-full" />
                 <p className="text-xl font-semibold text-black">
-                  {classDetail.enrolledBy.length}/{classDetail.slots}
+                  {classDetail.enrolledBy.length}/ 40 
                 </p>
               </div>
 
