@@ -77,7 +77,7 @@ const Classes = ({ classes }) => {
             className="delay-200 duration-700 ease-in animate-in fade-in slide-in-from-right-5"
           />
           <Card
-            key={olcon._id}
+            key={olcon._id + 1}
             label={olcon.sesi[1].judulSesi}
             judul={olcon.sesi[1].judulSesi}
             tanggal={olcon.sesi[1].waktu ? olcon.sesi[1].waktu : "TBA"}
