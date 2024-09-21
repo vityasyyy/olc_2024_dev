@@ -57,19 +57,19 @@ const Classes = ({ classes }) => {
       {enrolledClass ? (
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
           <Card
-            key={enrolledClass.enrolledTo._id}
-            label={enrolledClass.enrolledTo.title}
-            judul={enrolledClass.enrolledTo.title}
+            key={enrolledClass._id}
+            label={enrolledClass.title}
+            judul={enrolledClass.title}
             tanggal={
-              enrolledClass.enrolledTo.waktu
-                ? enrolledClass.enrolledTo.waktu
+              enrolledClass.waktu
+                ? enrolledClass.waktu
                 : "TBA"
             }
-            href={`/class/${enrolledClass.enrolledTo.slug}`}
+            href={`/class/${enrolledClass.slug}`}
             className="delay-200 duration-700 ease-in animate-in fade-in slide-in-from-right-5"
           />
           <Card
-            key={enrolledClass.olcon._id}
+            key={olcon._id}
             label={olcon.sesi[0].judulSesi}
             judul={olcon.sesi[0].judulSesi}
             tanggal={olcon.sesi[0].waktu ? olcon.sesi[0].waktu : "TBA"}
@@ -77,7 +77,7 @@ const Classes = ({ classes }) => {
             className="delay-200 duration-700 ease-in animate-in fade-in slide-in-from-right-5"
           />
           <Card
-            key={enrolledClass.olcon._id}
+            key={olcon._id}
             label={olcon.sesi[1].judulSesi}
             judul={olcon.sesi[1].judulSesi}
             tanggal={olcon.sesi[1].waktu ? olcon.sesi[1].waktu : "TBA"}
