@@ -7,7 +7,7 @@ const Classes = ({ classes }) => {
   const [enrolledClass, setEnrolledClass] = useState(null);
   const [loading, setLoading] = useState(true); // Start loading as true
   const [error, setError] = useState("");
-
+  const [olcon, setOlcon] = useState(null);
   useEffect(() => {
     const fetchEnrolledClass = async () => {
       const token = localStorage.getItem("token");
@@ -27,8 +27,8 @@ const Classes = ({ classes }) => {
         }
 
         const classData = await response.json();
-        console.log(classData)
-        setEnrolledClass(classData); // Assume classData is a single class object
+        setOlcon(classData.olcon)
+        setEnrolledClass(classData.enrolledTo); // Assume classData is a single class object
       } catch (err) {
         setError(err.message);
       } finally {
@@ -68,17 +68,17 @@ const Classes = ({ classes }) => {
           />
           <Card
             key={enrolledClass.olcon._id}
-            label={enrolledClass.olcon.sesi[0].judulSesi}
-            judul={enrolledClass.olcon.sesi[0].judulSesi}
-            tanggal={enrolledClass.olcon.sesi[0].waktu ? enrolledClass.olcon.sesi[0].waktu : "TBA"}
+            label={olcon.sesi[0].judulSesi}
+            judul={olcon.sesi[0].judulSesi}
+            tanggal={olcon.sesi[0].waktu ? olcon.sesi[0].waktu : "TBA"}
             href={`/olcon`}
             className="delay-200 duration-700 ease-in animate-in fade-in slide-in-from-right-5"
           />
           <Card
             key={enrolledClass.olcon._id}
-            label={enrolledClass.olcon.sesi[1].judulSesi}
-            judul={enrolledClass.olcon.sesi[1].judulSesi}
-            tanggal={enrolledClass.olcon.sesi[1].waktu ? enrolledClass.olcon.sesi[1].waktu : "TBA"}
+            label={olcon.sesi[1].judulSesi}
+            judul={olcon.sesi[1].judulSesi}
+            tanggal={olcon.sesi[1].waktu ? olcon.sesi[1].waktu : "TBA"}
             href={`/olcon`}
             className="delay-200 duration-700 ease-in animate-in fade-in slide-in-from-right-5"
           />
