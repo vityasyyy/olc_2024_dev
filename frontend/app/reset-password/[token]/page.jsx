@@ -33,7 +33,7 @@ const ResetPasswordPage = ({ params }) => {
       const data = await response.json();
 
       if (response.ok) {
-        setSuccess("Password reset successfully!");
+        setSuccess("Password reset successfully!, Redirecting you to login page");
         setError("");
         setTimeout(() => {
           router.push("/auth/login"); // Redirect to login after success
