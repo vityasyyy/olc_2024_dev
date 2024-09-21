@@ -1,7 +1,7 @@
 "use client"
 
-import { useState } from "react";
-import { useRouter, useParams } from "next/navigation"; // Import useRouter
+import { useState, useEffect } from "react";
+import { useParams, useRouter } from "next/navigation"; // Import useRouter
 import { Image } from "lucide-react";
 import BackButton from "@/components/global/BackButton";
 import ContainerLarge from "@/components/global/ContainerLarge";
@@ -11,10 +11,11 @@ import Footer from "@/components/global/Footer";
 
 const Payment = () => {
     const params = useParams();
+    const router = useRouter()
     const slug = params.slug
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    
+
     const handleEnrollment = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -37,13 +38,36 @@ const Payment = () => {
             // Redirect to the classes page after successful enrollment
             window.location.href = "/class";
         } catch (err) {
-            console.log(err);
             setError(err.message);
         } finally {
             setLoading(false);
         }
     };
-
+    useEffect(() => {
+        const fetchEnrolledClass = async () => {
+          const token = localStorage.getItem("token");
+          try {
+            const response = await fetch(
+              `${process.env.NEXT_PUBLIC_API_URL}/auth/get-enrolled-class`,
+              {
+                method: "GET",
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              },
+            );
+            const responseJSON = await response.json();
+            if (responseJSON.enrolledTo) {
+                router.push('/class')
+            }
+          } catch (err) {
+            setError(err.message);
+          }
+        };
+    
+        fetchEnrolledClass();
+      }, []);
+    
     return (
         <>
             <Navbar />
