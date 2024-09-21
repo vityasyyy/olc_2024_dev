@@ -3,10 +3,6 @@ import BackButton from "@/components/global/BackButton";
 import { Progress } from "@/components/ui/progress";
 import ContainerLarge from "@/components/global/ContainerLarge";
 import CardDrawer from "@/components/class/slug/Card";
-import { Button } from "@/components/ui/button";
-import { notFound } from "next/navigation";
-import clsx from "clsx";
-
 import RegisterButton from "@/components/class/RegisterButton";
 const ClassDetail = async ({ params }) => {
   const slug = await params.slug;
@@ -58,9 +54,7 @@ const ClassDetail = async ({ params }) => {
               </div>
 
               {/* daftar sekarang */}
-              <Button variant="secondary" className="w-full">
-                Daftar Sekarang
-              </Button>
+              <RegisterButton classSlug={slug}/>
             </div>
             {/* -------------------------------------------------------- */}
           </div>
