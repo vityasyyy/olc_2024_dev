@@ -22,8 +22,8 @@ export default function Title({ isDike }) {
   else
     return (
       <>
-        <div className="flex flex-col gap-2 lg:mt-20 lg:max-h-72 lg:max-w-[52rem]">
-          <h1 className="text-2xl leading-loose font-semibold md:text-4xl lg:text-5xl">
+        <div className="flex flex-col gap-2 lg:max-h-72 lg:max-w-[52rem]">
+          <h1 className="text-2xl font-semibold leading-loose md:text-4xl lg:text-5xl">
             Pendaftar Umum
           </h1>
           <p className="my-1 text-lg font-medium">

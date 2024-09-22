@@ -55,10 +55,7 @@ const Classes = ({ classes }) => {
 
       {enrolledClass ? (
         <>
-          <p className="pb-6 font-medium">
-            Kamu hanya dapat memilih satu kelas dan pendaftar akan langsung
-            menakses OLConvention
-          </p>
+          <p className="pb-6 font-medium">OLClass dan OLConvention</p>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
             <Card
               key={enrolledClass._id}
@@ -88,7 +85,10 @@ const Classes = ({ classes }) => {
         </>
       ) : (
         <>
-          <p className="pb-6 font-medium">OLClass dan OLConvention</p>
+          <p className="pb-6 font-medium">
+            Kamu hanya dapat memilih satu kelas dan pendaftar akan langsung
+            dapat akses OLConvention
+          </p>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
             {classes.length > 0 ? (
               classes.map((item) => (
