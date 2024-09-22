@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { Button } from "@/components/ui/button";
 import React, { useState, useEffect } from "react";
@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { Info } from "lucide-react";
 import { useRouter } from "next/navigation";
+import useUser from "@/hooks/useUser";
 
 const RegisterForm = ({ className, ...props }) => {
   const {
@@ -27,35 +28,25 @@ const RegisterForm = ({ className, ...props }) => {
       };
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/auth/register`,
-        transformedData
+        transformedData,
       );
       if (response.status === 201) {
         localStorage.setItem("token", response.data.token);
-        router.push("/class");
+        router.push("/olclass");
       }
     } catch (error) {
-      setError(error.response?.data?.error || "An error occurred during registration.");
+      setError(
+        error.response?.data?.error || "An error occurred during registration.",
+      );
     }
   };
 
-  useEffect(() => {
-    const checkLoginStatus = async () => {
-      const token = localStorage.getItem("token");
-      if (token) {
-        try {
-          const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/validate`, {
-            method: "GET",
-            headers: { Authorization: `Bearer ${token}` }
-          });
-          if (response.ok) router.push('/class');
-        } catch (error) {
-          console.log("User is okay to register");
-        }
-      }
-    };
+  // check user log in status
+  const [loading, loggedIn] = useUser();
 
-    checkLoginStatus();
-  }, [router]);
+  if (loggedIn) router.push("/olclass");
+
+  if (loading) return <></>;
 
   return (
     <form
@@ -106,13 +97,26 @@ const RegisterForm = ({ className, ...props }) => {
         errors={errors}
         rules={{
           required: "Password harus diisi ulang.",
-          validate: (value) => value === watch("password") || "Password tidak sama.",
+          validate: (value) =>
+            value === watch("password") || "Password tidak sama.",
         }}
       />
 
       <div className="mt-2 flex flex-row gap-4 text-sm font-normal text-custom-black md:mt-0 md:text-xs">
-        <RadioButton id="dike" value="1" label="Mahasiswa DIKE" register={register} name="isDike" />
-        <RadioButton id="umum" value="0" label="Peserta Umum" register={register} name="isDike" />
+        <RadioButton
+          id="dike"
+          value="1"
+          label="Mahasiswa DIKE"
+          register={register}
+          name="isDike"
+        />
+        <RadioButton
+          id="umum"
+          value="0"
+          label="Peserta Umum"
+          register={register}
+          name="isDike"
+        />
       </div>
 
       {isDike === "1" && (
@@ -138,8 +142,13 @@ const RegisterForm = ({ className, ...props }) => {
         </p>
       )}
 
-      <Button variant="secondary" type="submit" className="mt-4 rounded-lg" disabled={isSubmitting}>
-        {isSubmitting ? 'Submitting...' : 'Submit'}
+      <Button
+        variant="secondary"
+        type="submit"
+        className="mt-4 rounded-lg"
+        disabled={isSubmitting}
+      >
+        {isSubmitting ? "Submitting..." : "Submit"}
       </Button>
     </form>
   );

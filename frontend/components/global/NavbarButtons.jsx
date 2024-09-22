@@ -2,7 +2,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
-import { useState, useEffect } from "react";
 import { Skeleton } from "../ui/skeleton";
 import {
   Drawer,
@@ -16,32 +15,11 @@ import {
 } from "@/components/ui/drawer";
 import { CircleX } from "lucide-react";
 import axios from "axios";
+import useUser from "@/hooks/useUser";
 
 export default function NavbarButtons({ variant = "blue" }) {
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [loading, setLoading] = useState(true);
-
   // check if user has logged in
-  useEffect(() => {
-    async function fetchUser() {
-      const token = localStorage.getItem("token");
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/auth/validate`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        },
-      );
-      if (response.ok) {
-        setLoggedIn(true);
-      }
-      setLoading(false);
-    }
-
-    fetchUser();
-  }, []);
+  const [loading, loggedIn] = useUser();
 
   // logout function
   const onSubmitLogout = async () => {

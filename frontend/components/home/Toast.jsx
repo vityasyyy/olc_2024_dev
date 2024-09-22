@@ -1,34 +1,12 @@
 "use client";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
+import useUser from "@/hooks/useUser";
 
 const Toast = () => {
-  const [loading, setLoading] = useState(true);
-  const [loggedIn, setLoggedIn] = useState(false);
-
   // check if user has logged in
-  useEffect(() => {
-    async function fetchUser() {
-      const token = localStorage.getItem("token");
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/auth/validate`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        },
-      );
-      if (response.ok) {
-        setLoggedIn(true);
-      }
-      setLoading(false);
-    }
-
-    fetchUser();
-  }, []);
+  const [loading, loggedIn] = useUser();
 
   let text, button;
   if (loading) {
@@ -46,7 +24,7 @@ const Toast = () => {
         </p>
       );
       button = (
-        <Link href="/class">
+        <Link href="/olclass">
           <Button className="w-full font-medium sm:w-fit">Dashboard</Button>
         </Link>
       );

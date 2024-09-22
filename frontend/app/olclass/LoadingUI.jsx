@@ -5,7 +5,7 @@ import Tag from "@/components/global/Tag";
 import CardLoading from "@/components/class/CardLoading";
 import Footer from "@/components/global/Footer";
 
-export default function Page() {
+export default function Loading() {
   return (
     <>
       <Navbar loggedIn />
@@ -29,10 +29,10 @@ export default function Page() {
         </p>
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
-            <CardLoading />
-            <CardLoading />
-            <CardLoading />
-            <CardLoading />
+          <CardLoading />
+          <CardLoading />
+          <CardLoading />
+          <CardLoading />
         </div>
       </ContainerLarge>
       <Footer />

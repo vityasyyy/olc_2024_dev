@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Info } from "lucide-react";
 import { useRouter } from "next/navigation";
+import useUser from "@/hooks/useUser";
 
 const LoginForm = ({ className, ...props }) => {
   const {
@@ -30,13 +31,13 @@ const LoginForm = ({ className, ...props }) => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(data),
-        }
+        },
       );
 
       if (response.ok) {
         const result = await response.json();
         localStorage.setItem("token", result.token);
-        router.push("/class");
+        router.push("/olclass");
       } else {
         const errorData = await response.json();
         setError(errorData.error);
@@ -65,7 +66,7 @@ const LoginForm = ({ className, ...props }) => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ email }),
-        }
+        },
       );
 
       if (response.ok) {
@@ -81,21 +82,14 @@ const LoginForm = ({ className, ...props }) => {
       setIsResetting(false); // Reset the state after the operation
     }
   };
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    const isLoggedIn = async () => {
-      if(token) {
-        try{
-          const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/validate`, {method: "GET", headers: {Authorization: `Bearer ${token}`}})
-          if(response.ok) router.push('/class')
-        } catch (error) {
-          console.log("User are okay to login")
-        }
-      }
-    }
 
-    isLoggedIn();
-  }, [])
+  // check if user has logged in
+  const [loading, loggedIn] = useUser();
+  if (loggedIn) router.push("/olclass");
+
+  if (loading) {
+    return <></>;
+  }
 
   return (
     <>
