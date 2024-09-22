@@ -32,20 +32,19 @@ const Card = ({
 }) => {
   return (
     // 2 divs that will always be square
-    <div className="relative w-full pb-[100%] rounded-lg overflow-hidden sm:mx-auto sm:h-96 sm:w-96 sm:pb-0 md:w-full md:pb-[50%]">
+    <div className="relative w-full overflow-hidden rounded-lg pb-[100%] sm:mx-auto sm:h-96 sm:w-96 sm:pb-0 md:w-full md:pb-[50%]">
       <Image
         src={src}
         width={500}
         height={500}
-        alt="OLConvention" 
-        className="z-0 object-cover layout-fill"
+        alt="OLConvention"
+        className="layout-fill z-0 object-cover"
       ></Image>
 
       {/* gradient */}
-      <div className="inset-0 absolute bg-gradient-to-t from-custom-blue-darker to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-custom-blue-darker to-transparent" />
 
-
-      <div className="absolute z-20 inset-0 flex flex-col justify-end p-3 text-white">
+      <div className="absolute inset-0 z-20 flex flex-col justify-end p-3 text-white">
         {/* day label */}
         <p className="absolute left-3 top-3 mb-4 w-fit rounded-md bg-white px-4 py-1 text-sm text-black">
           Day {day}

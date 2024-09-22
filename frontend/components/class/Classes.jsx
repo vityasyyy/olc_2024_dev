@@ -23,12 +23,12 @@ const Classes = ({ classes }) => {
         );
 
         if (!response.ok) {
-          throw new Error("Failed to fetch enrolled class");
+          throw new Error("Failed to fetch enrolled olclass");
         }
 
         const classData = await response.json();
         setOlcon(classData.olcon);
-        setEnrolledClass(classData.enrolledTo); // Assume classData is a single class object
+        setEnrolledClass(classData.enrolledTo); // Assume classData is a single olclass object
       } catch (err) {
         setError(err.message);
       } finally {
@@ -100,7 +100,7 @@ const Classes = ({ classes }) => {
                     label={item.title}
                     judul={item.title}
                     tanggal={item.waktu ? item.waktu : "TBA"}
-                    href={`/class/${item.slug}`}
+                    href={`/olclass/${item.slug}`}
                   />
                 </div>
               ))

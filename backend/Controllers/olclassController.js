@@ -83,11 +83,11 @@ module.exports.getOneClass = async (req, res) => {
         const OLClass = await Olclass.findOne({slug: olClassSlug})
 
         if (!OLClass) {
-            return res.status(404).json({ error: 'class not found' });
+            return res.status(404).json({ error: 'olclass not found' });
         }
 
         res.status(200).json(OLClass);
     } catch (error) {
-        res.status(500).json({ error: 'An error occurred while fetching the class' });
+        res.status(500).json({ error: 'An error occurred while fetching the olclass' });
     }
 };

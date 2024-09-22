@@ -4,16 +4,19 @@ import { Progress } from "@/components/ui/progress";
 import ContainerLarge from "@/components/global/ContainerLarge";
 import CardDrawer from "@/components/class/slug/Card";
 import RegisterButton from "@/components/class/RegisterButton";
+import TugasCard from "@/components/class/slug/TugasCard";
+
 const ClassDetail = async ({ params }) => {
   const slug = await params.slug;
   let classDetail;
   try {
     const classResponse = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/olclass/${slug}`, {method: "GET"}
+      `${process.env.NEXT_PUBLIC_API_URL}/olclass/${slug}`,
+      { method: "GET" },
     );
     classDetail = await classResponse.json();
   } catch (error) {
-    console.error("Error fetching class detail:", error);
+    console.error("Error fetching olclass detail:", error);
   }
 
   let progress = (classDetail.enrolledBy.length / classDetail.slots) * 100;
@@ -31,7 +34,7 @@ const ClassDetail = async ({ params }) => {
             <Avatar
               nama={classDetail.mentor?.nama}
               deskripsi={classDetail.mentor?.deskripsi}
-              // src={classDetail.mentor?.image}
+              src={classDetail.mentor?.image}
               // src="/hero/macbook.png"
               alt={classDetail.mentor?.nama}
             />
@@ -48,13 +51,13 @@ const ClassDetail = async ({ params }) => {
               {/* progress bar */}
               <div className="mb-3 flex flex-row items-center gap-3">
                 <Progress value={progress} className="h-6 w-full" />
-                <p className="text-lg font-semibold text-black text-nowrap">
+                <p className="text-nowrap text-lg font-semibold text-black">
                   {classDetail.enrolledBy.length} / 40
                 </p>
               </div>
 
               {/* daftar sekarang */}
-              <RegisterButton classSlug={slug}/>
+              <RegisterButton classSlug={slug} />
             </div>
             {/* -------------------------------------------------------- */}
           </div>
@@ -70,13 +73,13 @@ const ClassDetail = async ({ params }) => {
               {/* progress bar */}
               <div className="col-span-2 flex w-full flex-row items-center gap-3">
                 <Progress value={progress} className="w-full" />
-                <p className="text-xl font-semibold text-black text-nowrap">
-                  {classDetail.enrolledBy.length}/ 40 
+                <p className="text-nowrap text-xl font-semibold text-black">
+                  {classDetail.enrolledBy.length}/ 40
                 </p>
               </div>
 
               {/* daftar sekarang */}
-              <RegisterButton classSlug={slug}/>
+              <RegisterButton classSlug={slug} />
             </div>
 
             {/* session cards */}
@@ -103,6 +106,7 @@ const ClassDetail = async ({ params }) => {
                   />
                 </div>
               ))}
+              <TugasCard />
             </div>
           </div>
         </div>

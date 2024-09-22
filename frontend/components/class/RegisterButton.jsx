@@ -55,7 +55,7 @@ const RegisterButton = ({ classSlug }) => {
   const handleAction = async () => {
     if (isLoggedIn) {
       // User is logged in, redirect to payment
-      router.push(`/class/${classSlug}/payment`);
+      router.push(`/olclass/${classSlug}/payment`);
     } else {
       // User is not logged in, redirect to registration
       router.push("/auth/register");

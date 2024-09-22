@@ -79,13 +79,13 @@ export default function NavbarButtons({ variant = "blue" }) {
   } else {
     if (loggedIn) {
       if (variant === "white") {
-        // halaman class, logout
+        // halaman olclass, logout
         buttons = (
           <Link href="/">
             <Button
               onClick={onSubmitLogout}
               variant="outline"
-              className="border-custom-blue-dark text-custom-blue-dark"
+              className="border-custom-blue-dark text-custom-blue-dark hover:bg-custom-blue-dark/10"
             >
               Keluar
             </Button>
@@ -100,7 +100,7 @@ export default function NavbarButtons({ variant = "blue" }) {
                 Guidebook
               </Button>
             </Link>
-            <Link href="/class">
+            <Link href="/olclass">
               <Button className={`px-4`}>Dashboard</Button>
             </Link>
           </>
@@ -157,7 +157,7 @@ export default function NavbarButtons({ variant = "blue" }) {
                     <Button variant="ghost">Guidebook</Button>
                   </Link>
                   {loggedIn ? (
-                    <Link href={`/class`} className={`w-full`}>
+                    <Link href={`/olclass`} className={`w-full`}>
                       <Button className="w-full">Dashboard</Button>
                     </Link>
                   ) : (

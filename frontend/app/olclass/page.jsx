@@ -6,9 +6,9 @@ import UserName from "@/components/class/UserName";
 import Classes from "@/components/class/Classes";
 
 const Class = async () => {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/olclass`, {method: "GET"}
-  );
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/olclass`, {
+    method: "GET",
+  });
 
   const classes = await response.json();
   return (
@@ -18,13 +18,13 @@ const Class = async () => {
         <h1 className="pb-10 text-3xl font-semibold text-custom-blue-dark sm:text-4xl">
           Halo,
           <br />
-          <UserName/>
+          <UserName />
         </h1>
 
         <Tag blue className="text-custom-blue-dark">
           OLClass
         </Tag>
-        <Classes classes={classes}/>
+        <Classes classes={classes} />
       </ContainerLarge>
       <Footer />
     </>
