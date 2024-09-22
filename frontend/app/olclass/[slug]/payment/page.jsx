@@ -13,6 +13,7 @@ const Payment = () => {
   const router = useRouter();
   const slug = params.slug;
   const [isDike, setIsDike] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -73,6 +74,7 @@ const Payment = () => {
 
           {/* bottom/right */}
           <PaymentForm />
+          {error && <p className="mt-2 text-sm text-red-500">{error}</p>}
         </div>
       </ContainerLarge>
     </>
