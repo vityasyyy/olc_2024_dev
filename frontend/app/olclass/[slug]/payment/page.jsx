@@ -73,7 +73,7 @@ const Payment = () => {
           <Title isDike={isDike} />
 
           {/* bottom/right */}
-          <PaymentForm />
+          <PaymentForm slug={slug} />
           {error && <p className="mt-2 text-sm text-red-500">{error}</p>}
         </div>
       </ContainerLarge>
@@ -83,7 +83,7 @@ const Payment = () => {
 
 export default Payment;
 
-const PaymentForm = () => {
+const PaymentForm = ({ slug }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const handleEnrollment = async (e) => {
