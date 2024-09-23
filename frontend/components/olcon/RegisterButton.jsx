@@ -1,83 +1,121 @@
 "use client";
-
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "../ui/button";
-import { Skeleton } from "../ui/skeleton";
 
 const RegisterButton = ({ classSlug }) => {
-  const [loading, setLoading] = useState(true);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isEnrolled, setIsEnrolled] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false); // Track modal visibility
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false); // Loading state
+  const [error, setError] = useState(null); // Error state
   const router = useRouter();
 
-  const fetchEnrolledClass = async () => {
-    const token = localStorage.getItem("token");
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/auth/get-enrolled-class`,
-      {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      },
-    );
-    const responseJSON = await response.json();
-    if (responseJSON.enrolledTo) {
-      setIsEnrolled(true);
-    }
+  const handleAction = () => {
+    setIsModalOpen(true); // Open modal on button click
   };
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      // Validate user token
-      fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/validate`, {
-        method: "GET",
+  const handleConfirm = async () => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const token = localStorage.getItem("token");
+
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/olcon/joinolcon`, {
+        method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
         },
-      })
-        .then((response) => {
-          if (response.ok) {
-            setIsLoggedIn(true);
-            setLoading(false);
-          } else {
-            setIsLoggedIn(false);
-            setLoading(false);
-          }
-        })
-        .catch(() => setIsLoggedIn(false));
-    }
-    fetchEnrolledClass();
-  }, []);
+        body: JSON.stringify({
+          username,
+          email,
+        }),
+      });
 
-  const handleAction = async () => {
-    if (isLoggedIn) {
-      // User is logged in, redirect to payment
-      router.push(`/olclass/${classSlug}/payment`);
-    } else {
-      // User is not logged in, redirect to registration
-      router.push("/auth/register");
+      if (!response.ok) {
+        throw new Error("Registration failed. Please try again.");
+      }
+
+      // Redirect to success page or OLCon page after successful registration
+      router.push(`/olcon/`);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+      setIsModalOpen(false); // Close modal after submission
     }
   };
-
-  // conditional button text, according to login state
-  let buttonText;
-  if (loading) {
-    buttonText = <Skeleton className="h-6 w-32" />;
-  } else {
-    if (isLoggedIn) {
-      buttonText = "Enroll";
-    } else {
-      buttonText = "Daftar Sekarang";
-    }
-  }
 
   return (
-    <Button variant="secondary" onClick={handleAction} disabled={isEnrolled}>
-      {buttonText}
-    </Button>
+    <>
+      {/* Register Button */}
+      <Button variant="secondary" onClick={handleAction}>
+        Join OLCon
+      </Button>
+
+      {/* Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
+            <h2 className="text-lg font-semibold mb-4">Register for OLCon</h2>
+
+            {/* Username Field */}
+            <div className="mb-4">
+              <label htmlFor="username" className="block text-sm font-medium text-gray-700">
+                Username
+              </label>
+              <input
+                id="username"
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                placeholder="Enter your username"
+              />
+            </div>
+
+            {/* Email Field */}
+            <div className="mb-4">
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                Email
+              </label>
+              <input
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                placeholder="Enter your email"
+              />
+            </div>
+
+            {/* Error Message */}
+            {error && <p className="text-sm text-red-500">{error}</p>}
+
+            {/* Buttons */}
+            <div className="flex justify-end space-x-3">
+              <button
+                className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+                onClick={() => setIsModalOpen(false)}
+              >
+                Cancel
+              </button>
+              <button
+                className={`bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 ${
+                  loading ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+                onClick={handleConfirm}
+                disabled={loading}
+              >
+                {loading ? "Submitting..." : "Confirm"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

@@ -4,7 +4,7 @@ import { Progress } from "@/components/ui/progress";
 import ContainerLarge from "@/components/global/ContainerLarge";
 import SessionCard from "@/components/olcon/SessionCard";
 import DescriptionCard from "@/components/olcon/DescriptionCard";
-
+import RegisterButton from "@/components/olcon/RegisterButton";
 const OLConDetail = async () => {
   return (
     <>
@@ -35,7 +35,7 @@ const OLConDetail = async () => {
               </div>
 
               {/* daftar sekarang */}
-              {/*<RegisterButton classSlug={} />*/}
+              <RegisterButton/>
             </div>
             {/* -------------------------------------------------------- */}
           </div>
@@ -57,7 +57,7 @@ const OLConDetail = async () => {
               </div>
 
               {/* daftar sekarang */}
-              {/*<RegisterButton classSlug={} />*/}
+              <RegisterButton/>
             </div>
 
             {/* session cards */}
