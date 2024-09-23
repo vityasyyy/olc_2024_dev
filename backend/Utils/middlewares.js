@@ -13,7 +13,7 @@ module.exports.isAuthenticated = async (req, res, next) => {
     try {
         // Verify the token
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
+        
         // Check if token has expired
         if (Date.now() >= decoded.exp * 1000) {
             return res.status(401).json({ error: 'Token has expired, please log in again' });
