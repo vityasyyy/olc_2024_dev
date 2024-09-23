@@ -16,49 +16,40 @@ const Payment = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchUser = async () => {
+    const fetchData = async () => {
       const token = localStorage.getItem("token");
-      try {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/auth/validate`,
-          {
-            method: "GET",
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          },
-        );
-        const responseJSON = await response.json();
-        setIsDike(responseJSON.user.isDike || false);
-      } catch (err) {
-        setError(err.message);
+  
+      const [userResponse, enrolledResponse] = await Promise.all([
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/validate`, {
+          method: "GET",
+          headers: { Authorization: `Bearer ${token}` },
+        }),
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/get-enrolled-class`, {
+          method: "GET",
+          headers: { Authorization: `Bearer ${token}` },
+        }),
+      ]);
+  
+      if (userResponse.ok) {
+        const userJSON = await userResponse.json();
+        setIsDike(userJSON.user.isDike || false);
+      } else {
+        setError("Failed to validate user.");
       }
-    };
-
-    const fetchEnrolledClass = async () => {
-      const token = localStorage.getItem("token");
-      try {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/auth/get-enrolled-class`,
-          {
-            method: "GET",
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          },
-        );
-        const responseJSON = await response.json();
-        if (responseJSON.enrolledTo) {
-          router.push("/class");
+  
+      if (enrolledResponse.ok) {
+        const enrolledJSON = await enrolledResponse.json();
+        if (enrolledJSON.enrolledTo) {
+          router.push("/olclass");
         }
-      } catch (err) {
-        setError(err.message);
+      } else {
+        setError("Failed to fetch enrolled classes.");
       }
     };
-
-    fetchUser();
-    fetchEnrolledClass();
+  
+    fetchData();
   }, [router, slug]);
+  
 
   return (
     <>
@@ -86,8 +77,9 @@ export default Payment;
 const PaymentForm = ({ slug }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const handleEnrollment = async (e) => {
-    e.preventDefault();
+  const [isModalOpen, setIsModalOpen] = useState(false); // Track modal state
+
+  const handleEnrollment = async () => {
     setLoading(true);
     setError(null);
 
@@ -101,7 +93,7 @@ const PaymentForm = ({ slug }) => {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
-        },
+        }
       );
 
       if (!response.ok) {
@@ -114,15 +106,23 @@ const PaymentForm = ({ slug }) => {
       setError(err.message);
     } finally {
       setLoading(false);
+      setIsModalOpen(false); // Close modal after submission
     }
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsModalOpen(true); // Open modal on submit
+  };
+
   return (
     <div className="flex w-full max-w-sm shrink-0 flex-col gap-px border-[1.5px] border-black px-[20px] py-[28px]">
-      <form onSubmit={handleEnrollment} className="mb-3 md:mb-0 lg:py-4">
+      <form onSubmit={handleSubmit} className="mb-3 md:mb-0 lg:py-4">
         <h4 className="text-md hidden font-semibold sm:block">Pembayaran</h4>
         <div className="mb-0 mt-2">
           <ol className="mx-2 list-outside list-disc pl-3 text-sm text-custom-gray-dark">
             <li>Pembayaran seharga IDR 75.000</li>
+
             <li>
               Pembayaran transfer kepada{" "}
               <strong>BNI a.n Andreandhiki (083456688)</strong>
@@ -135,15 +135,24 @@ const PaymentForm = ({ slug }) => {
         <div className="mb-5 mt-2 flex flex-row items-center justify-center border-[1.5px] border-black px-4 py-2 md:mb-2 lg:mb-0">
           <UploadButton />
         </div>
+        <Button type="submit" className="py-6 text-lg" variant="secondary">
+          Submit
+        </Button>
       </form>
 
       {error && <p className="mt-2 text-sm text-red-500">{error}</p>}
-      <Button type="submit" className="py-6 text-lg" variant="secondary">
-        {loading ? "Loading..." : "Submit"}
-      </Button>
+
+      {/* Confirmation Modal */}
+      <Modal
+        isOpen={isModalOpen}
+        onConfirm={handleEnrollment} // Handle actual enrollment on confirmation
+        onCancel={() => setIsModalOpen(false)} // Close modal if canceled
+        loading={loading} // Pass loading state to disable buttons during submission
+      />
     </div>
   );
 };
+
 
 const UploadButton = () => (
   <div>
@@ -160,3 +169,35 @@ const UploadButton = () => (
     </Link>
   </div>
 );
+
+const Modal = ({ isOpen, onConfirm, onCancel, loading }) => {
+  if (!isOpen) return null; // Don't render the modal if it's not open
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+      <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
+        <h2 className="text-lg font-semibold mb-4">Confirm Enrollment</h2>
+        <p className="mb-6 text-gray-700">
+          Are you sure you want to submit the payment? Make sure you read the instruction properly
+        </p>
+        <div className="flex justify-end space-x-3">
+          <button
+            className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+            onClick={onCancel}
+          >
+            Cancel
+          </button>
+          <button
+            className={`bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 ${
+              loading ? "opacity-50 cursor-not-allowed" : ""
+            }`}
+            onClick={onConfirm}
+            disabled={loading}
+          >
+            {loading ? "Submitting..." : "Confirm"}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
