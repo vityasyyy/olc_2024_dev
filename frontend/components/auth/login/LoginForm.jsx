@@ -5,13 +5,14 @@ import { useForm } from "react-hook-form";
 import { Info } from "lucide-react";
 import { useRouter } from "next/navigation";
 import useUser from "@/hooks/useUser";
+import { PulseLoader } from "react-spinners";
 
 const LoginForm = ({ className, ...props }) => {
   const {
     register,
     handleSubmit,
     watch,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm();
   const router = useRouter();
   const [error, setError] = useState("");
@@ -136,8 +137,20 @@ const LoginForm = ({ className, ...props }) => {
           </p>
         )}
 
-        <Button variant="secondary" type="submit" className="mt-4 rounded-lg">
-          Login
+        <Button
+          variant="secondary"
+          type="submit"
+          className="mt-4 rounded-lg"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? (
+            <div className="flex items-center gap-2">
+              <PulseLoader size={4} color="#ffffff" /> Loading
+            </div>
+          ) : (
+            // Show spinner during login
+            "Login"
+          )}
         </Button>
         {error && (
           <p className="flex flex-row items-center justify-center gap-2 text-center text-xs font-normal text-red-500">

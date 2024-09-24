@@ -7,6 +7,7 @@ import axios from "axios";
 import { Info } from "lucide-react";
 import { useRouter } from "next/navigation";
 import useUser from "@/hooks/useUser";
+import { PulseLoader } from "react-spinners";
 
 const RegisterForm = ({ className, ...props }) => {
   const {
@@ -145,10 +146,17 @@ const RegisterForm = ({ className, ...props }) => {
       <Button
         variant="secondary"
         type="submit"
-        className="mt-4 rounded-lg"
+        className="mt-4 flex items-center justify-center rounded-lg"
         disabled={isSubmitting}
       >
-        {isSubmitting ? "Submitting..." : "Submit"}
+        {isSubmitting ? (
+          <div className="flex items-center gap-2">
+            <PulseLoader size={4} color="#ffffff" /> Loading
+          </div>
+        ) : (
+          // Show spinner during submit
+          "Submit"
+        )}
       </Button>
     </form>
   );
