@@ -20,6 +20,7 @@ const sessionSchema = new Schema({
   waktu: Date,
   platform: String,
   deskripsi: String,
+  mentor: mentorSchema
 });
 
 
@@ -37,7 +38,6 @@ const olconSchema = new Schema({
         type: Number,
         default: 40
     },
-    mentor: mentorSchema,
     sesi: [sessionSchema],
     slug: {
       type: String,

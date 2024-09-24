@@ -26,11 +26,20 @@ const sessionSchema = new Schema({
   prerequisites: String,
 });
 
+const penugasanSchema = new Schema({
+  deadline: Date,
+  linkTugas: String,
+})
 const olclassSchema = new Schema({
   title: {
     type: String,
     required: true,
   },
+  divisi: {
+    type: String,
+    required: true,
+  },
+  deskripsiKelas: String,
   enrolledBy: [
     {
       type: Schema.Types.ObjectId,
@@ -46,7 +55,17 @@ const olclassSchema = new Schema({
   slug: {
     type: String,
     unique: true
-  }
+  },
+  waktuStart: {
+    type: Date,
+    default: Date.now,
+  },
+  waktuEnd:{
+    type: Date,
+    default: Date.now,
+  },
+  penugasan: penugasanSchema,
+  groupWA: String,
 });
 
 module.exports = mongoose.model("Olclass", olclassSchema);
