@@ -4,7 +4,7 @@ const sendTicket = require('../Utils/reusedFunc').sendTicket;
 module.exports.joinolcon = async (req, res) => {
     try {
         const { email, username } = req.body;
-
+        if(!email || !username) return res.status(400).json({ error: 'Email and username are required' });
         // Ensure that olcon is there LOL
         const olcon = await Olcon.findOne({});
         if (!olcon) return res.status(500).json({ error: 'OLCon document not found' });

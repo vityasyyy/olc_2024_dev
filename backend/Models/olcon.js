@@ -32,6 +32,7 @@ const olconSchema = new Schema({
     email: [{
         type: String,
         unique: true,
+        required: true,
         match: [emailRegex, 'Please fill a valid email address']
     }],
     slots: {
