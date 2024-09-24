@@ -2,7 +2,7 @@ export default function Title({ isDike }) {
   if (isDike)
     return (
       <>
-        <div className="flex flex-col gap-2 lg:max-h-72 lg:max-w-[52rem]">
+        <div className="flex w-full flex-col gap-2 lg:max-h-72">
           <h1 className="text-2xl font-semibold md:text-4xl lg:text-5xl">
             Mahasiswa/i Departemen Ilmu Komputer dan Elektronika UGM
           </h1>
@@ -11,7 +11,7 @@ export default function Title({ isDike }) {
             Elektronika UGM
           </p>
           <p className="text-lg font-bold">Benefit</p>
-          <ol className="mx-2 list-inside list-decimal font-medium">
+          <ol className="mx-2 list-outside font-medium">
             <li>Tiket OLClass day 2-5</li>
             <li>Tiket OLCon day 1 dan 6 (limited)</li>
             <li>100% refund untuk kehadiran</li>

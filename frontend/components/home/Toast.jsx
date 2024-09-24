@@ -13,7 +13,7 @@ const Toast = () => {
     text = <Skeleton className="h-8 w-52" />;
     button = (
       <Button className="w-32 font-medium sm:w-fit">
-        <Skeleton className="h-8 w-24" />
+        <Skeleton className="h-4 w-24" />
       </Button>
     );
   } else {

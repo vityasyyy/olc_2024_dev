@@ -2,6 +2,19 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "../ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 const RegisterButton = ({ classSlug }) => {
   const [isModalOpen, setIsModalOpen] = useState(false); // Track modal visibility
@@ -22,20 +35,25 @@ const RegisterButton = ({ classSlug }) => {
     try {
       const token = localStorage.getItem("token");
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/olcon/joinolcon`, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/olcon/joinolcon`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username,
+            email,
+          }),
         },
-        body: JSON.stringify({
-          username,
-          email,
-        }),
-      });
+      );
+
+      console.log("ini error message:", response.message);
 
       if (!response.ok) {
-        throw new Error("Registration failed. Please try again.");
+        throw new Error("Registration failed. This email might have been registered before.");
       }
 
       // Redirect to success page or OLCon page after successful registration
@@ -50,6 +68,65 @@ const RegisterButton = ({ classSlug }) => {
 
   return (
     <>
+      <AlertDialog>
+        <AlertDialogTrigger asChild>
+          <Button variant="secondary">Enroll</Button>
+        </AlertDialogTrigger>
+        <AlertDialogContent className="max-w-md">
+          <AlertDialogHeader>
+            <AlertDialogTitle className="mx-auto">
+              Enter Your Information
+            </AlertDialogTitle>
+            <AlertDialogDescription className="mx-auto">
+              Please provide your name and email address.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <div className="grid w-full items-center gap-4">
+            <div className="flex flex-col space-y-1.5">
+              <Label htmlFor="name">Name</Label>
+              <Input
+                id="name"
+                placeholder="Enter your name"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+              />
+            </div>
+            <div className="flex flex-col space-y-1.5">
+              <Label htmlFor="email">Email</Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+
+            {/* Error Message */}
+            {error && <p className="text-sm text-red-500">{error}</p>}
+          </div>
+          <AlertDialogFooter className="ml-0 mt-6">
+            <div className="flex w-full flex-col gap-3">
+              <AlertDialogAction
+                className="bg-custom-blue-dark text-white hover:bg-custom-blue-dark/90"
+                onClick={handleConfirm}
+              >
+                Submit
+              </AlertDialogAction>
+              <AlertDialogCancel className="border-custom-blue-dark text-custom-blue-dark hover:bg-custom-blue-dark/10">
+                Cancel
+              </AlertDialogCancel>
+            </div>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </>
+  );
+
+  return (
+    <>
       {/* Register Button */}
       <Button variant="secondary" onClick={handleAction}>
         Join OLCon
@@ -58,12 +135,15 @@ const RegisterButton = ({ classSlug }) => {
       {/* Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
-            <h2 className="text-lg font-semibold mb-4">Register for OLCon</h2>
+          <div className="w-full max-w-sm rounded-lg bg-white p-6 shadow-lg">
+            <h2 className="mb-4 text-lg font-semibold">Register for OLCon</h2>
 
             {/* Username Field */}
             <div className="mb-4">
-              <label htmlFor="username" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="username"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Username
               </label>
               <input
@@ -71,14 +151,17 @@ const RegisterButton = ({ classSlug }) => {
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                 placeholder="Enter your username"
               />
             </div>
 
             {/* Email Field */}
             <div className="mb-4">
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Email
               </label>
               <input
@@ -86,7 +169,7 @@ const RegisterButton = ({ classSlug }) => {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                 placeholder="Enter your email"
               />
             </div>
@@ -97,14 +180,14 @@ const RegisterButton = ({ classSlug }) => {
             {/* Buttons */}
             <div className="flex justify-end space-x-3">
               <button
-                className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+                className="rounded bg-gray-500 px-4 py-2 text-white hover:bg-gray-600"
                 onClick={() => setIsModalOpen(false)}
               >
                 Cancel
               </button>
               <button
-                className={`bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 ${
-                  loading ? "opacity-50 cursor-not-allowed" : ""
+                className={`rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 ${
+                  loading ? "cursor-not-allowed opacity-50" : ""
                 }`}
                 onClick={handleConfirm}
                 disabled={loading}

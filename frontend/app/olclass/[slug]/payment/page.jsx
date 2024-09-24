@@ -7,6 +7,17 @@ import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { Image } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 const Payment = () => {
   const params = useParams();
@@ -14,11 +25,12 @@ const Payment = () => {
   const slug = params.slug;
   const [isDike, setIsDike] = useState(false);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       const token = localStorage.getItem("token");
-  
+
       const [userResponse, enrolledResponse] = await Promise.all([
         fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/validate`, {
           method: "GET",
@@ -29,14 +41,14 @@ const Payment = () => {
           headers: { Authorization: `Bearer ${token}` },
         }),
       ]);
-  
+
       if (userResponse.ok) {
         const userJSON = await userResponse.json();
         setIsDike(userJSON.user.isDike || false);
       } else {
         setError("Failed to validate user.");
       }
-  
+
       if (enrolledResponse.ok) {
         const enrolledJSON = await enrolledResponse.json();
         if (enrolledJSON.enrolledTo) {
@@ -46,25 +58,24 @@ const Payment = () => {
         setError("Failed to fetch enrolled classes.");
       }
     };
-  
+
     fetchData();
   }, [router, slug]);
-  
 
   return (
     <>
-      <ContainerLarge>
-        <BackButton black />
+      <ContainerLarge className={`text-custom-blue-dark`}>
+        <BackButton blue />
 
-        <h3 className="mb-8 mt-6 text-xl font-semibold md:text-2xl lg:mt-4">
+        <h3 className="mb-8 mt-6 hidden text-xl font-semibold sm:flex md:text-2xl lg:mt-4">
           Pembayaran
         </h3>
-        <div className="flex flex-col items-center gap-8 md:mt-24 md:flex-row md:justify-between">
+        <div className="grid grid-cols-1 gap-8 md:mt-24 md:grid-cols-2 md:flex-row md:justify-between">
           {/* left/top */}
           <Title isDike={isDike} />
 
           {/* bottom/right */}
-          <PaymentForm slug={slug} />
+          <PaymentForm slug={slug} className={`mx-auto`} />
           {error && <p className="mt-2 text-sm text-red-500">{error}</p>}
         </div>
       </ContainerLarge>
@@ -74,7 +85,7 @@ const Payment = () => {
 
 export default Payment;
 
-const PaymentForm = ({ slug }) => {
+const PaymentForm = ({ slug, className }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false); // Track modal state
@@ -93,7 +104,7 @@ const PaymentForm = ({ slug }) => {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
-        }
+        },
       );
 
       if (!response.ok) {
@@ -116,11 +127,18 @@ const PaymentForm = ({ slug }) => {
   };
 
   return (
-    <div className="flex w-full max-w-sm shrink-0 flex-col gap-px border-[1.5px] border-black px-[20px] py-[28px]">
-      <form onSubmit={handleSubmit} className="mb-3 md:mb-0 lg:py-4">
-        <h4 className="text-md hidden font-semibold sm:block">Pembayaran</h4>
+    <div
+      className={`flex w-full max-w-md shrink-0 flex-col border-[1.5px] border-custom-blue-dark px-[20px] py-[10px] ${className}`}
+    >
+      <form
+        onSubmit={handleSubmit}
+        className="mb-3 flex flex-col gap-2 md:mb-0 lg:py-4"
+      >
+        <h4 className="text-md hidden font-semibold text-custom-blue-dark sm:block">
+          Pembayaran
+        </h4>
         <div className="mb-0 mt-2">
-          <ol className="mx-2 list-outside list-disc pl-3 text-sm text-custom-gray-dark">
+          <ol className="mx-2 list-outside list-disc pl-3 text-sm text-custom-black">
             <li>Pembayaran seharga IDR 75.000</li>
 
             <li>
@@ -135,24 +153,40 @@ const PaymentForm = ({ slug }) => {
         <div className="mb-5 mt-2 flex flex-row items-center justify-center border-[1.5px] border-black px-4 py-2 md:mb-2 lg:mb-0">
           <UploadButton />
         </div>
-        <Button type="submit" className="py-6 text-lg" variant="secondary">
-          Submit
-        </Button>
+        <AlertDialog>
+          <AlertDialogTrigger asChild>
+            <Button variant={`secondary`} className={`py-3 text-base`}>
+              Submit
+            </Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Confirm Enrollment</AlertDialogTitle>
+              <AlertDialogDescription>
+                Are you absolutely sure you want to submit the payment? Make
+                sure you have read the instructions properly.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel
+                className={`border-custom-blue-dark text-custom-blue-dark hover:bg-custom-blue-dark/10`}
+              >
+                Cancel
+              </AlertDialogCancel>
+              <AlertDialogAction
+                className={`bg-custom-blue-dark text-white hover:bg-custom-blue-dark/80`}
+              >
+                Confirm
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </form>
 
       {error && <p className="mt-2 text-sm text-red-500">{error}</p>}
-
-      {/* Confirmation Modal */}
-      <Modal
-        isOpen={isModalOpen}
-        onConfirm={handleEnrollment} // Handle actual enrollment on confirmation
-        onCancel={() => setIsModalOpen(false)} // Close modal if canceled
-        loading={loading} // Pass loading state to disable buttons during submission
-      />
     </div>
   );
 };
-
 
 const UploadButton = () => (
   <div>
@@ -160,7 +194,7 @@ const UploadButton = () => (
       href="https://drive.google.com/your-upload-link"
       target="_blank"
       rel="noopener noreferrer"
-      className="text-md flex items-center text-gray-700 transition duration-200 hover:text-blue-600"
+      className="text-md flex items-center text-custom-black transition-all hover:text-custom-gray-dark"
     >
       <span className="mr-2 block">
         <Image />
@@ -175,21 +209,22 @@ const Modal = ({ isOpen, onConfirm, onCancel, loading }) => {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
-        <h2 className="text-lg font-semibold mb-4">Confirm Enrollment</h2>
+      <div className="w-full max-w-sm rounded-lg bg-white p-6 shadow-lg">
+        <h2 className="mb-4 text-lg font-semibold">Confirm Enrollment</h2>
         <p className="mb-6 text-gray-700">
-          Are you sure you want to submit the payment? Make sure you read the instruction properly
+          Are you sure you want to submit the payment? Make sure you read the
+          instruction properly
         </p>
         <div className="flex justify-end space-x-3">
           <button
-            className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+            className="rounded bg-gray-500 px-4 py-2 text-white hover:bg-gray-600"
             onClick={onCancel}
           >
             Cancel
           </button>
           <button
-            className={`bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 ${
-              loading ? "opacity-50 cursor-not-allowed" : ""
+            className={`w rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 ${
+              loading ? "cursor-not-allowed opacity-50" : ""
             }`}
             onClick={onConfirm}
             disabled={loading}

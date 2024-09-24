@@ -8,7 +8,11 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const Classes = () => {
+const Classes = async () => {
+  const responses = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/olclass`);
+  const classes = await responses.json();
+  console.log(classes);
+
   return (
     <Container
       parentClass="bg-custom-blue-dark"
@@ -25,10 +29,15 @@ const Classes = () => {
 
       {/* olclass cards */}
       <div className="flex flex-col gap-6">
-        <Card label="Software Engineering" />
-        <Card label="Cyber Security" />
-        <Card label="Data Science" />
-        <Card label="UI/UX" />
+        {classes.map((item) => (
+          <Card
+            label={item.title}
+            judul={item.title}
+            nama={item.mentor.nama}
+            description={item.mentor.deskripsi}
+            key={item._id}
+          />
+        ))}
       </div>
     </Container>
   );
@@ -38,6 +47,7 @@ const Card = ({
   label = "Software Engineering",
   judul = "Nama Judul Kelas",
   nama = "Fahmi Shampoerna",
+  src = "placeholder.svg",
   description = "Project Manager at TelkomBeta",
   materi = "Banyak banget yang dipelajari",
 }) => {
@@ -50,7 +60,7 @@ const Card = ({
           {/* image */}
           <div className="relative h-1/2 w-full overflow-hidden sm:h-full sm:w-[200px]">
             <Image
-              src="placeholder.svg"
+              src={src}
               width={200}
               height={200}
               className="layout-fill h-full w-full object-cover"

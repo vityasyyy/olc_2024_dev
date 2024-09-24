@@ -5,7 +5,14 @@ import ContainerLarge from "@/components/global/ContainerLarge";
 import SessionCard from "@/components/olcon/SessionCard";
 import DescriptionCard from "@/components/olcon/DescriptionCard";
 import RegisterButton from "@/components/olcon/RegisterButton";
+
 const OLConDetail = async () => {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/olcon`);
+  const olcon = await response.json();
+  console.log(olcon.olcon);
+  const enrolledAmount = 40 - ((await olcon.olcon.slots) - 60);
+  const progress = (enrolledAmount * 100) / 40;
+
   return (
     <>
       <ContainerLarge className="text-custom-blue-dark" parentClass="bg-white">
@@ -15,7 +22,12 @@ const OLConDetail = async () => {
         <div className="grid w-full grid-cols-1 gap-6 lg:grid-cols-4 lg:flex-row">
           {/* left side, speaker and image section */}
           <div className="flex flex-row gap-6">
-            <Avatar />
+            <Avatar
+              nama={olcon.olcon.mentor?.nama}
+              alt={olcon.olcon.mentor?.nama}
+              deskripsi={olcon.olcon.mentor?.deskripsi}
+              src={olcon.olcon.mentor?.fotoMentor}
+            />
 
             {/* ON MEDIUM SCREENS */}
             {/* ----------------------------------------------------- */}
@@ -28,14 +40,14 @@ const OLConDetail = async () => {
 
               {/* progress bar */}
               <div className="mb-3 flex flex-row items-center gap-3">
-                <Progress value={10} className="h-6 w-full" />
+                <Progress value={progress} className="h-6 w-full" />
                 <p className="text-nowrap text-lg font-semibold text-black">
-                  0 / 40
+                  {enrolledAmount} / 40
                 </p>
               </div>
 
               {/* daftar sekarang */}
-              <RegisterButton/>
+              <RegisterButton />
             </div>
             {/* -------------------------------------------------------- */}
           </div>
@@ -50,18 +62,18 @@ const OLConDetail = async () => {
             <div className="grid grid-cols-1 gap-4 md:hidden md:grid-cols-3 lg:grid">
               {/* progress bar */}
               <div className="col-span-2 flex w-full flex-row items-center gap-3">
-                <Progress value={10} className="w-full" />
+                <Progress value={progress} className="w-full" />
                 <p className="text-nowrap text-xl font-semibold text-black">
-                  0 / 40
+                  {enrolledAmount} / 40
                 </p>
               </div>
 
               {/* daftar sekarang */}
-              <RegisterButton/>
+              <RegisterButton />
             </div>
 
             {/* session cards */}
-            <div className="grid grid-cols-1 gap-4">
+            <div className="grid grid-cols-1 gap-4 duration-700 animate-in fade-in slide-in-from-bottom-5">
               <SessionCard />
               <DescriptionCard />
             </div>

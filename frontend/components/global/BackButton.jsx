@@ -3,10 +3,14 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-const BackButton = ({ black = false, className }) => {
+const BackButton = ({ black = false, blue = false, className }) => {
   const Router = useRouter();
   return (
-    <Button onClick={() => Router.back()} variant="link" className={`px-0 ${black ? 'text-black' : 'text-white'} ${className}`}>
+    <Button
+      onClick={() => Router.back()}
+      variant="link"
+      className={`px-0 ${black ? "text-black" : "text-white"} ${blue && "text-custom-blue-dark"} ${className}`}
+    >
       <ArrowLeft className="mr-2 h-4 w-4" />
       Kembali
     </Button>
