@@ -49,12 +49,11 @@ const Classes = ({ classes }) => {
 
   return (
     <>
-      <p className="pt-10 text-xl font-bold text-custom-blue-dark sm:text-2xl">
-        Kelas Pilihanmu
-      </p>
-
       {enrolledClass ? (
         <>
+          <p className="pt-10 text-xl font-bold text-custom-blue-dark sm:text-2xl">
+            Kelas Pilihanmu
+          </p>
           <p className="pb-6 font-medium">OLClass dan OLConvention</p>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
             <Card
@@ -85,6 +84,9 @@ const Classes = ({ classes }) => {
         </>
       ) : (
         <>
+          <p className="pt-10 text-xl font-bold text-custom-blue-dark sm:text-2xl">
+            Kelas Tersedia
+          </p>
           <p className="pb-6 font-medium">
             Kamu hanya dapat memilih satu kelas dan pendaftar akan langsung
             dapat akses OLConvention
