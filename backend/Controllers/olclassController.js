@@ -9,8 +9,8 @@ module.exports.enroll = async (req, res) => {
         const userId = req.user._id;
         const email = req.user.email;
         const username = req.user.username;
-        const payment = req.body.payment;
 
+        if(!userId || !email || !username) return res.status(400).json({ error: 'User ID, email and username are required' });
         const [olClass, user, olCon] = await Promise.all([
             Olclass.findOne({ slug: olClassSlug }), // Use findOne to search by slug
             User.findById(userId),
@@ -53,7 +53,6 @@ module.exports.enroll = async (req, res) => {
         olClass.slots -= 1;
 
         // Add olClass to user's enrolled list
-        user.payment = payment;
         user.enrolledTo = olClass._id; // Use olClass._id here
 
         // Save both olClass and user

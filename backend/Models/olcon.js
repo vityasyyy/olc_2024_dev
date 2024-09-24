@@ -20,6 +20,7 @@ const sessionSchema = new Schema({
   waktu: Date,
   platform: String,
   deskripsi: String,
+  mentor: mentorSchema
 });
 
 
@@ -31,13 +32,13 @@ const olconSchema = new Schema({
     email: [{
         type: String,
         unique: true,
+        required: true,
         match: [emailRegex, 'Please fill a valid email address']
     }],
     slots: {
         type: Number,
         default: 40
     },
-    mentor: mentorSchema,
     sesi: [sessionSchema],
     slug: {
       type: String,
