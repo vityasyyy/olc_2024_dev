@@ -61,7 +61,7 @@ const Classes = ({ classes }) => {
               label={enrolledClass.title}
               judul={enrolledClass.title}
               tanggal={enrolledClass.waktu ? enrolledClass.waktu : "TBA"}
-              href={`/class/${enrolledClass.slug}`}
+              href={`/olclass/${enrolledClass.slug}`}
               className="delay-200 duration-700 ease-in animate-in fade-in slide-in-from-right-5"
             />
             <Card

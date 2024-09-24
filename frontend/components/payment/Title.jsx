@@ -27,13 +27,13 @@ export default function Title({ isDike }) {
             Pendaftar Umum
           </h1>
           <p className="my-1 text-lg font-medium">
-            halaman pendaftaran untuk Mahasiswa/i non DIKE UGM, dan untuk umum
+            halaman pendaftaran untuk Mahasiswa/i NON-DIKE UGM, dan untuk umum
           </p>
           <p className="text-lg font-bold">Benefit</p>
           <ol className="mx-2 list-decimal font-medium">
             <li>Tiket OLClass day 2-5</li>
             <li>Tiket OLCon day 1 dan 6 (limited)</li>
-            <li>75% refund untuk kehadiran</li>
+            <li>100% refund untuk kehadiran</li>
           </ol>
         </div>
       </>

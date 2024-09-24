@@ -106,7 +106,7 @@ const ClassDetail = async ({ params }) => {
                   />
                 </div>
               ))}
-              <TugasCard />
+              <TugasCard href={classDetail.tugas} />
             </div>
           </div>
         </div>
