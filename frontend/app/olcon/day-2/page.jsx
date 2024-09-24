@@ -1,32 +1,47 @@
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import Avatar from "@/components/global/Avatar";
-import BackButton from "@/components/global/BackButton";
 import { Progress } from "@/components/ui/progress";
+import { ArrowLeft } from "lucide-react";
 import ContainerLarge from "@/components/global/ContainerLarge";
 import SessionCard from "@/components/olcon/SessionCard";
 import DescriptionCard from "@/components/olcon/DescriptionCard";
 import RegisterButton from "@/components/olcon/RegisterButton";
 
 const OLConDetail = async () => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/olcon`);
-  const olcon = await response.json();
-  console.log(olcon.olcon);
-  const enrolledAmount = 40 - ((await olcon.olcon.slots) - 60);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/olcon`, {
+    cache: "no-cache",
+  });
+  const olconJSON = await response.json();
+  const olcon = olconJSON.olcon;
+  console.log("tes olcon json: ", olcon);
+  const enrolledAmount = 40 - (await olcon.slots);
   const progress = (enrolledAmount * 100) / 40;
 
   return (
     <>
-      <ContainerLarge className="text-custom-blue-dark" parentClass="bg-white">
-        <BackButton black />
-        <h1 className="my-8 text-4xl font-bold">Introduction to IT World</h1>
+      <ContainerLarge
+        className="relative text-custom-blue-dark"
+        parentClass="bg-white"
+      >
+        {/* href to page one */}
+        <Link href="day-1">
+          <Button variant="link" className="px-0">
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Day 1
+          </Button>
+        </Link>
+
+        <h1 className="my-8 text-4xl font-bold">{olcon.title}: Day 2</h1>
 
         <div className="grid w-full grid-cols-1 gap-6 lg:grid-cols-4 lg:flex-row">
           {/* left side, speaker and image section */}
           <div className="flex flex-row gap-6">
             <Avatar
-              nama={olcon.olcon.mentor?.nama}
-              alt={olcon.olcon.mentor?.nama}
-              deskripsi={olcon.olcon.mentor?.deskripsi}
-              src={olcon.olcon.mentor?.fotoMentor}
+              nama={olcon.sesi[1].mentor?.nama}
+              alt={olcon.sesi[1].mentor?.nama}
+              deskripsi={olcon.sesi[1].mentor?.deskripsi}
+              src={olcon.sesi[1].mentor?.fotoMentor}
             />
 
             {/* ON MEDIUM SCREENS */}
@@ -74,8 +89,8 @@ const OLConDetail = async () => {
 
             {/* session cards */}
             <div className="grid grid-cols-1 gap-4 duration-700 animate-in fade-in slide-in-from-bottom-5">
-              <SessionCard />
-              <DescriptionCard />
+              <SessionCard object={olcon.sesi} idx={1} />
+              <DescriptionCard object={olcon.sesi} idx={1} />
             </div>
           </div>
         </div>

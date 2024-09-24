@@ -12,7 +12,7 @@ const ClassDetail = async ({ params }) => {
   try {
     const classResponse = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/olclass/${slug}`,
-      { method: "GET" },
+      { method: "GET", cache: "no-cache" },
     );
     classDetail = await classResponse.json();
   } catch (error) {

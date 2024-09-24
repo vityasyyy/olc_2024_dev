@@ -1,4 +1,4 @@
-export default function DescriptionCard({ deskripsi = "lorem" }) {
+export default function DescriptionCard({ object, idx = 0 }) {
   return (
     <>
       <div
@@ -8,7 +8,7 @@ export default function DescriptionCard({ deskripsi = "lorem" }) {
         <p className="text-base font-semibold">Deskripsi</p>
 
         {/*  description */}
-        <p>{deskripsi}</p>
+        <p>{object[idx].deskripsi}</p>
       </div>
     </>
   );
