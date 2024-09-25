@@ -1,6 +1,5 @@
 import Avatar from "@/components/global/Avatar";
-import BackButton from "@/components/global/BackButton";
-import { ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -22,7 +21,12 @@ const OLConDetail = async () => {
     <>
       <ContainerLarge className="text-custom-blue-dark" parentClass="bg-white">
         <div className="inline-flex flex-row gap-12">
-          <BackButton black className={`p-0`} />
+          <Link href="/../">
+            <Button variant="link" className="p-0">
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Kembali
+            </Button>
+          </Link>
 
           {/* href to page two */}
           <Link href="day-2">

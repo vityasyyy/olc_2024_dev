@@ -40,7 +40,7 @@ export default function OLConButton({ idx = 1 }) {
   }
 
   if (loggedIn) {
-    let href = idx === 1 ? "/olcon" : "/olclass";
+    let href = idx === 1 ? "/olcon/day-1" : "/olclass";
     return (
       <Link href={href} className="w-full">
         <Button className="w-full">Daftar Sekarang</Button>
