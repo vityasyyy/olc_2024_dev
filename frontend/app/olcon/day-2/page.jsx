@@ -14,7 +14,6 @@ const OLConDetail = async () => {
   });
   const olconJSON = await response.json();
   const olcon = olconJSON.olcon;
-  console.log("tes olcon json: ", olcon);
   const enrolledAmount = 40 - (await olcon.slots);
   const progress = (enrolledAmount * 100) / 40;
 
