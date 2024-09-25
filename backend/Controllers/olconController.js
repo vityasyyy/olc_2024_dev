@@ -1,11 +1,17 @@
 require('dotenv').config();
 const Olcon = require('../Models/olcon');
+const Olclass = require('../Models/olclass');
 const sendTicket = require('../Utils/reusedFunc').sendTicket;
 module.exports.joinolcon = async (req, res) => {
     try {
         const { email, username } = req.body;
         if(!email || !username) return res.status(400).json({ error: 'Email and username are required' });
-        // Ensure that olcon is there LOL
+
+        const existingOLClass = await Olclass.findOne({}).populate('enrolledBy', 'email'); // Assuming 'enrolledBy' is a reference to the User model
+        // Check if any of the populated emails match the provided email
+        const alreadyEnrolled = existingOLClass.enrolledBy.some(user => user.email === email);
+        if (alreadyEnrolled) return res.status(400).json({ error: 'Email is already used for enrolling to OLClass' });
+        
         const olcon = await Olcon.findOne({});
         if (!olcon) return res.status(500).json({ error: 'OLCon document not found' });
 
