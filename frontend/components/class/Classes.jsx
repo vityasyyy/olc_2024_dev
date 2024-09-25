@@ -46,7 +46,14 @@ const Classes = ({ classes }) => {
   if (error) {
     return <p className="text-red-500">{error}</p>;
   }
-
+  const formatDate = (date) =>
+  date
+    ? new Date(date).toLocaleDateString("id-ID", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      })
+    : "TBA";  
   return (
     <>
       {enrolledClass ? (
@@ -58,26 +65,30 @@ const Classes = ({ classes }) => {
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
             <Card
               key={enrolledClass._id}
-              label={enrolledClass.title}
+              label={enrolledClass.divisi}
               judul={enrolledClass.title}
-              tanggal={enrolledClass.waktu ? enrolledClass.waktu : "TBA"}
+              tanggal={
+                enrolledClass.waktuStart && enrolledClass.waktuEnd
+                  ? `${formatDate(enrolledClass.waktuStart)} - ${formatDate(enrolledClass.waktuEnd)}`
+                  : "TBA"
+              }              
               href={`/olclass/${enrolledClass.slug}`}
               className="delay-200 duration-700 ease-in animate-in fade-in slide-in-from-right-5"
             />
             <Card
               key={olcon._id}
-              label={olcon.sesi[0].judulSesi}
+              label={olcon.title}
               judul={olcon.sesi[0].judulSesi}
-              tanggal={olcon.sesi[0].waktu ? olcon.sesi[0].waktu : "TBA"}
-              href={`/olcon`}
+              tanggal={olcon.sesi[0].waktu ? formatDate(olcon.sesi[0].waktu) : "TBA"}
+              href={`/olcon/day-1`}
               className="delay-200 duration-700 ease-in animate-in fade-in slide-in-from-right-5"
             />
             <Card
               key={olcon._id + 1}
-              label={olcon.sesi[1].judulSesi}
+              label={olcon.title}
               judul={olcon.sesi[1].judulSesi}
-              tanggal={olcon.sesi[1].waktu ? olcon.sesi[1].waktu : "TBA"}
-              href={`/olcon`}
+              tanggal={olcon.sesi[1].waktu ? formatDate(olcon.sesi[1].waktu) : "TBA"}
+              href={`/olcon/day-2`}
               className="delay-200 duration-700 ease-in animate-in fade-in slide-in-from-right-5"
             />
           </div>
@@ -99,9 +110,13 @@ const Classes = ({ classes }) => {
                   className="duration-500 ease-in animate-in fade-in slide-in-from-right-5"
                 >
                   <Card
-                    label={item.title}
+                    label={item.divisi}
                     judul={item.title}
-                    tanggal={item.waktu ? item.waktu : "TBA"}
+                    tanggal={
+                      item.waktuStart && item.waktuEnd
+                        ? `${formatDate(item.waktuStart)} - ${formatDate(item.waktuEnd)}`
+                        : "TBA"
+                    }                    
                     href={`/olclass/${item.slug}`}
                   />
                 </div>
