@@ -11,7 +11,6 @@ import {
 const Classes = async () => {
   const responses = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/olclass`);
   const classes = await responses.json();
-  console.log(classes);
 
   return (
     <Container
@@ -31,11 +30,12 @@ const Classes = async () => {
       <div className="flex flex-col gap-6">
         {classes.map((item) => (
           <Card
-            label={item.title}
+            label={item.divisi}
             judul={item.title}
             nama={item.mentor.nama}
             description={item.mentor.deskripsi}
             key={item._id}
+            materi={item.sesi.map((sesi) => sesi.judulSesi).join(", ")}
           />
         ))}
       </div>
