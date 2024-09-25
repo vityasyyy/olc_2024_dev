@@ -174,7 +174,7 @@ const PaymentForm = ({ slug, className }) => {
                 Cancel
               </AlertDialogCancel>
               <AlertDialogAction
-                className={`bg-custom-blue-dark text-white hover:bg-custom-blue-dark/80`}
+                onClick={handleEnrollment} className={`bg-custom-blue-dark text-white hover:bg-custom-blue-dark/80`}
               >
                 Confirm
               </AlertDialogAction>
