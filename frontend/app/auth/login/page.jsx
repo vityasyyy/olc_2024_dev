@@ -9,7 +9,7 @@ const Register = () => {
     <>
       <div className="grid grid-cols-1 md:h-screen md:grid-cols-2 md:overflow-hidden">
         {/* left/top */}
-        <div className="relative h-[50vh] overflow-hidden bg-custom-blue-darker px-[min(5vw,32px)] py-8 md:h-screen">
+        <div className="relative h-[50vh] overflow-hidden bg-custom-blue-dark px-[min(5vw,32px)] py-8 md:h-screen">
           <BackButton home />
 
           {/* orange box */}

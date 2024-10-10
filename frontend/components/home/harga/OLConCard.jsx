@@ -18,9 +18,8 @@ const Card = ({
       {/* image */}
       <Image
         src={src}
-        width={500}
-        height={500}
-        className="layout-fill z-0 object-cover"
+        fill
+        className="z-0 object-contain"
         alt="OLConvention"
       ></Image>
 
