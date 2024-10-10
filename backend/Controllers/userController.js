@@ -5,33 +5,34 @@ const User = require('../Models/users');
 const Olcon = require('../Models/olcon');
 const BlacklistedToken = require('../Models/tokenBlacklist');
 const Mahasiswa = require('../Models/mahasiswa');
-const resetPasswordEmail = require('../Utils/reusedFunc').resetPasswordEmail;
+const { resetPasswordEmail } = require('../Utils/reusedFunc');
 
+// Helper function for error handling
+const handleError = (res, statusCode, message) => {
+    return res.status(statusCode).json({ error: message });
+};
+
+// Register new user
 module.exports.register = async (req, res) => {
     try {
         const { email, username, password, NIM, isDike = false } = req.body;
 
-        // Check if a user with the provided email or username already exists
+        // Check if user with the provided email or username already exists
         const existingUser = await User.findOne({ $or: [{ email }, { username }] }).lean();
         if (existingUser) {
-            return res.status(400).json({ error: 'User already exists' });
+            return handleError(res, 400, 'User already exists');
         }
 
-        // Validate NIM if isDike is true
+        // Validate NIM if user isDike
         if (isDike) {
             const validNIM = await Mahasiswa.findOne({ NIM }).lean();
             if (!validNIM) {
-                return res.status(400).json({ error: 'Invalid NIM for Mahasiswa' });
+                return handleError(res, 400, 'Invalid NIM for Mahasiswa');
             }
         }
 
-        // Define user data to be saved
-        const userData = { email, username, password, isDike };
-        if (isDike) {
-            userData.NIM = NIM; // Add NIM only if isDike is true and valid
-        }
-
         // Create the new user
+        const userData = { email, username, password, isDike, ...(isDike && { NIM }) };
         const user = await User.create(userData);
 
         // Generate JWT token
@@ -39,33 +40,33 @@ module.exports.register = async (req, res) => {
             _id: user._id,
             email: user.email,
             username: user.username,
-            isDike: user.isDike
+            isDike: user.isDike,
+            ...(isDike && { NIM: user.NIM })
         };
-        if (isDike) {
-            tokenPayload.NIM = user.NIM; // Add NIM to token payload only if isDike is true
-        }
         const token = jwt.sign(tokenPayload, process.env.JWT_SECRET, { expiresIn: '1d' });
 
-        // Respond with success message, token, and user data
+        // Respond with success message
         res.status(201).json({
             message: "Registration successful",
             token,
-            user: { ...user.toObject(), password: undefined } // Remove password from user object
+            user: { ...user.toObject(), password: undefined } // Exclude password from response
         });
-
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        return handleError(res, 500, error.message);
     }
 };
 
+// Login user
 module.exports.login = async (req, res) => {
     try {
         const { email, password } = req.body;
         const user = await User.findOne({ email }).select('+password');
+
         if (!user || !(await user.comparePassword(password))) {
-            return res.status(400).json({ error: 'Invalid email or password' });
+            return handleError(res, 400, 'Invalid email or password');
         }
-        
+
+        // Generate JWT token
         const token = jwt.sign({
             _id: user._id,
             email: user.email,
@@ -73,66 +74,78 @@ module.exports.login = async (req, res) => {
             isDike: user.isDike
         }, process.env.JWT_SECRET, { expiresIn: '1d' });
 
-        res.json({ 
+        res.json({
             message: "Login successful",
             token,
             user: { ...user.toObject(), password: undefined }
         });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        return handleError(res, 500, error.message);
     }
 };
 
+// Logout user by blacklisting token
 module.exports.logout = async (req, res) => {
     try {
         const decoded = jwt.decode(req.token);
+
         await BlacklistedToken.create({
             token: req.token,
             expiresAt: new Date(decoded.exp * 1000),
         });
+
         res.json({ message: "Logout successful" });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        return handleError(res, 500, error.message);
     }
 };
 
+// Validate authenticated user
 module.exports.validate = (req, res) => {
-    res.json({ message: "Authenticated", user: { id: req.user._id, email: req.user.email, username: req.user.username, isDike: req.user.isDike } });
+    res.json({
+        message: "Authenticated",
+        user: {
+            id: req.user._id,
+            email: req.user.email,
+            username: req.user.username,
+            isDike: req.user.isDike
+        }
+    });
 };
 
+// Get user's enrolled class and OLCon details
 module.exports.getEnrolledClass = async (req, res) => {
     try {
-        const userId = req.user._id;  // Ensure consistency with route parameter name
+        const userId = req.user._id;
 
-        // Validate that userId is provided
         if (!userId) {
-            return res.status(400).json({ message: "User ID is required" });
+            return handleError(res, 400, "User ID is required");
         }
-        // Find the user and populate enrolledTo field
-        const user = await User.findById(userId).populate('enrolledTo');
-        const olcon = await Olcon.findOne({});
 
-        if(!olcon) {
-            return res.status(404).json({ message: "OLCon not found" });
-        }
-        if(!user) {
-            return res.status(404).json({ message: "User not found" });
-        }
+        const [user, olcon] = await Promise.all([
+            User.findById(userId).populate('enrolledTo'),
+            Olcon.findOne({})
+        ]);
+
+        if (!user) return handleError(res, 404, "User not found");
+        if (!olcon) return handleError(res, 404, "OLCon not found");
 
         res.json({
             enrolledTo: user.enrolledTo,
-            olcon: olcon
+            olcon
         });
     } catch (error) {
-        res.status(500).json({ message: error});
+        return handleError(res, 500, error.message);
     }
 };
 
+// Request password reset
 module.exports.requestPasswordReset = async (req, res) => {
     try {
         const { email } = req.body;
         const user = await User.findOne({ email });
-        if (!user) return res.status(404).json({ error: 'User not found' });
+
+        if (!user) return handleError(res, 404, 'User not found');
 
         const resetToken = crypto.randomBytes(20).toString('hex');
         const resetTokenExpires = Date.now() + 3600000;
@@ -142,25 +155,26 @@ module.exports.requestPasswordReset = async (req, res) => {
             resetTokenExpiration: resetTokenExpires
         });
 
-        const resetUrl = `http://localhost:3000/reset-password/${resetToken}`;
+        const resetUrl = `${req.protocol}://${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
         await resetPasswordEmail(user.email, resetUrl);
 
         res.status(200).json({ message: 'Password reset email sent' });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        return handleError(res, 500, error.message);
     }
 };
 
+// Reset password
 module.exports.resetPassword = async (req, res) => {
     try {
         const { token, newPassword } = req.body;
 
         const user = await User.findOne({
             resetToken: token,
-            resetTokenExpiration: { $gt: Date.now() },
+            resetTokenExpiration: { $gt: Date.now() }
         });
 
-        if (!user) return res.status(400).json({ error: 'Password reset token is invalid or has expired.' });
+        if (!user) return handleError(res, 400, 'Password reset token is invalid or has expired.');
 
         user.password = newPassword; // Hash password before saving
         user.resetToken = undefined;
@@ -170,6 +184,6 @@ module.exports.resetPassword = async (req, res) => {
         res.status(200).json({ message: 'Password has been updated.' });
     } catch (error) {
         console.error('Error during password reset:', error);
-        res.status(500).json({ error: error.message });
+        return handleError(res, 500, error.message);
     }
 };

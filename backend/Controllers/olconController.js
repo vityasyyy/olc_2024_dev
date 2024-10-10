@@ -1,51 +1,78 @@
 require('dotenv').config();
 const Olcon = require('../Models/olcon');
 const Olclass = require('../Models/olclass');
-const sendTicket = require('../Utils/reusedFunc').sendTicket;
-module.exports.joinolcon = async (req, res) => {
-    try {
-        const { email, username } = req.body;
-        if(!email || !username) return res.status(400).json({ error: 'Email and username are required' });
+const { sendTicket } = require('../Utils/reusedFunc');
 
-        const existingOLClass = await Olclass.findOne({}).populate('enrolledBy', 'email'); // Assuming 'enrolledBy' is a reference to the User model
-        // Check if any of the populated emails match the provided email
-        const alreadyEnrolled = existingOLClass.enrolledBy.some(user => user.email === email);
-        if (alreadyEnrolled) return res.status(400).json({ error: 'Email is already used for enrolling to OLClass' });
-        
-        const olcon = await Olcon.findOne({});
-        if (!olcon) return res.status(500).json({ error: 'OLCon document not found' });
+// Helper function to send error responses
+const sendErrorResponse = (res, statusCode, message) => {
+    return res.status(statusCode).json({ error: message });
+};
 
-        // Check if the email or username already exists in the document
-        if (olcon.email.includes(email)) return res.status(400).json({ error: 'Email is already used for enrolling to OLCon' });
+module.exports = {
+    // Join OLCon controller
+    joinolcon: async (req, res) => {
+        try {
+            const { email, username } = req.body;
 
-        // Check if slots are available and if arrays have reached their limits
-        if (olcon.slots <= 0 || olcon.email.length >= 40) {
-            return res.status(400).json({ error: 'OLCon slots are full or limits reached' });
+            // Validate input
+            if (!email || !username) {
+                return sendErrorResponse(res, 400, 'Email and username are required');
+            }
+
+            // Check if email is already enrolled in OLClass
+            const existingOLClass = await Olclass.findOne({}).populate('enrolledBy', 'email');
+            if (!existingOLClass) {
+                return sendErrorResponse(res, 404, 'OLClass not found');
+            }
+
+            const alreadyEnrolledInOLClass = existingOLClass.enrolledBy.some(user => user.email === email);
+            if (alreadyEnrolledInOLClass) {
+                return sendErrorResponse(res, 400, 'Email is already used for enrolling in OLClass');
+            }
+
+            // Find OLCon document
+            const olcon = await Olcon.findOne({});
+            if (!olcon) {
+                return sendErrorResponse(res, 404, 'OLCon document not found');
+            }
+
+            // Check if email already enrolled in OLCon
+            if (olcon.email.includes(email)) {
+                return sendErrorResponse(res, 400, 'Email is already used for enrolling in OLCon');
+            }
+
+            // Check if slots are available
+            if (olcon.slots <= 0 || olcon.email.length >= 40) {
+                return sendErrorResponse(res, 400, 'OLCon slots are full or limits reached');
+            }
+
+            // Enroll user
+            olcon.email.push(email);
+            olcon.slots -= 1;
+
+            // Save OLCon and send the ticket
+            await Promise.all([
+                olcon.save(),
+                sendTicket(email, username)
+            ]);
+
+            return res.status(200).json({ message: 'Welcome to OLConvention. Check your email for the ticket!' });
+        } catch (error) {
+            return sendErrorResponse(res, 500, error.message);
         }
+    },
 
-        // Update the document
-        olcon.email.push(email);
-        olcon.slots -= 1;
+    // Get OLCon data controller
+    getolcon: async (req, res) => {
+        try {
+            const olcon = await Olcon.findOne({});
+            if (!olcon) {
+                return sendErrorResponse(res, 404, 'OLCon not found');
+            }
 
-        // Save the document and send the ticket
-        await Promise.all([
-            olcon.save(),
-            sendTicket(email, username)
-        ]);
-
-        res.status(200).json({ message: "Welcome to OLConvention. Check your email for the ticket!" });
-    } catch (error) {
-        res.status(500).json({ error: error.message });
+            return res.status(200).json({ olcon });
+        } catch (error) {
+            return sendErrorResponse(res, 500, error.message);
+        }
     }
-}
-
-module.exports.getolcon = async (req, res) => {
-    try {
-        const olcon = await Olcon.findOne({});
-        if (!olcon) return res.status(404).json({ error: 'OLCon not found' });
-
-        res.status(200).json({ olcon });
-    } catch (error) {
-        res.status(500).json({error: error.message});
-    }
-}
+};
