@@ -6,10 +6,16 @@ export default function useUser() {
   useEffect(() => {
     async function fetchUser() {
       const token = localStorage.getItem("token");
+      if (!token) {
+        setLoading(false);
+        return;
+      }
+      console.log(token);
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/auth/validate`,
         {
           method: "GET",
+          mode: "cors",
           headers: {
             Authorization: `Bearer ${token}`,
           },

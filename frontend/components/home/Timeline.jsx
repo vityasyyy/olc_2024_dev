@@ -13,17 +13,12 @@ const Timeline = async () => {
     <>
       <Container parentClass="bg-white" className="flex flex-col gap-6">
         <Tag blue>Timeline</Tag>
-        <div className="flex flex-col items-center gap-6">
-          {/* wrapper on big screens so it turns into a 4x4 grid */}
-          <div className="grid w-full grid-cols-1 gap-6 px-[10%] sm:grid-cols-2 lg:grid-cols-4 lg:px-0">
-            {olclass.map((item, key) => (
-              <Card objectOlClass={item} idx={key} key={key} smallCard />
-            ))}
-          </div>
-          <div className="grid w-full grid-cols-1 gap-6 px-[10%] lg:grid-cols-2 lg:px-0">
-            <Card objectOlCon={olcon} idx={0} />
-            <Card objectOlCon={olcon} idx={1} />
-          </div>
+        <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <Card objectOlCon={olcon} idx={0} />
+          {olclass.map((item, key) => (
+            <Card objectOlClass={item} idx={key} key={key} smallCard />
+          ))}
+          <Card objectOlCon={olcon} idx={1} />
         </div>
       </Container>
     </>
@@ -62,10 +57,12 @@ const Card = ({
   return (
     // 2 divs that will always be square
     <div
-      className={`relative flex h-fit ${smallCard || "h-fit sm:h-72"} w-full flex-col justify-end rounded-md bg-custom-blue-dark p-3 pt-14 text-white ${className}`}
+      className={`relative col-span-1 flex h-fit ${smallCard || "min-h-64 sm:col-span-2 lg:col-span-4"} ${smallCard ? "bg-custom-blue-dark text-white" : "bg-custom-blue-light text-custom-blue-dark"} col-span-1 w-full flex-col justify-end rounded-md p-3 pt-14 ${className}`}
     >
       {/* day label */}
-      <p className="absolute left-3 top-3 mb-4 w-fit rounded-md bg-custom-blue-light px-4 py-1 text-sm text-black">
+      <p
+        className={`absolute left-3 top-3 mb-4 w-fit rounded-md ${smallCard ? "bg-custom-blue-light text-black" : "bg-custom-blue-dark text-white"} px-4 py-1 text-sm`}
+      >
         Day {idx + 1}
       </p>
 
@@ -77,9 +74,7 @@ const Card = ({
       <div className="mt-4 flex flex-col gap-2 text-sm font-medium">
         <p className="flex items-center">
           <Calendar className="mr-2 h-4 w-4" />
-          <span>
-            {date}
-          </span>
+          <span>{date}</span>
         </p>
         <p className="flex items-center">
           <MapPin className="mr-2 h-4 w-4" />

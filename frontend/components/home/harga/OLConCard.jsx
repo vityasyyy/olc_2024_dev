@@ -14,7 +14,7 @@ const Card = ({
 }) => {
   return (
     // 2 divs that will always be square
-    <div className="relative w-full overflow-hidden rounded-lg pb-[100%] sm:mx-auto sm:h-96 sm:w-96 sm:pb-0 md:w-full md:pb-[50%]">
+    <div className="relative w-full overflow-hidden rounded-lg pb-[100%] min-[380px]:pb-[50%] sm:mx-auto sm:pb-[30%] md:h-96 md:w-full md:pb-[50%]">
       {/* image */}
       <Image
         src={src}

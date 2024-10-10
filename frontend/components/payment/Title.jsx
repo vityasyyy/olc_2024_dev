@@ -11,7 +11,7 @@ export default function Title({ isDike }) {
             Elektronika UGM
           </p>
           <p className="text-lg font-bold">Benefit</p>
-          <ol className="mx-2 list-outside font-medium">
+          <ol className="list-decimal pl-4 font-medium">
             <li>Tiket OLClass day 2-5</li>
             <li>Tiket OLCon day 1 dan 6 (limited)</li>
             <li>100% refund untuk kehadiran</li>
@@ -30,7 +30,7 @@ export default function Title({ isDike }) {
             halaman pendaftaran untuk Mahasiswa/i NON-DIKE UGM, dan untuk umum
           </p>
           <p className="text-lg font-bold">Benefit</p>
-          <ol className="mx-2 list-decimal font-medium">
+          <ol className="list-decimal pl-4 font-medium">
             <li>Tiket OLClass day 2-5</li>
             <li>Tiket OLCon day 1 dan 6 (limited)</li>
             <li>100% refund untuk kehadiran</li>

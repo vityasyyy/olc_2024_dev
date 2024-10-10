@@ -15,7 +15,7 @@ const Footer = () => {
           </div>
 
           {/* list items, social media dll */}
-          <ul className="flex flex-col gap-4 border-white text-center text-sm md:gap-8 md:border-l-[1px] md:pl-8 md:text-start">
+          <ul className="flex flex-col gap-4 border-white text-center text-sm md:ml-8 md:gap-8 md:border-l-[1px] md:pl-8 md:text-start">
             <li>
               <Button variant="link" className="text-white" asChild>
                 <Link href="https://instagram.com/olc_ugm">Instagram</Link>
@@ -35,7 +35,7 @@ const Footer = () => {
             </li>
             <li>
               <Button variant="link" className="text-white" asChild>
-              <Link href="">Contact Center</Link>
+                <Link href="">Contact Center</Link>
               </Button>
             </li>
           </ul>

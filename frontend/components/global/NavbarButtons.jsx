@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import { Skeleton } from "../ui/skeleton";
+import { useRouter } from "next/navigation";
 import { LogOut } from "lucide-react";
 import {
   Drawer,
@@ -32,6 +33,7 @@ import useUser from "@/hooks/useUser";
 export default function NavbarButtons({ variant = "blue" }) {
   // check if user has logged in
   const [loading, loggedIn] = useUser();
+  const Router = useRouter();
 
   // logout function
   const onSubmitLogout = async () => {
@@ -45,7 +47,7 @@ export default function NavbarButtons({ variant = "blue" }) {
       );
       if (response.status === 200) {
         localStorage.removeItem("token");
-        location.reload();
+        Router.push("/");
       }
     } catch (error) {}
   };

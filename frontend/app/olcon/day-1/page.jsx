@@ -7,6 +7,7 @@ import ContainerLarge from "@/components/global/ContainerLarge";
 import SessionCard from "@/components/olcon/SessionCard";
 import DescriptionCard from "@/components/olcon/DescriptionCard";
 import RegisterButton from "@/components/olcon/RegisterButton";
+import BackButtonOLCon from "@/components/olcon/BackButtonOLCon";
 
 const OLConDetail = async () => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/olcon`, {
@@ -21,12 +22,7 @@ const OLConDetail = async () => {
     <>
       <ContainerLarge className="text-custom-blue-dark" parentClass="bg-white">
         <div className="inline-flex flex-row gap-12">
-          <Link href="/../">
-            <Button variant="link" className="p-0">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Kembali
-            </Button>
-          </Link>
+          <BackButtonOLCon />
 
           {/* href to page two */}
           <Link href="day-2">

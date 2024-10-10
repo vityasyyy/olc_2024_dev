@@ -22,7 +22,7 @@ const BackButton = ({
     <Button
       onClick={handleClick}
       variant="link"
-      className={`px-0 ${black ? "text-black" : "text-white"} ${blue && "text-custom-blue-dark"} ${className}`}
+      className={`relative z-50 px-0 ${black ? "text-black" : "text-white"} ${blue && "text-custom-blue-dark"} ${className}`}
     >
       <ArrowLeft className="mr-2 h-4 w-4" />
       Kembali

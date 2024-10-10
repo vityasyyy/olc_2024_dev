@@ -4,6 +4,7 @@ import { Calendar, MapPin } from "lucide-react";
 export const Card = ({ object, idx = 0 }) => {
   // Create a Date object
   const dateObj = new Date(object.sesi[idx].waktu);
+  console.log(object.sesi[idx].mentor);
 
   // Get the time in HH:mm format
   const time = dateObj.toLocaleTimeString("en-GB", {
@@ -21,13 +22,12 @@ export const Card = ({ object, idx = 0 }) => {
 
   return (
     // 2 divs that will always be square
-    <div className="relative w-full overflow-hidden rounded-lg pb-[100%] sm:mx-auto sm:h-96 sm:w-96 sm:pb-0 md:w-full md:pb-[50%]">
+    <div className="relative max-h-80 w-full overflow-hidden rounded-lg pb-[10%] sm:mx-auto md:w-full md:pb-[50%]">
       <Image
-        src={object.sesi[idx].mentor?.fotoMentor}
-        width={500}
-        height={500}
+        src={`/olcon/${object.sesi[idx].mentor?.fotoMentor.filename || "../placeholder.svg"}`}
         alt="OLConvention"
-        className="layout-fill z-0 object-cover"
+        fill
+        className="z-0 object-cover"
       ></Image>
 
       {/* gradient */}
