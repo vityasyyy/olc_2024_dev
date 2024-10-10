@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import { Skeleton } from "../ui/skeleton";
+import { LogOut } from "lucide-react";
 import {
   Drawer,
   DrawerClose,
@@ -13,6 +14,17 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { CircleX } from "lucide-react";
 import axios from "axios";
 import useUser from "@/hooks/useUser";
@@ -59,15 +71,41 @@ export default function NavbarButtons({ variant = "blue" }) {
       if (variant === "white") {
         // halaman olclass, logout
         buttons = (
-          <Link href="/">
-            <Button
-              onClick={onSubmitLogout}
-              variant="outline"
-              className="border-custom-blue-dark text-custom-blue-dark hover:bg-custom-blue-dark/10"
-            >
-              Keluar
-            </Button>
-          </Link>
+          <>
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button
+                  variant={`outline`}
+                  className={`border-custom-blue-dark px-6 text-custom-blue-dark hover:bg-custom-blue-dark/10`}
+                >
+                  <LogOut className={`mr-1 h-4`} />
+                  Keluar
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Confirm Logout</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    Are you sure you want to log out? You will need to log in
+                    again to access your account.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel
+                    className={`border-custom-blue-dark text-custom-blue-dark hover:bg-custom-blue-dark/10`}
+                  >
+                    Cancel
+                  </AlertDialogCancel>
+                  <AlertDialogAction
+                    onClick={onSubmitLogout}
+                    className={`bg-red-500 text-white hover:bg-red-500/80`}
+                  >
+                    Logout
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+          </>
         );
       } else {
         // landing page, udah log in, dashboard

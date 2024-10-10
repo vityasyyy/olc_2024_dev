@@ -23,7 +23,7 @@ const Classes = ({ classes }) => {
         );
 
         if (!response.ok) {
-          throw new Error("Failed to fetch enrolled olclass");
+          throw new Error("Failed to fetch enrolled OLClass");
         }
 
         const classData = await response.json();
@@ -47,13 +47,13 @@ const Classes = ({ classes }) => {
     return <p className="text-red-500">{error}</p>;
   }
   const formatDate = (date) =>
-  date
-    ? new Date(date).toLocaleDateString("id-ID", {
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-      })
-    : "TBA";  
+    date
+      ? new Date(date).toLocaleDateString("id-ID", {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        })
+      : "TBA";
   return (
     <>
       {enrolledClass ? (
@@ -71,7 +71,7 @@ const Classes = ({ classes }) => {
                 enrolledClass.waktuStart && enrolledClass.waktuEnd
                   ? `${formatDate(enrolledClass.waktuStart)} - ${formatDate(enrolledClass.waktuEnd)}`
                   : "TBA"
-              }              
+              }
               href={`/olclass/${enrolledClass.slug}`}
               className="delay-200 duration-700 ease-in animate-in fade-in slide-in-from-right-5"
             />
@@ -79,7 +79,9 @@ const Classes = ({ classes }) => {
               key={olcon._id}
               label={olcon.title}
               judul={olcon.sesi[0].judulSesi}
-              tanggal={olcon.sesi[0].waktu ? formatDate(olcon.sesi[0].waktu) : "TBA"}
+              tanggal={
+                olcon.sesi[0].waktu ? formatDate(olcon.sesi[0].waktu) : "TBA"
+              }
               href={`/olcon/day-1`}
               className="delay-200 duration-700 ease-in animate-in fade-in slide-in-from-right-5"
             />
@@ -87,7 +89,9 @@ const Classes = ({ classes }) => {
               key={olcon._id + 1}
               label={olcon.title}
               judul={olcon.sesi[1].judulSesi}
-              tanggal={olcon.sesi[1].waktu ? formatDate(olcon.sesi[1].waktu) : "TBA"}
+              tanggal={
+                olcon.sesi[1].waktu ? formatDate(olcon.sesi[1].waktu) : "TBA"
+              }
               href={`/olcon/day-2`}
               className="delay-200 duration-700 ease-in animate-in fade-in slide-in-from-right-5"
             />
@@ -116,7 +120,7 @@ const Classes = ({ classes }) => {
                       item.waktuStart && item.waktuEnd
                         ? `${formatDate(item.waktuStart)} - ${formatDate(item.waktuEnd)}`
                         : "TBA"
-                    }                    
+                    }
                     href={`/olclass/${item.slug}`}
                   />
                 </div>

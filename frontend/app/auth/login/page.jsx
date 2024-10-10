@@ -9,7 +9,7 @@ const Register = () => {
       <div className="grid grid-cols-1 md:h-screen md:grid-cols-2 md:overflow-hidden">
         {/* left/top */}
         <div className="h-[50vh] bg-custom-blue-darker px-[min(5vw,32px)] py-8 md:h-screen">
-          <BackButton />
+          <BackButton home />
         </div>
 
         {/* right/bottom/form */}
@@ -41,6 +41,5 @@ const Register = () => {
     </>
   );
 };
-
 
 export default Register;

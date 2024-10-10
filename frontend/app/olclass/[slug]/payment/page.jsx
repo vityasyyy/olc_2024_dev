@@ -174,7 +174,8 @@ const PaymentForm = ({ slug, className }) => {
                 Cancel
               </AlertDialogCancel>
               <AlertDialogAction
-                onClick={handleEnrollment} className={`bg-custom-blue-dark text-white hover:bg-custom-blue-dark/80`}
+                onClick={handleEnrollment}
+                className={`bg-custom-blue-dark text-white hover:bg-custom-blue-dark/80`}
               >
                 Confirm
               </AlertDialogAction>
@@ -203,36 +204,3 @@ const UploadButton = () => (
     </Link>
   </div>
 );
-
-const Modal = ({ isOpen, onConfirm, onCancel, loading }) => {
-  if (!isOpen) return null; // Don't render the modal if it's not open
-
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="w-full max-w-sm rounded-lg bg-white p-6 shadow-lg">
-        <h2 className="mb-4 text-lg font-semibold">Confirm Enrollment</h2>
-        <p className="mb-6 text-gray-700">
-          Are you sure you want to submit the payment? Make sure you read the
-          instruction properly
-        </p>
-        <div className="flex justify-end space-x-3">
-          <button
-            className="rounded bg-gray-500 px-4 py-2 text-white hover:bg-gray-600"
-            onClick={onCancel}
-          >
-            Cancel
-          </button>
-          <button
-            className={`w rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 ${
-              loading ? "cursor-not-allowed opacity-50" : ""
-            }`}
-            onClick={onConfirm}
-            disabled={loading}
-          >
-            {loading ? "Submitting..." : "Confirm"}
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-};
