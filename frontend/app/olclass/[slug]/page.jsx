@@ -18,8 +18,11 @@ const ClassDetail = async ({ params }) => {
   } catch (error) {
     console.error("Error fetching olclass detail:", error);
   }
+  console.log(classDetail);
 
-  let progress = (classDetail.enrolledBy.length / classDetail.slots) * 100;
+  const enrolledAmount = 40 - await classDetail.slots;
+  const progress = (enrolledAmount / 40) * 100;
+
 
   return (
     <>
@@ -28,7 +31,6 @@ const ClassDetail = async ({ params }) => {
         <h1 className="my-8 text-4xl font-bold">{classDetail.title}</h1>
 
         <div className="grid w-full grid-cols-1 gap-6 lg:grid-cols-4 lg:flex-row">
-          {/* {classDetail.map} */}
           {/* left side, speaker and image section */}
           <div className="flex flex-row gap-6">
             <Avatar

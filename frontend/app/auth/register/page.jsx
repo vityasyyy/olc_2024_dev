@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import BackButton from "@/components/global/BackButton";
 import RegisterForm from "@/components/auth/register/RegisterForm";
-
+  
 const Register = () => {
   return (
     <>

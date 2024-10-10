@@ -1,9 +1,14 @@
 import Container from "../global/Container";
 import Tag from "../global/Tag";
-import Image from "next/image";
-import { Calendar, MapPin } from "lucide-react";
+import { Card } from "@/components/global/OlConCard";
 
-const OLConvention = () => {
+const OLConvention = async () => {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/olcon`, {
+    cache: "no-cache",
+  });
+  const olconJSON = await response.json();
+  const olcon = await olconJSON.olcon;
+
   return (
     <>
       <Container parentClass="bg-white" className="flex flex-col gap-6">
@@ -15,58 +20,11 @@ const OLConvention = () => {
         </div>
 
         <div className="flex flex-col gap-6 md:flex-row">
-          <Card />
-          <Card />
+          <Card object={olcon} idx={0} />
+          <Card object={olcon} idx={1} />
         </div>
       </Container>
     </>
-  );
-};
-
-const Card = ({
-  day = "1",
-  judul = "Introduction to IT World",
-  nama = "Argya Vityasy",
-  waktu = "Kamis 24 November 2024",
-  src = "/hero/macbook.png",
-}) => {
-  return (
-    // 2 divs that will always be square
-    <div className="relative w-full overflow-hidden rounded-lg pb-[100%] sm:mx-auto sm:h-96 sm:w-96 sm:pb-0 md:w-full md:pb-[50%]">
-      <Image
-        src={src}
-        width={500}
-        height={500}
-        alt="OLConvention"
-        className="layout-fill z-0 object-cover"
-      ></Image>
-
-      {/* gradient */}
-      <div className="absolute inset-0 bg-gradient-to-t from-custom-blue-darker to-transparent" />
-
-      <div className="absolute inset-0 z-20 flex flex-col justify-end p-3 text-white">
-        {/* day label */}
-        <p className="absolute left-3 top-3 mb-4 w-fit rounded-md bg-white px-4 py-1 text-sm text-black">
-          Day {day}
-        </p>
-
-        {/* allat text and stuff */}
-        <p>{nama}</p>
-        <h1 className="text-3xl font-semibold sm:text-4xl">{judul}</h1>
-
-        {/* tanggal dan lokasi */}
-        <div className="mt-4 flex flex-col gap-2 text-xs sm:flex-row sm:items-center sm:justify-between lg:text-base">
-          <p className="flex items-center">
-            <Calendar className="mr-2 h-4 w-4" />
-            <span>{waktu}</span>
-          </p>
-          <p className="flex items-center">
-            <MapPin className="mr-2 h-4 w-4" />
-            <span>DIKE FMIPA UGM</span>
-          </p>
-        </div>
-      </div>
-    </div>
   );
 };
 

@@ -5,11 +5,12 @@ export default function TugasCard({
   jam = "08:00",
   tanggal = "27 Maret 2024",
   href = "https://docs.google.com",
+  className
 }) {
   return (
     // penugasan card
     <div
-      className={`flex h-full min-h-64 w-full auto-cols-max flex-col justify-between rounded-xl border-[2px] border-custom-blue-dark bg-custom-blue p-4 text-left shadow-sm transition-all duration-700 animate-in fade-in slide-in-from-bottom-10 hover:bg-custom-blue`}
+      className={`flex h-full min-h-64 w-full col-span-1 sm:col-span-2 flex-col justify-between rounded-xl border-[2px] border-custom-blue-dark bg-custom-blue p-4 text-left shadow-sm transition-all duration-700 animate-in fade-in slide-in-from-bottom-10 hover:bg-custom-blue ${className}`}
     >
       {/* upper part and text */}
       <div className="flex flex-col gap-2">

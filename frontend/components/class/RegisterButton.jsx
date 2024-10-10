@@ -64,18 +64,29 @@ const RegisterButton = ({ classSlug }) => {
 
   // conditional button text, according to login state
   let buttonText;
-  if (loading) {
-    buttonText = <Skeleton className="h-6 w-32" />;
+  if (isLoggedIn) {
+    buttonText = "Enroll";
   } else {
-    if (isLoggedIn) {
-      buttonText = "Enroll";
-    } else {
-      buttonText = "Daftar Sekarang";
-    }
+    buttonText = "Daftar Sekarang";
+  }
+
+  if (loading) {
+    return (
+      <Button variant="secondary" className="animate-pulse" disabled>
+      </Button>
+    )
+  }
+
+  if (isEnrolled) {
+    return (
+      <Button variant="secondary" disabled>
+        Kamu telah terdaftar dalam kelas ini
+      </Button>
+    );
   }
 
   return (
-    <Button variant="secondary" onClick={handleAction} disabled={isEnrolled}>
+    <Button variant="secondary" onClick={handleAction}>
       {buttonText}
     </Button>
   );

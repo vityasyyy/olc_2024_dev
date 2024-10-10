@@ -1,16 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
-export default function SessionCard({
-  sesi = "1",
-  judul = "Perkenalan ke HTML, CSS, dan Javascript",
-  jam = "08:00",
-  tanggal = "27 Maret 2024",
-  tempat = "Zoom Meeting",
-  href = "/",
-  object,
-  idx = 0,
-}) {
+export default function SessionCard({ href = "/", object, idx = 0 }) {
   // Create a Date object
   const dateObj = new Date(object[idx].waktu);
 
@@ -20,7 +11,7 @@ export default function SessionCard({
     minute: "2-digit",
   });
 
-  // Get the date in "2 October, 2024" format
+  // Get the date in "2 October 2024" format
   const dateFormatter = new Intl.DateTimeFormat("en-GB", {
     day: "numeric",
     month: "long",

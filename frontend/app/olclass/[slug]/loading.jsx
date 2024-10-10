@@ -28,7 +28,7 @@ export default function Page() {
               </div>
 
               {/* daftar sekarang */}
-              <Button variant="secondary" className="w-full">
+              <Button variant="secondary" disabled className="w-full">
                 <Skeleton className={`h-6 w-full`} />
               </Button>
             </div>

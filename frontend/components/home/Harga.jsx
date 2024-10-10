@@ -2,7 +2,7 @@ import Container from "../global/Container";
 import Tag from "../global/Tag";
 import Card from "@/components/home/harga/OLConCard";
 
-const Harga = () => {
+const Harga = async () => {
   let olcononly = ["Gratis biaya pendaftaran", "40 Kursi Tersedia"];
   let olconolclass = [
     "Gratis slot kursi OLClas",

@@ -44,13 +44,13 @@ export default function NavbarButtons({ variant = "blue" }) {
     if (variant === "white") {
       buttons = (
         <Button variant="outline" className="border-custom-blue-dark">
-          <Skeleton className="h-6 w-12" />
+          <Skeleton className="h-4 w-12" />
         </Button>
       );
     } else {
       buttons = (
         <Button>
-          <Skeleton className="h-6 w-16" />
+          <Skeleton className="h-4 w-16" />
         </Button>
       );
     }
