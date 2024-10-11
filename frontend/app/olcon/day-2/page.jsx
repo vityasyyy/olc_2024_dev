@@ -40,7 +40,7 @@ const OLConDetail = async () => {
               nama={olcon.sesi[1].mentor?.nama}
               alt={olcon.sesi[1].mentor?.nama}
               deskripsi={olcon.sesi[1].mentor?.deskripsi}
-              src={olcon.sesi[1].mentor?.fotoMentor}
+              src={`/olcon/${olcon.sesi[1].mentor?.fotoMentor.filename}`}
             />
 
             {/* ON MEDIUM SCREENS */}

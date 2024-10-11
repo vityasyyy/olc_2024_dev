@@ -45,7 +45,7 @@ const Classes = ({ classes }) => {
   }
 
   if (error) {
-    return <p className="text-red-500">{error}</p>;
+    return <p className="mt-8 text-red-500">{error}</p>;
   }
   const formatDate = (date) =>
     date

@@ -6,35 +6,6 @@ import CardDrawer from "@/components/class/slug/Card";
 import RegisterButton from "@/components/class/RegisterButton";
 import TugasCard from "@/components/class/slug/TugasCard";
 
-const ClassDescriptionAndProgress = ({ classDetail, progress, slug }) => (
-  <div className="flex h-full w-full flex-col justify-between gap-6">
-    {/* class description */}
-    <div className="flex flex-col *:text-black">
-      <h3 className="font-bold">Tentang Kelas</h3>
-      <p>{classDetail.deskripsiKelas}</p>
-    </div>
-
-    {/* progress bar and enroll button */}
-    <div className="flex w-full flex-col gap-1 lg:gap-4">
-      <p className="text-base font-semibold text-black lg:text-2xl">
-        Slot Tersedia:
-      </p>
-
-      <div className="flex flex-col items-center gap-4 lg:flex-row lg:gap-6">
-        <div className="flex w-full items-center gap-3 lg:w-2/3">
-          <Progress value={progress} className="h-6 w-full" />
-          <p className="whitespace-nowrap text-nowrap text-lg font-semibold text-black">
-            {classDetail.enrolledBy.length} / 40
-          </p>
-        </div>
-        <div className="w-full lg:w-1/3">
-          <RegisterButton classSlug={slug} />
-        </div>
-      </div>
-    </div>
-  </div>
-);
-
 const ClassDetail = async ({ params }) => {
   const slug = await params.slug;
   let classDetail;
@@ -115,5 +86,34 @@ const ClassDetail = async ({ params }) => {
     </ContainerLarge>
   );
 };
+
+const ClassDescriptionAndProgress = ({ classDetail, progress, slug }) => (
+  <div className="flex h-full w-full flex-col justify-between gap-6">
+    {/* class description */}
+    <div className="flex flex-col *:text-black">
+      <h3 className="font-bold">Tentang Kelas</h3>
+      <p>{classDetail.deskripsiKelas}</p>
+    </div>
+
+    {/* progress bar and enroll button */}
+    <div className="flex w-full flex-col gap-1 lg:gap-4">
+      <p className="text-base font-semibold text-black lg:text-2xl">
+        Slot Tersedia:
+      </p>
+
+      <div className="flex flex-col items-center gap-4 lg:flex-row lg:gap-6">
+        <div className="flex w-full items-center gap-3 lg:w-2/3">
+          <Progress value={progress} className="h-6 w-full" />
+          <p className="whitespace-nowrap text-nowrap text-lg font-semibold text-black">
+            {classDetail.enrolledBy.length} / 40
+          </p>
+        </div>
+        <div className="w-full lg:w-1/3">
+          <RegisterButton classSlug={slug} />
+        </div>
+      </div>
+    </div>
+  </div>
+);
 
 export default ClassDetail;

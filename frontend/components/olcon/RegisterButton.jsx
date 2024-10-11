@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "../ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { PropagateLoader } from "react-spinners";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -15,13 +16,14 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import useEnrolled from "@/hooks/useEnrolled";
 
-const RegisterButton = ({ classSlug }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false); // Track modal visibility
+const RegisterButton = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false); // Loading state
   const [error, setError] = useState(null); // Error state
+  const [loading2, loggedIn, isEnrolled] = useEnrolled();
   const router = useRouter();
 
   const handleAction = () => {
@@ -53,7 +55,9 @@ const RegisterButton = ({ classSlug }) => {
       console.log("ini error message:", response.message);
 
       if (!response.ok) {
-        throw new Error("Registration failed. This email might have been registered before or has been used for olclass + olcon packet");
+        throw new Error(
+          "Registration failed. This email might have been registered before or has been used for olclass + olcon packet",
+        );
       }
 
       // Redirect to success page or OLCon page after successful registration
@@ -62,16 +66,28 @@ const RegisterButton = ({ classSlug }) => {
       setError(err.message);
     } finally {
       setLoading(false);
-      setIsModalOpen(false); // Close modal after submission
     }
   };
+
+  const buttonContent =
+    loading || loading2 ? (
+      <Button variant={`secondary`} className={`w-full`} disabled>
+        <PropagateLoader size={4} color={`#ffffff`} />
+      </Button>
+    ) : isEnrolled ? (
+      <Button disabled variant="secondary" className={`w-full`}>
+        Anda sudah terdaftarkan OLCon
+      </Button>
+    ) : (
+      <Button variant="secondary" className={`w-full`}>
+        Enroll
+      </Button>
+    );
 
   return (
     <>
       <AlertDialog>
-        <AlertDialogTrigger asChild>
-          <Button variant="secondary">Enroll</Button>
-        </AlertDialogTrigger>
+        <AlertDialogTrigger asChild>{buttonContent}</AlertDialogTrigger>
         <AlertDialogContent className="max-w-md">
           <AlertDialogHeader>
             <AlertDialogTitle className="mx-auto">
