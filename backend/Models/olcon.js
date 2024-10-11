@@ -26,7 +26,8 @@ const sessionSchema = new Schema({
   deskripsi: String,
   mentor: mentorSchema,
   materi: [materiSchema],
-  waktuDanLokasi: String,
+  waktu: Date,
+  Lokasi: String,
 });
 
 const olconSchema = new Schema({
