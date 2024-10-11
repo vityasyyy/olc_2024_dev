@@ -48,6 +48,7 @@ mongoose
           deskripsiLengkap:
             "Learn the foundational elements of web development including core technologies like HTML, CSS, and JavaScript.",
           prerequisites: "No prior experience required.",
+          url: "https://youtube.com"
         },
         {
           judulSesi: "React Basics",
@@ -59,6 +60,7 @@ mongoose
           deskripsiLengkap:
             "Build interactive and dynamic user interfaces using React components, JSX, and the basics of state management.",
           prerequisites: "Basic knowledge of JavaScript.",
+          url: "https://youtube.com"
         },
         {
           judulSesi: "Backend with Node.js",
@@ -70,6 +72,7 @@ mongoose
           deskripsiLengkap:
             "Learn how to develop backend applications using Node.js and Express, and understand how to structure RESTful APIs.",
           prerequisites: "Basic JavaScript knowledge required.",
+          url: "https://youtube.com"
         },
         {
           judulSesi: "Database Integration with MongoDB",
@@ -80,6 +83,7 @@ mongoose
           deskripsiLengkap:
             "Understand how to integrate MongoDB with Node.js applications, using Mongoose for database operations.",
           prerequisites: "Basic backend development knowledge required.",
+          url: "https://youtube.com"
         },
       ],
     },
@@ -117,6 +121,7 @@ mongoose
           deskripsiLengkap:
             "Get acquainted with the key concepts of cyber security such as threats, vulnerabilities, and attack methods.",
           prerequisites: "No prior knowledge required.",
+          url: "https://youtube.com"
         },
         {
           judulSesi: "Network Security",
@@ -128,6 +133,7 @@ mongoose
           deskripsiLengkap:
             "Learn about firewalls, VPNs, and how to monitor networks for suspicious activities.",
           prerequisites: "Basic networking knowledge recommended.",
+          url: "https://youtube.com"
         },
         {
           judulSesi: "Ethical Hacking 101",
@@ -138,6 +144,7 @@ mongoose
           deskripsiLengkap:
             "Learn the basics of ethical hacking, including penetration testing techniques and vulnerability assessments.",
           prerequisites: "Basic understanding of cyber security concepts.",
+          url: "https://youtube.com"
         },
         {
           judulSesi: "Security in Cloud Environments",
@@ -149,6 +156,7 @@ mongoose
           deskripsiLengkap:
             "Understand the essentials of securing cloud infrastructures, focusing on best practices and compliance requirements.",
           prerequisites: "Familiarity with cloud computing concepts.",
+          url: "https://youtube.com"
         },
       ],
     },
@@ -186,6 +194,7 @@ mongoose
           deskripsiLengkap:
             "Understand the foundations of data science, including techniques for cleaning and analyzing data, and visualizing results.",
           prerequisites: "Basic statistics and Python knowledge recommended.",
+          url: "https://youtube.com"
         },
         {
           judulSesi: "Data Wrangling with Python",
@@ -197,6 +206,7 @@ mongoose
           deskripsiLengkap:
             "Explore how to clean, manipulate, and prepare datasets for analysis using Python libraries like Pandas and NumPy.",
           prerequisites: "Python programming skills required.",
+          url: "https://youtube.com"
         },
         {
           judulSesi: "Data Visualization",
@@ -207,6 +217,7 @@ mongoose
           deskripsiLengkap:
             "Learn how to create effective visualizations to present data insights using Matplotlib and Seaborn.",
           prerequisites: "Basic knowledge of Python and data manipulation.",
+          url: "https://youtube.com"
         },
         {
           judulSesi: "Introduction to Machine Learning",
@@ -217,6 +228,7 @@ mongoose
           deskripsiLengkap:
             "Discover the basics of machine learning, including algorithms, supervised learning, and evaluating model performance.",
           prerequisites: "Basic knowledge of statistics and programming.",
+          url: "https://youtube.com"
         },
       ],
     },
@@ -254,6 +266,7 @@ mongoose
           deskripsiLengkap:
             "Learn the fundamentals of user-centered design, how to conduct user research, and create basic wireframes.",
           prerequisites: "No prior experience required.",
+          url: "https://youtube.com"
         },
         {
           judulSesi: "Prototyping and Wireframing",
@@ -265,6 +278,7 @@ mongoose
           deskripsiLengkap:
             "Hands-on session to design wireframes and interactive prototypes using Sketch or Figma.",
           prerequisites: "Familiarity with basic design concepts.",
+          url: "https://youtube.com"
         },
         {
           judulSesi: "Design Systems and Components",
@@ -275,6 +289,7 @@ mongoose
           deskripsiLengkap:
             "Understand the role of design systems and how to create consistent, reusable components across platforms.",
           prerequisites: "Basic prototyping knowledge recommended.",
+          url: "https://youtube.com"
         },
         {
           judulSesi: "User Testing and Feedback",
@@ -286,6 +301,7 @@ mongoose
           deskripsiLengkap:
             "Learn techniques for conducting user tests and gathering actionable feedback to improve user experiences.",
           prerequisites: "Basic knowledge of UI/UX design principles.",
+          url: "https://youtube.com"
         },
       ],
     },
@@ -302,10 +318,10 @@ const newConference = new Olcon({
   slug: "javascript-conference-2024",
   title: "JavaScript Conference 2024",
   email: ["example1@example.com", "example2@example.com"], // Example emails
-  slots: 100,
+  slots: 40,
   sesi: [{
     judulSesi: "Advanced JavaScript Patterns",
-    waktu: new Date("2024-10-01T09:00:00Z"),
+    waktuDanLokasi: "26 Oktober 2024 10:00 - 12:00 WIB, Auditorium Lantai 7 FMIPA UGM",
     platform: "Zoom",
     deskripsi:
       "Dive deep into advanced patterns and best practices in JavaScript development.",
@@ -317,10 +333,20 @@ const newConference = new Olcon({
       },
       deskripsi: "Expert in JavaScript and modern web frameworks.",
     },
+    materi: [{
+
+    },
+    {
+
+    },
+    {
+      
+    }
+  ]
   },
   {
     judulSesi: "Building Scalable Applications with Node.js",
-    waktu: new Date("2024-10-02T10:00:00Z"),
+    waktuDanLokasi: "3 November 2024 10:00 - 12:00 WIB, Auditorium Lantai 1 FMIPA UGM",
     platform: "Microsoft Teams",
     deskripsi:
       "Learn to build scalable, high-performance applications using Node.js and Express.",
@@ -333,6 +359,16 @@ const newConference = new Olcon({
       deskripsi:
         "Backend expert with extensive experience in Node.js and cloud infrastructure.",
     },
+    materi: [{
+
+    },
+    {
+
+    },
+    {
+
+    }
+  ]
   },
 ],
 });

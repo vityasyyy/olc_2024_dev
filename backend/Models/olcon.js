@@ -22,15 +22,10 @@ const materiSchema = new Schema({
 })
 const sessionSchema = new Schema({
   judulSesi: String,
-  waktu: Date,
   platform: String,
   deskripsi: String,
   mentor: mentorSchema,
   materi: [materiSchema],
-  description: {
-    type: String,
-    required: true
-  },
   waktuDanLokasi: String,
 });
 
