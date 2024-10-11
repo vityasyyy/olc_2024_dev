@@ -1,41 +1,36 @@
 export default function Title({ isDike }) {
-  if (isDike)
-    return (
-      <>
-        <div className="flex w-full flex-col gap-2 lg:max-h-72">
-          <h1 className="text-2xl font-semibold md:text-4xl lg:text-5xl">
-            Mahasiswa/i Departemen Ilmu Komputer dan Elektronika UGM
-          </h1>
-          <p className="my-1 text-lg font-medium">
-            halaman pendaftaran untuk Mahasiswa/i Departemen Ilmu Komputer dan
-            Elektronika UGM
-          </p>
-          <p className="text-lg font-bold">Benefit</p>
-          <ol className="list-decimal pl-4 font-medium">
-            <li>Tiket OLClass day 2-5</li>
-            <li>Tiket OLCon day 1 dan 6 (limited)</li>
-            <li>100% refund untuk kehadiran</li>
-          </ol>
-        </div>
-      </>
-    );
-  else
-    return (
-      <>
-        <div className="flex flex-col gap-2 lg:max-h-72 lg:max-w-[52rem]">
-          <h1 className="text-2xl font-semibold leading-loose md:text-4xl lg:text-5xl">
-            Pendaftar Umum
-          </h1>
-          <p className="my-1 text-lg font-medium">
-            halaman pendaftaran untuk Mahasiswa/i NON-DIKE UGM, dan untuk umum
-          </p>
-          <p className="text-lg font-bold">Benefit</p>
-          <ol className="list-decimal pl-4 font-medium">
-            <li>Tiket OLClass day 2-5</li>
-            <li>Tiket OLCon day 1 dan 6 (limited)</li>
-            <li>100% refund untuk kehadiran</li>
-          </ol>
-        </div>
-      </>
-    );
+  const title = isDike
+    ? "Mahasiswa/i Departemen Ilmu Komputer dan Elektronika UGM"
+    : "Pendaftar Umum";
+  const subtitle = isDike
+    ? "halaman pendaftaran untuk Mahasiswa/i Departemen Ilmu Komputer dan Elektronika UGM"
+    : "halaman pendaftaran untuk Mahasiswa/i NON-DIKE UGM, dan untuk umum";
+  const benefits = isDike
+    ? [
+        "Tiket OLClass day 2-5",
+        "Tiket OLCon day 1 dan 6 (limited)",
+        "100% refund untuk kehadiran",
+      ]
+    : [
+        "Tiket OLClass day 2-5",
+        "Tiket OLCon day 1 dan 6 (limited)",
+        "100% refund untuk kehadiran",
+      ];
+
+  return (
+    <>
+      <div className="flex flex-col gap-2 *:text-custom-blue-dark lg:max-h-72 lg:max-w-[52rem]">
+        <h1 className="text-2xl font-semibold leading-loose lg:text-4xl">
+          {title}
+        </h1>
+        <p className="my-1 font-medium">{subtitle}</p>
+        <p className="font-bold">Benefit</p>
+        <ol className="list-decimal pl-4 font-medium">
+          {benefits.map((benefit, idx) => (
+            <li key={idx}>{benefit}</li>
+          ))}
+        </ol>
+      </div>
+    </>
+  );
 }

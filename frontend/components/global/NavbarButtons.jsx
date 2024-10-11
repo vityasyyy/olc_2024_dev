@@ -106,7 +106,7 @@ export default function NavbarButtons({ variant = "blue" }) {
                   </AlertDialogCancel>
                   <AlertDialogAction
                     onClick={onSubmitLogout}
-                    className={`bg-red-500 text-white hover:bg-red-500/80`}
+                    className={`bg-red-500 text-neutral-50 shadow-sm hover:bg-red-500/90`}
                   >
                     Logout
                   </AlertDialogAction>

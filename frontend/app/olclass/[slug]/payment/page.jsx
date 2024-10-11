@@ -1,11 +1,11 @@
 "use client";
 import Link from "next/link";
 import BackButton from "@/components/global/BackButton";
-import ContainerLarge from "@/components/global/ContainerLarge";
 import Title from "@/components/payment/Title";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
-import { Image } from "lucide-react";
+import { Image as ImageIcon } from "lucide-react";
+import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import {
   AlertDialog,
@@ -64,21 +64,49 @@ const Payment = () => {
 
   return (
     <>
-      <ContainerLarge className={`text-custom-blue-dark`}>
-        <BackButton blue />
+      <div className="grid grid-cols-1 md:h-screen md:grid-cols-2 md:overflow-hidden">
+        {/* left/top */}
+        <div className="relative h-[50vh] overflow-hidden bg-custom-blue-dark px-[min(5vw,32px)] py-8 md:h-screen">
+          <BackButton home />
+          <h1
+            className={`relative z-30 mt-2 text-2xl font-semibold text-white`}
+          >
+            Pembayaran
+          </h1>
 
-        <h3 className="mb-8 mt-6 hidden text-xl font-semibold sm:flex md:text-2xl lg:mt-4">
-          Pembayaran
-        </h3>
-        <div className="grid grid-cols-1 gap-8 md:mt-24 md:grid-cols-2 md:flex-row md:justify-between">
-          {/* left/top */}
-          <Title isDike={isDike} />
+          {/* orange box */}
+          <div
+            className={`absolute bottom-0 right-0 z-0 h-48 w-48 rounded-l-lg bg-custom-brown-light md:h-[80vh] md:w-[45%]`}
+          ></div>
 
-          {/* bottom/right */}
-          <PaymentForm slug={slug} className={`mx-auto`} />
-          {error && <p className="mt-2 text-sm text-red-500">{error}</p>}
+          {/* image with a bunch of wrappers */}
+          <div
+            className={`absolute bottom-0 right-0 z-10 h-64 w-64 md:h-[95vh] md:w-[90%]`}
+          >
+            <div className={`relative h-full w-full`}>
+              {/* actual image */}
+              <Image
+                src={`/global/main.png`}
+                className={`z-10 object-cover`}
+                fill
+                alt={`OmahTI Learning Center`}
+                priority
+              />
+            </div>
+          </div>
         </div>
-      </ContainerLarge>
+
+        {/* right/bottom/form */}
+        <div className="z-40 flex flex-col justify-center gap-1 overscroll-contain bg-white px-[min(5vw,32px)] py-8 duration-700 animate-in fade-in md:overflow-auto md:overscroll-y-contain">
+          {/* title and subtitle */}
+          <div className="flex flex-col gap-1 md:mt-8">
+            <Title isDike={isDike} />
+          </div>
+
+          {/* form */}
+          <PaymentForm />
+        </div>
+      </div>
     </>
   );
 };
@@ -128,16 +156,16 @@ const PaymentForm = ({ slug, className }) => {
 
   return (
     <div
-      className={`flex w-full max-w-md shrink-0 flex-col border-[1.5px] border-custom-blue-dark px-[20px] py-[10px] ${className}`}
+      className={`mt-6 flex w-full shrink-0 flex-col rounded-md border-[1.5px] border-custom-blue-dark px-[20px] py-[10px] ${className}`}
     >
       <form
         onSubmit={handleSubmit}
-        className="mb-3 flex flex-col gap-2 md:mb-0 lg:py-4"
+        className="mb-3 flex flex-col gap-2 py-4 md:mb-0"
       >
-        <h4 className="text-md hidden font-semibold text-custom-blue-dark sm:block">
+        <h4 className="text-md font-semibold text-custom-blue-dark">
           Pembayaran
         </h4>
-        <div className="mb-0 mt-2">
+        <div className="my-2">
           <ol className="mx-2 list-outside list-disc pl-3 text-sm text-custom-black">
             <li>Pembayaran seharga IDR 75.000</li>
 
@@ -150,12 +178,13 @@ const PaymentForm = ({ slug, className }) => {
             </li>
           </ol>
         </div>
-        <div className="mb-5 mt-2 flex flex-row items-center justify-center border-[1.5px] border-black px-4 py-2 md:mb-2 lg:mb-0">
-          <UploadButton />
-        </div>
+        <UploadButton />
         <AlertDialog>
           <AlertDialogTrigger asChild>
-            <Button variant={`secondary`} className={`py-3 text-base`}>
+            <Button
+              variant={`secondary`}
+              className={`py-3 text-sm font-medium sm:text-base`}
+            >
               Submit
             </Button>
           </AlertDialogTrigger>
@@ -190,17 +219,19 @@ const PaymentForm = ({ slug, className }) => {
 };
 
 const UploadButton = () => (
-  <div>
-    <Link
-      href="https://drive.google.com/your-upload-link"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="text-md flex items-center text-custom-black transition-all hover:text-custom-gray-dark"
+  <Link
+    href="https://drive.google.com/"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <Button
+      variant={`outline`}
+      className={`w-full border-[1.5px] border-custom-blue-dark font-medium text-custom-black hover:bg-custom-blue/10 sm:text-base`}
     >
       <span className="mr-2 block">
-        <Image />
+        <ImageIcon className={`h-5 font-light text-custom-blue-dark`} />
       </span>
       Upload Bukti Pembayaran
-    </Link>
-  </div>
+    </Button>
+  </Link>
 );
