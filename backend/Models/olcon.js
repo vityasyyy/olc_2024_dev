@@ -15,20 +15,30 @@ const mentorSchema = new Schema({
   fotoMentor: imageSchema,
   deskripsi: String,
 });
+
+const materiSchema = new Schema({
+  materiSesi: String,
+  jamBerapa: Date,
+})
 const sessionSchema = new Schema({
   judulSesi: String,
   waktu: Date,
   platform: String,
   deskripsi: String,
-  mentor: mentorSchema
+  mentor: mentorSchema,
+  materi: [materiSchema],
 });
-
 
 const olconSchema = new Schema({
     title: {
         type: String,
         required: true
     },
+    description: {
+      type: String,
+      required: true
+    },
+    waktuDanLokasi: String,
     email: [{
         type: String,
         unique: true,

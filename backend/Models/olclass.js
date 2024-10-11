@@ -24,6 +24,7 @@ const sessionSchema = new Schema({
   kurikulum: String,
   deskripsiLengkap: String,
   prerequisites: String,
+  url: String,
 });
 
 const penugasanSchema = new Schema({
