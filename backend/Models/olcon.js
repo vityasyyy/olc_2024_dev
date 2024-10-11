@@ -27,6 +27,11 @@ const sessionSchema = new Schema({
   deskripsi: String,
   mentor: mentorSchema,
   materi: [materiSchema],
+  description: {
+    type: String,
+    required: true
+  },
+  waktuDanLokasi: String,
 });
 
 const olconSchema = new Schema({
@@ -34,11 +39,6 @@ const olconSchema = new Schema({
         type: String,
         required: true
     },
-    description: {
-      type: String,
-      required: true
-    },
-    waktuDanLokasi: String,
     email: [{
         type: String,
         unique: true,
