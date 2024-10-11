@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "../ui/button";
-import { Skeleton } from "../ui/skeleton";
+import { PropagateLoader } from "react-spinners";
 
 const RegisterButton = ({ classSlug }) => {
   const [loading, setLoading] = useState(true);
@@ -72,11 +72,9 @@ const RegisterButton = ({ classSlug }) => {
 
   if (loading) {
     return (
-      <Button
-        variant="secondary"
-        className="w-full animate-pulse"
-        disabled
-      ></Button>
+      <Button variant="secondary" className="w-full" disabled>
+        <PropagateLoader size={4} color="#ffffff" />
+      </Button>
     );
   }
 

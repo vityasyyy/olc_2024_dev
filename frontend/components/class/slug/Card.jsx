@@ -1,5 +1,7 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import useUser from "@/hooks/useUser";
 import { Link2 } from "lucide-react";
 import {
   Drawer,
@@ -23,10 +25,12 @@ const CardDrawer = ({
   href = "https://omahti.web.id",
   className,
 }) => {
+  const [loading, loggedIn] = useUser();
+
   return (
     <>
       <Drawer>
-        <DrawerTrigger asChild className="h-full w-full">
+        <DrawerTrigger className="h-full w-full">
           <CardBase
             sesi={sesi}
             judul={judul}
@@ -34,7 +38,6 @@ const CardDrawer = ({
             tanggal={tanggal}
             tempat={tempat}
             className={className}
-            href={href}
           />
         </DrawerTrigger>
         <DrawerContent>
@@ -46,11 +49,19 @@ const CardDrawer = ({
                 <br />
                 <p> </p>
                 <p className="mt-2">Curriculum: {kurikulum}</p>
-                <Link href={href} className={`ml-auto`}>
-                  <Button className={`gap-0.5 p-0`} variant={`link`}>
-                    <Link2 className={`h-4`} />
-                    {tempat}
-                  </Button>
+                <Link
+                  href={href}
+                  className={`ml-auto ${loggedIn || "pointer-events-none"}`}
+                  aria-disabled={!loggedIn}
+                  target={`_blank`}
+                  tabIndex={!loggedIn ? -1 : undefined}
+                >
+                  {loading || (
+                    <Button className={`gap-0.5 p-0`} variant={`link`}>
+                      <Link2 className={`h-4`} />
+                      {tempat}
+                    </Button>
+                  )}
                 </Link>
               </DrawerDescription>
             </DrawerHeader>
@@ -68,18 +79,10 @@ const CardDrawer = ({
   );
 };
 
-const CardBase = ({
-  sesi,
-  judul,
-  jam,
-  tanggal,
-  tempat,
-  className,
-  href = "https://omahti.web.id",
-}) => {
+const CardBase = ({ sesi, judul, jam, tanggal, tempat, className }) => {
   return (
     <div
-      className={`flex h-full min-h-64 w-full flex-col justify-between overflow-hidden rounded-xl border-[2px] border-custom-blue-dark p-4 text-left shadow-sm transition-all hover:bg-custom-blue-light/30 ${className}`}
+      className={`flex h-full min-h-64 w-full flex-col justify-between overflow-hidden rounded-xl border-[2px] border-custom-blue-dark p-4 text-left shadow-sm transition-all hover:-translate-y-1 hover:bg-custom-blue-light/30 hover:shadow-lg ${className}`}
     >
       <p className="text-base font-semibold">Sesi {sesi}</p>
 
@@ -90,11 +93,12 @@ const CardBase = ({
             <p>{jam}</p>
             <p>{tanggal}</p>
           </div>
-          <Link href={href} className="flex items-end">
-            <Button variant={`secondary`} className={`p-2 text-xs`}>
-              {tempat}
-            </Button>
-          </Link>
+          <div
+            variant={`secondary`}
+            className={`mt-auto inline-flex items-center justify-center text-nowrap rounded-md bg-custom-blue-dark p-2 text-center text-xs text-white hover:bg-custom-blue-dark`}
+          >
+            {tempat}
+          </div>
         </div>
       </div>
     </div>

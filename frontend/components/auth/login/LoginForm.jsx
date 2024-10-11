@@ -145,7 +145,7 @@ const LoginForm = ({ className, ...props }) => {
         >
           {isSubmitting ? (
             <div className="flex items-center gap-2">
-              <PulseLoader size={4} color="#ffffff" /> Loading
+              <PulseLoader size={4} color="#ffffff" />
             </div>
           ) : (
             // Show spinner during login
