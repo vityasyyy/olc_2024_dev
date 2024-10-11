@@ -8,16 +8,18 @@ const Avatar = ({
   className,
 }) => {
   return (
-    <>
+    <div
+      className={`flex h-[70vh] w-full max-w-sm flex-col gap-4 lg:h-full lg:max-w-none`}
+    >
+      {/* the actual avatar image */}
       <div
-        className={`relative flex h-[60vh] w-full max-w-md flex-col items-end gap-2 overflow-hidden rounded-lg text-custom-blue-darker lg:h-full ${className}`}
+        className={`relative flex h-full flex-col items-end gap-2 overflow-hidden rounded-lg text-custom-blue-darker ${className}`}
       >
         <Image
-          className="relative h-full w-full rounded-xl"
+          className="relative h-full w-full rounded-xl object-cover"
           src={src}
           alt={alt}
-          width={500}
-          height={600}
+          fill
         />
 
         <div className="absolute inset-0 bg-gradient-to-t from-custom-blue-darker to-transparent" />
@@ -28,7 +30,12 @@ const Avatar = ({
           <p className="font-medium lg:text-lg">{deskripsi}</p>
         </div>
       </div>
-    </>
+
+      {/*  stupid fucking block of nothing */}
+      <div
+        className={`hidden h-1/5 w-full rounded-lg bg-custom-blue-dark lg:block`}
+      ></div>
+    </div>
   );
 };
 

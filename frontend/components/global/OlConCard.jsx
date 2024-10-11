@@ -22,7 +22,7 @@ export const Card = ({ object, idx = 0 }) => {
 
   return (
     // 2 divs that will always be square
-    <div className="relative max-h-80 w-full overflow-hidden rounded-lg pb-[10%] sm:mx-auto md:w-full md:pb-[50%]">
+    <div className="relative h-80 w-full overflow-hidden rounded-lg pb-[10%] sm:mx-auto md:w-full md:pb-[50%]">
       <Image
         src={`/olcon/${object.sesi[idx].mentor?.fotoMentor.filename || "../placeholder.svg"}`}
         alt="OLConvention"

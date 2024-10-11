@@ -72,21 +72,24 @@ const RegisterButton = ({ classSlug }) => {
 
   if (loading) {
     return (
-      <Button variant="secondary" className="animate-pulse" disabled>
-      </Button>
-    )
+      <Button
+        variant="secondary"
+        className="w-full animate-pulse"
+        disabled
+      ></Button>
+    );
   }
 
   if (isEnrolled) {
     return (
-      <Button variant="secondary" disabled>
+      <Button variant="secondary" className={`w-full`} disabled>
         Kamu telah terdaftar dalam kelas ini
       </Button>
     );
   }
 
   return (
-    <Button variant="secondary" onClick={handleAction}>
+    <Button variant="secondary" className={`w-full`} onClick={handleAction}>
       {buttonText}
     </Button>
   );

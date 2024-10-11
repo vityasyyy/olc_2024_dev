@@ -29,6 +29,7 @@ import {
 import { CircleX } from "lucide-react";
 import axios from "axios";
 import useUser from "@/hooks/useUser";
+import Image from "next/image";
 
 export default function NavbarButtons({ variant = "blue" }) {
   // check if user has logged in
@@ -63,9 +64,14 @@ export default function NavbarButtons({ variant = "blue" }) {
       );
     } else {
       buttons = (
-        <Button>
-          <Skeleton className="h-4 w-16" />
-        </Button>
+        <>
+          <Button variant={`outline`}>
+            <Skeleton className="h-4 w-12" />
+          </Button>
+          <Button>
+            <Skeleton className="h-4 w-12" />
+          </Button>
+        </>
       );
     }
   } else {
@@ -156,13 +162,13 @@ export default function NavbarButtons({ variant = "blue" }) {
 
       {/* hamburger menu on mobile */}
       {variant === "blue" && (
-        <Drawer direction="right" className="block sm:hidden">
+        <Drawer direction="right" className="relative block max-w-sm sm:hidden">
           <DrawerTrigger className="block sm:hidden">
             <Menu className="text-custom-brown-light" />
           </DrawerTrigger>
           <DrawerContent
             noThumb
-            className="ml-[10vw] flex h-full w-[90vw] flex-col items-center rounded-none rounded-l-[10px] border-none bg-custom-blue-dark py-12 text-custom-blue-dark"
+            className="ml-[30vw] flex h-full w-[70vw] flex-col items-center rounded-none rounded-l-[10px] border-none bg-custom-blue-dark py-12 text-custom-blue-dark sm:ml-[60vw] sm:w-[40vw]"
           >
             <DrawerHeader>
               <DrawerTitle className="w-full text-center font-logo text-8xl text-white">
@@ -170,22 +176,43 @@ export default function NavbarButtons({ variant = "blue" }) {
               </DrawerTitle>
               <DrawerDescription>
                 <div className="flex w-full flex-col items-center gap-4 text-custom-blue-dark">
-                  <p className={`mb-16 text-white`}>OmahTI Learning Center</p>
-                  <Link href={`https://youtube.com`}>
+                  <p className={`z-20 mb-16 text-white`}>
+                    OmahTI Learning Center
+                  </p>
+                  <Link
+                    href={`https://youtube.com`}
+                    className={`relative z-20`}
+                  >
                     <Button variant="ghost">Guidebook</Button>
                   </Link>
+
+                  {/* circle for background */}
+                  <Image
+                    src="/hero/circle.svg"
+                    className="absolute right-[-50%] top-1/2 -translate-y-1/2"
+                    alt="circle"
+                    priority
+                    width={400}
+                    height={400}
+                  />
                   {loggedIn ? (
-                    <Link href={`/olclass`} className={`w-full`}>
+                    <Link href={`/olclass`} className={`relative z-20 w-full`}>
                       <Button className="w-full">Dashboard</Button>
                     </Link>
                   ) : (
                     <>
-                      <Link href={`/auth/login`} className={`w-full`}>
+                      <Link
+                        href={`/auth/login`}
+                        className={`relative z-20 w-full`}
+                      >
                         <Button variant="outline" className="w-full">
                           Masuk
                         </Button>
                       </Link>
-                      <Link href={`/auth/register`} className={`w-full`}>
+                      <Link
+                        href={`/auth/register`}
+                        className={`relative z-20 w-full`}
+                      >
                         <Button className="w-full">Daftar</Button>
                       </Link>
                     </>

@@ -37,7 +37,7 @@ export default function Hero() {
         <div className="hidden sm:block"></div>
 
         {/* title text */}
-        <div className="z-20 mt-12 flex w-full flex-col sm:mt-0 sm:max-w-[60vh] md:max-w-none md:gap-1">
+        <div className="z-20 mt-12 flex w-full flex-col items-center sm:mt-0 sm:max-w-[60vh] sm:items-start md:max-w-none md:gap-1">
           <h3
             className={`mb-4 flex flex-row items-center justify-center gap-2 text-center text-xs text-white sm:justify-start sm:text-start`}
           >
