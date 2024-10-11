@@ -14,7 +14,7 @@ const Card = ({
 }) => {
   return (
     // 2 divs that will always be square
-    <div className="relative h-80 w-full overflow-hidden rounded-lg pb-[100%] min-[380px]:pb-[50%] sm:mx-auto sm:pb-[30%] md:h-96 md:w-full md:pb-[50%]">
+    <div className="group relative h-80 w-full overflow-hidden rounded-lg pb-[100%] ease-in-out min-[380px]:pb-[50%] sm:mx-auto sm:pb-[30%] md:h-96 md:w-full md:pb-[50%]">
       {/* image */}
       <Image
         src={src}
@@ -32,7 +32,7 @@ const Card = ({
         <h1 className="text-3xl font-semibold sm:text-4xl">{judul}</h1>
 
         {/* bullet points */}
-        <ul className="mb-2 ml-4 flex list-disc flex-col gap-0.5 sm:my-4 sm:gap-2">
+        <ul className="mb-2 ml-4 flex max-h-0 list-disc flex-col gap-0.5 opacity-0 transition-all duration-500 ease-in-out group-hover:max-h-96 group-hover:opacity-100 sm:my-4 sm:gap-2">
           {description.map((desc, i) => (
             <li key={i}>{desc}</li>
           ))}

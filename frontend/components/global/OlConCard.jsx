@@ -4,7 +4,6 @@ import { Calendar, MapPin } from "lucide-react";
 export const Card = ({ object, idx = 0 }) => {
   // Create a Date object
   const dateObj = new Date(object.sesi[idx].waktu);
-  console.log(object.sesi[idx].mentor);
 
   // Get the time in HH:mm format
   const time = dateObj.toLocaleTimeString("en-GB", {

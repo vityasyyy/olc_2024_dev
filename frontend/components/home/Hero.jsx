@@ -1,6 +1,7 @@
 import ContainerLarge from "../global/ContainerLarge";
 import Image from "next/image";
 import Toast from "@/components/home/Toast";
+import main from "@/public/global/main.png";
 
 export default function Hero() {
   return (
@@ -8,7 +9,7 @@ export default function Hero() {
       <ContainerLarge
         diamonds
         className="flex h-[80vh] flex-col justify-between gap-0 sm:justify-around"
-        parentClass={`overflow-y-hidden`}
+        parentClass={`overflow-hidden`}
       >
         {/* hero section image main block */}
 
@@ -24,10 +25,11 @@ export default function Hero() {
           <div className={`relative h-full w-full overflow-visible`}>
             {/* actual image */}
             <Image
-              src={`/global/main.png`}
+              src={main}
               className={`z-10 object-cover`}
               fill
               alt={`OmahTI Learning Center`}
+              placeholder={`blur`}
               priority
             />
           </div>

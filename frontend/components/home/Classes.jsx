@@ -77,9 +77,17 @@ const Card = ({
         </div>
 
         <Accordion type="single" collapsible>
-          <AccordionItem value="item-1">
-            <AccordionTrigger>Materi yang akan kamu pelajari</AccordionTrigger>
-            <AccordionContent>{materi}</AccordionContent>
+          <AccordionItem value="item-1" className={`border-b-0`}>
+            <AccordionTrigger
+              className={`rounded-md bg-neutral-50 px-5 py-3 transition-all hover:bg-neutral-50/90 hover:text-black/90 hover:no-underline`}
+            >
+              Materi yang akan kamu pelajari
+            </AccordionTrigger>
+            <AccordionContent
+              className={`font-mediunm mt-2 min-h-24 rounded-lg bg-custom-blue-light px-5 py-5`}
+            >
+              {materi}
+            </AccordionContent>
           </AccordionItem>
         </Accordion>
       </div>
