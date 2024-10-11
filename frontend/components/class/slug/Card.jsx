@@ -19,6 +19,7 @@ const CardDrawer = ({
   judul,
   deskripsi = "Belum ada deskripsi.",
   kurikulum = "Kurikulum belum tersedia.",
+  prerequisites = "Familiarity with IDE",
   jam,
   tanggal,
   tempat,
@@ -44,25 +45,32 @@ const CardDrawer = ({
           <div className="mx-auto w-full max-w-xl">
             <DrawerHeader>
               <DrawerTitle>{judul}</DrawerTitle>
-              <DrawerDescription>
-                {deskripsi}
-                <br />
-                <p> </p>
-                <p className="mt-2">Curriculum: {kurikulum}</p>
-                <Link
-                  href={href}
-                  className={`ml-auto ${loggedIn || "pointer-events-none"}`}
-                  aria-disabled={!loggedIn}
-                  target={`_blank`}
-                  tabIndex={!loggedIn ? -1 : undefined}
-                >
-                  {loading || (
-                    <Button className={`gap-0.5 p-0`} variant={`link`}>
-                      <Link2 className={`h-4`} />
-                      {tempat}
-                    </Button>
-                  )}
-                </Link>
+              <DrawerDescription asChild>
+                <>
+                  <div className={`mt-4 text-balance`}>{deskripsi}</div>
+                  <div className="mt-1">
+                    <span className={`font-semibold`}>Curriculum:</span>{" "}
+                    {kurikulum}
+                  </div>
+                  <div className={`mt-1`}>
+                    <span className={`font-semibold`}>Prerequisites:</span>{" "}
+                    {prerequisites}
+                  </div>
+                  <Link
+                    href={href}
+                    className={` ${loggedIn || "pointer-events-none"}`}
+                    aria-disabled={!loggedIn}
+                    target={`_blank`}
+                    tabIndex={!loggedIn ? -1 : undefined}
+                  >
+                    {loading || (
+                      <Button className={`gap-0.5 p-0`} variant={`link`}>
+                        <Link2 className={`h-4`} />
+                        {tempat}
+                      </Button>
+                    )}
+                  </Link>
+                </>
               </DrawerDescription>
             </DrawerHeader>
             <DrawerFooter>
@@ -94,7 +102,6 @@ const CardBase = ({ sesi, judul, jam, tanggal, tempat, className }) => {
             <p>{tanggal}</p>
           </div>
           <div
-            variant={`secondary`}
             className={`mt-auto inline-flex items-center justify-center text-nowrap rounded-md bg-custom-blue-dark p-2 text-center text-xs text-white hover:bg-custom-blue-dark`}
           >
             {tempat}

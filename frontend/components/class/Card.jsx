@@ -15,7 +15,7 @@ const Card = ({
 }) => {
   return (
     <div
-      className={`group grid w-full auto-rows-fr overflow-hidden rounded-xl border-[1px] border-custom-blue-dark shadow-sm transition-all hover:-translate-y-[1px] hover:shadow-xl ${className}`}
+      className={`group flex max-h-80 w-full auto-rows-fr flex-col overflow-hidden rounded-xl border-[1px] border-custom-blue-dark shadow-sm transition-all hover:-translate-y-[1px] hover:shadow-xl ${className}`}
     >
       <CardImage src={src} alt={imageAlt} label={label} />
       <CardContent judul={judul} tanggal={tanggal} href={href} />
@@ -24,7 +24,7 @@ const Card = ({
 };
 
 const CardImage = ({ src, alt, label }) => (
-  <div className="relative h-40 w-full overflow-hidden rounded-t-xl">
+  <div className="relative h-2/5 w-full overflow-hidden rounded-t-xl">
     <Image
       src={src}
       alt={alt}
@@ -37,14 +37,14 @@ const CardImage = ({ src, alt, label }) => (
 );
 
 const CardContent = ({ judul, tanggal, href }) => (
-  <div className="flex h-full flex-col justify-between gap-2 p-3">
+  <div className="flex h-3/5 h-full flex-col justify-between gap-2 p-3">
     <div className="flex flex-col">
       <h2 className="text-xl font-bold transition-all group-hover:text-custom-blue-dark/90 sm:text-2xl">
         {judul}
       </h2>
       <p className="text-sm">{tanggal}</p>
     </div>
-    <Link href={href} className="ml-auto mt-auto">
+    <Link href={href} className="ml-auto mt-1">
       <Button variant="secondary">Detail Kelas</Button>
     </Link>
   </div>

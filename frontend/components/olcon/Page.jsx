@@ -2,7 +2,7 @@ import ContainerLarge from "@/components/global/ContainerLarge";
 import BackButtonOLCon from "@/components/olcon/BackButtonOLCon";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import Avatar from "@/components/global/Avatar";
 import Card from "@/components/olcon/Card";
 import { Progress } from "@/components/ui/progress";
@@ -21,15 +21,27 @@ const OLConDetail = async ({ DAY }) => {
     <>
       <ContainerLarge className="text-custom-blue-dark" parentClass="bg-white">
         <div className="inline-flex flex-row gap-12">
-          <BackButtonOLCon />
-
-          {/* href to page two */}
-          <Link href="day-2">
-            <Button variant="link" className="p-0">
-              Day 2
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-          </Link>
+          {DAY === 0 ? (
+            <>
+              <BackButtonOLCon />
+              {/* href to page two */}
+              <Link href="/olcon/day-2">
+                <Button variant="link" className="p-0">
+                  Day 2
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link href={`/olcon/day-1`}>
+                <Button variant="link" className="p-0">
+                  Day 1
+                  <ArrowLeft className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+            </>
+          )}
         </div>
         <h1 className="my-8 text-4xl font-bold">{olcon.sesi[DAY].judulSesi}</h1>
 
@@ -62,15 +74,15 @@ const OLConDetail = async ({ DAY }) => {
               />
             </div>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {olcon.sesi.map((session, index) => (
+              {olcon.sesi[DAY].materi.map((session, index) => (
                 <div
                   className="duration-700 animate-in fade-in slide-in-from-bottom-10"
                   key={index}
                 >
                   <Card
                     sesi={`${index + 1}`}
-                    judul={session.judulSesi}
-                    tanggal={new Date(session.waktu).toLocaleDateString(
+                    judul={session.materiJudul}
+                    tanggal={new Date(session.jamBerapa).toLocaleDateString(
                       "id-ID",
                       {
                         day: "2-digit",
@@ -78,13 +90,13 @@ const OLConDetail = async ({ DAY }) => {
                         year: "numeric",
                       },
                     )}
-                    jam={new Date(session.waktu).toLocaleTimeString("id-ID", {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}
-                    deskripsi={session.deskripsi}
-                    kurikulum={session.kurikulum}
-                    tempat={session.platform}
+                    jam={new Date(session.jamBerapa).toLocaleTimeString(
+                      "id-ID",
+                      {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      },
+                    )}
                   />
                 </div>
               ))}
@@ -114,7 +126,7 @@ const ClassDescriptionAndProgress = ({ classDetail, DAY, progress }) => {
   const date = dateFormatter.format(dateObj);
 
   return (
-    <div className="flex h-full w-full flex-col justify-between gap-6">
+    <div className="flex h-full w-full flex-shrink shrink flex-col justify-between gap-6">
       {/* grouping these 2 together */}
       <div className={`flex flex-col gap-4`}>
         {/* class description */}

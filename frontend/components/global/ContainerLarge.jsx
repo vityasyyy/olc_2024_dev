@@ -14,7 +14,9 @@ const ContainerLarge = ({
       {...props}
     >
       <div className={`mx-[min(5vw,32px)] w-full ${className}`}>{children}</div>
-      {diamonds ? (
+
+      {/* styling stuff, for landing page styles */}
+      {diamonds && (
         <>
           <div className="w-2xl absolute left-0 right-0 top-8 h-16 overflow-hidden">
             <div className="relative inset-0 z-10 flex h-6 w-full flex-row object-cover">
@@ -45,8 +47,6 @@ const ContainerLarge = ({
             </div>
           </div>
         </>
-      ) : (
-        <></>
       )}
     </div>
   );

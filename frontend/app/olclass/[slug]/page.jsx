@@ -73,13 +73,14 @@ const ClassDetail = async ({ params }) => {
                     hour: "2-digit",
                     minute: "2-digit",
                   })}
+                  href={session.url}
                   deskripsi={session.deskripsiLengkap}
                   kurikulum={session.kurikulum}
                   tempat={session.platform}
                 />
               </div>
             ))}
-            <TugasCard href={classDetail.tugas} />
+            <TugasCard tugasObject={classDetail.penugasan} />
           </div>
         </div>
       </div>
@@ -88,10 +89,10 @@ const ClassDetail = async ({ params }) => {
 };
 
 const ClassDescriptionAndProgress = ({ classDetail, progress, slug }) => (
-  <div className="flex h-full w-full flex-col justify-between gap-6">
+  <div className="flex h-full w-full flex-shrink flex-col justify-between gap-6">
     {/* class description */}
     <div className="flex flex-col *:text-black">
-      <h3 className="font-bold">Tentang Kelas</h3>
+      <h3 className="font-semibold lg:mb-2 lg:text-2xl">Tentang Kelas</h3>
       <p>{classDetail.deskripsiKelas}</p>
     </div>
 
