@@ -17,7 +17,7 @@ const mentorSchema = new Schema({
 });
 
 const materiSchema = new Schema({
-  materiSesi: String,
+  materiJudul: String,
   jamBerapa: Date,
 })
 const sessionSchema = new Schema({
