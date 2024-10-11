@@ -39,6 +39,7 @@ const Card = ({
   } else {
     dateObj = new Date(objectOlCon.sesi[idx].waktu);
   }
+  console.log(objectOlCon);
 
   // Get the time in HH:mm format
   const time = dateObj.toLocaleTimeString("en-GB", {
@@ -63,7 +64,11 @@ const Card = ({
       <p
         className={`absolute left-3 top-3 mb-4 w-fit rounded-md ${smallCard ? "bg-custom-blue-light text-black" : "bg-custom-blue-dark text-white"} px-4 py-1 text-sm`}
       >
-        Day {idx + 1}
+        {smallCard
+          ? `Day ${idx + 2}`
+          : idx === 1
+            ? `Day ${idx + 5}`
+            : `Day ${idx + 1}`}
       </p>
 
       <h1 className={`text-2xl font-semibold`}>
@@ -81,7 +86,7 @@ const Card = ({
           <span>
             {smallCard
               ? objectOlClass?.sesi[0].platform
-              : objectOlCon.sesi[idx].platform}
+              : objectOlCon?.sesi[idx].platform}
           </span>
         </p>
       </div>

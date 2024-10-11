@@ -119,7 +119,7 @@ export default function NavbarButtons({ variant = "blue" }) {
         // landing page, udah log in, dashboard
         buttons = (
           <>
-            <Link href={`https://youtube.com`}>
+            <Link href={`https://youtube.com`} target={`_blank`}>
               <Button className={`px-4`} variant="ghost">
                 Guidebook
               </Button>

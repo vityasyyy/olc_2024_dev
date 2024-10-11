@@ -54,7 +54,7 @@ const WhatsappToast = (className) => {
     <>
       {enrolledClass && (
         <div
-          className={`relative flex h-fit w-fit shrink-0 items-center gap-3 rounded-lg border-[1.5px] border-custom-blue-dark bg-white p-2 pl-4 text-sm shadow-md ${className}`}
+          className={`relative flex h-fit w-fit shrink-0 items-center gap-3 rounded-lg border-[1.5px] border-custom-blue-dark bg-white p-2 pl-4 text-sm shadow-sm ${className}`}
         >
           <WhatsappIcon className="h-6 shrink-0 text-custom-blue-dark" />
           <p className="mr-2 text-xs font-medium sm:text-sm">
