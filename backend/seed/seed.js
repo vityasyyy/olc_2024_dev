@@ -334,13 +334,16 @@ const newConference = new Olcon({
       deskripsi: "Expert in JavaScript and modern web frameworks.",
     },
     materi: [{
-
+      materiJudul: "ModuleTETEK",
+      jamBerapa: new Date("2024-10-26T10:00:00Z"),
     },
     {
-
+      materiJudul: "ModuleTITIT",
+      jamBerapa: new Date("2024-10-26T10:00:00Z"),
     },
     {
-      
+      materiJudul: "ModuleOLCSS",
+      jamBerapa: new Date("2024-10-26T10:00:00Z"),
     }
   ]
   },
@@ -360,13 +363,16 @@ const newConference = new Olcon({
         "Backend expert with extensive experience in Node.js and cloud infrastructure.",
     },
     materi: [{
-
+      materiJudul: "ModuleENTOT",
+      jamBerapa: new Date("2024-10-26T10:00:00Z"),
     },
     {
-
+      materiJudul: "ModulePEPEK",
+      jamBerapa: new Date("2024-10-26T10:00:00Z"),
     },
     {
-
+      materiJudul: "ModuleKONTOL",
+      jamBerapa: new Date("2024-10-26T10:00:00Z"),
     }
   ]
   },
