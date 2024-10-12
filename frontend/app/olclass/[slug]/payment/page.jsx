@@ -104,7 +104,7 @@ const Payment = () => {
           </div>
 
           {/* form */}
-          <PaymentForm />
+          <PaymentForm slug={slug} />
         </div>
       </div>
     </>
@@ -117,7 +117,7 @@ const PaymentForm = ({ slug, className }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false); // Track modal state
-
+  const router = useRouter();
   const handleEnrollment = async () => {
     setLoading(true);
     setError(null);
@@ -134,13 +134,12 @@ const PaymentForm = ({ slug, className }) => {
           },
         },
       );
-
       if (!response.ok) {
         throw new Error("Enrollment failed. Please try again.");
       }
 
       // Redirect to the classes page after successful enrollment
-      window.location.href = "/olclass";
+      router.push("/olclass");
     } catch (err) {
       setError(err.message);
     } finally {

@@ -143,7 +143,7 @@ const ClassDescriptionAndProgress = ({ classDetail, DAY, progress }) => {
           <p>
             {date} {time}
           </p>
-          <p>{classDetail.sesi[DAY].platform}</p>
+          <p>{classDetail.sesi[DAY].Lokasi}</p>
         </div>
       </div>
 

@@ -37,7 +37,7 @@ const CardImage = ({ src, alt, label }) => (
 );
 
 const CardContent = ({ judul, tanggal, href }) => (
-  <div className="flex h-3/5 h-full flex-col justify-between gap-2 p-3">
+  <div className="flex h-3/5 flex-col justify-between gap-2 p-3">
     <div className="flex flex-col">
       <h2 className="text-xl font-bold transition-all group-hover:text-custom-blue-dark/90 sm:text-2xl">
         {judul}

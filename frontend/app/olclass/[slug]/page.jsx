@@ -19,8 +19,6 @@ const ClassDetail = async ({ params }) => {
     console.error("Error fetching olclass detail:", error);
   }
 
-  console.log(classDetail);
-
   const enrolledAmount = 40 - (await classDetail.slots);
   const progress = (enrolledAmount / 40) * 100;
 

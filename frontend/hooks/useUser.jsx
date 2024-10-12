@@ -10,7 +10,7 @@ export default function useUser() {
         setLoading(false);
         return;
       }
-      console.log(token);
+
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/auth/validate`,
         {
