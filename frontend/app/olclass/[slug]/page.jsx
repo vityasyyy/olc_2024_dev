@@ -97,7 +97,7 @@ const ClassDescriptionAndProgress = ({ classDetail, progress, slug }) => (
     {/* progress bar and enroll button */}
     <div className="flex w-full flex-col gap-1 lg:gap-4">
       <p className="text-base font-semibold text-black lg:text-2xl">
-        Slot Tersedia:
+        Jumlah Pendaftar:
       </p>
 
       <div className="flex flex-col items-center gap-4 lg:flex-row lg:gap-6">
