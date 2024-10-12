@@ -67,7 +67,7 @@ const Payment = () => {
       <div className="grid grid-cols-1 md:h-screen md:grid-cols-2 md:overflow-hidden">
         {/* left/top */}
         <div className="relative h-[50vh] overflow-hidden bg-custom-blue-dark px-[min(5vw,32px)] py-8 md:h-screen">
-          <BackButton home />
+          <BackButton />
           <h1
             className={`relative z-30 mt-2 text-2xl font-semibold text-white`}
           >
@@ -104,7 +104,7 @@ const Payment = () => {
           </div>
 
           {/* form */}
-          <PaymentForm slug={slug} />
+          <PaymentForm slug={slug} isDike={isDike}/>
         </div>
       </div>
     </>
@@ -113,7 +113,7 @@ const Payment = () => {
 
 export default Payment;
 
-const PaymentForm = ({ slug, className }) => {
+const PaymentForm = ({ slug, className, isDike }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false); // Track modal state
@@ -167,7 +167,8 @@ const PaymentForm = ({ slug, className }) => {
         <div className="my-2">
           <ol className="mx-2 list-outside list-disc pl-3 text-sm text-custom-black">
             <li>Pembayaran seharga IDR 75.000</li>
-
+            {isDike || <li>Biaya pendaftaran sebesar IDR 5.000</li>}
+            {isDike || <li><b>Total Pembayaran seharga IDR 80.000</b></li>}
             <li>
               Pembayaran transfer kepada{" "}
               <strong>BNI a.n Andreandhiki (083456688)</strong>

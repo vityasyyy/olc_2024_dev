@@ -54,12 +54,12 @@ const RegisterButton = () => {
 
       if (!response.ok) {
         throw new Error(
-          "Registration failed. This email might have been registered before or has been used for olclass + olcon packet",
+          "Registration failed. This email might have been registered before or has been used for OLClass + OLCon packet",
         );
       }
 
       // Redirect to success page or OLCon page after successful registration
-      router.push(`/olcon/`);
+      router.push(`/olcon/day-1`);
     } catch (err) {
       setError(err.message);
     } finally {
