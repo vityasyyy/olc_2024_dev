@@ -49,12 +49,8 @@ const CardDrawer = ({
                 <>
                   <div className={`mt-4 text-balance`}>{deskripsi}</div>
                   <div className="mt-1">
-                    <span className={`font-semibold`}>Curriculum:</span>{" "}
+                    <span className={`font-semibold`}>Kurikulum:</span>{" "}
                     {kurikulum}
-                  </div>
-                  <div className={`mt-1`}>
-                    <span className={`font-semibold`}>Prerequisites:</span>{" "}
-                    {prerequisites}
                   </div>
                   <Link
                     href={href}

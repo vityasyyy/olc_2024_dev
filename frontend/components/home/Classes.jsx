@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/accordion";
 
 const Classes = async () => {
-  const responses = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/olclass`);
+  const responses = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/olclass`, {cache: "no-cache"});
   const classes = await responses.json();
 
   return (

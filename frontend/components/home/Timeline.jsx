@@ -39,7 +39,6 @@ const Card = ({
   } else {
     dateObj = new Date(objectOlCon.sesi[idx].waktu);
   }
-  console.log(objectOlCon);
 
   // Get the time in HH:mm format
   const time = dateObj.toLocaleTimeString("en-GB", {

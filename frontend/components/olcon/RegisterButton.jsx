@@ -52,8 +52,6 @@ const RegisterButton = () => {
         },
       );
 
-      console.log("ini error message:", response.message);
-
       if (!response.ok) {
         throw new Error(
           "Registration failed. This email might have been registered before or has been used for olclass + olcon packet",
