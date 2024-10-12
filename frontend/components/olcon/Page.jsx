@@ -126,7 +126,7 @@ const ClassDescriptionAndProgress = ({ classDetail, DAY, progress }) => {
   const date = dateFormatter.format(dateObj);
 
   return (
-    <div className="flex h-full w-full flex-shrink shrink flex-col justify-between gap-6">
+    <div className="flex h-full w-full flex-shrink flex-col justify-between gap-6">
       {/* grouping these 2 together */}
       <div className={`flex flex-col gap-4`}>
         {/* class description */}
