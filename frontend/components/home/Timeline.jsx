@@ -87,7 +87,7 @@ const Card = ({
           <span className="group-hover:animate-shake-delay transition duration-300 ease-in-out">
             {smallCard
               ? objectOlClass?.sesi[0].platform
-              : objectOlCon?.sesi[idx].platform}
+              : objectOlCon?.sesi[idx].Lokasi}
           </span>
         </p>
       </div>
