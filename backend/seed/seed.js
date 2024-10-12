@@ -3,7 +3,7 @@ const Olclass = require("../Models/olclass"); // Adjust path to your Olclass mod
 const Olcon = require("../Models/olcon"); // Adjust path to your Olcon model
 
 mongoose
-  .connect("mongodb+srv://olc2024readwrite:MULYONOKONTOLNYEPONGINTITITPRABOWO@olc2024.n39jg.mongodb.net/?retryWrites=true&w=majority&appName=OLC2024")
+  .connect("K")
   .then(() => {
     console.log("MongoDB connection established!");
   })
@@ -18,10 +18,10 @@ mongoose
       slug: "cyber-security",
       divisi: "Cyber Security",
       title: "Cyber Security",
-      waktuStart: new Date("2024-10-28T10:00:00Z"),
-      waktuEnd: new Date("2024-11-02T10:00:00Z"),
+      waktuStart: new Date("2024-10-28T03:00:00Z"),
+      waktuEnd: new Date("2024-11-02T03:00:00Z"),
       deskripsiKelas:
-        "An intensive course on the fundamentals of cyber security, designed to equip you with the skills to protect online systems.",
+        "Membahas materi seputar dasar-dasar cyber security dalam konteks Internet Security, Cyber Attack, Cyber Security in fintech, dan berita terbaru mengenai Cyber Security di Indonesia.",
       enrolledBy: [],
       slots: 40,
       penugasan: {
@@ -40,49 +40,49 @@ mongoose
       sesi: [
         {
           judulSesi: "Introduction to Internet Security",
-          waktu: new Date("2024-10-28T10:00:00Z"),
+          waktu: new Date("2024-10-28T03:00:00Z"),
           platform: "Zoom",
           deskripsiSingkat:
             "Understanding the basics of cyber security, including key terminologies.",
           kurikulum: "Overview of Internet Security, Cyber Attack, Hands-on Activity",
           deskripsiLengkap:
-            "Get acquainted with the key concepts of cyber security such as threats, vulnerabilities, and attack methods.",
-          prerequisites: "No prior knowledge required.",
+            "",
+          prerequisites: "",
           url: "https://youtube.com"
         },
         {
           judulSesi: "Application Security",
-          waktu: new Date("2024-09-19T10:00:00Z"),
+          waktu: new Date("2024-09-19T03:00:00Z"),
           platform: "Zoom",
           deskripsiSingkat:
             "Explore the fundamentals of securing computer networks.",
           kurikulum: "Cyber Security in Fintech, Recent Events of Cybersecurity in Indonesia, Hands-on Activity",
           deskripsiLengkap:
-            "Learn about firewalls, VPNs, and how to monitor networks for suspicious activities.",
-          prerequisites: "Basic networking knowledge recommended.",
+            "",
+          prerequisites: "",
           url: "https://youtube.com"
         },
         {
           judulSesi: "Konsultasi Final Project",
-          waktu: new Date("2024-11-01T00:00:00Z"),
+          waktu: new Date("2024-10-31T17:00:00Z"),
           platform: "Zoom",
           deskripsiSingkat: "Create reusable components with design systems.",
           kurikulum: "-",
           deskripsiLengkap:
             "Sesi konsultasi menyesuaikan jadwal Teaching Assistant",
-          prerequisites: "Basic prototyping knowledge recommended.",
+          prerequisites: "",
           url: "https://youtube.com"
         },
         {
           judulSesi: "Presentasi Final Project",
-          waktu: new Date("2024-11-02T10:00:00Z"),
+          waktu: new Date("2024-11-02T03:00:00Z"),
           platform: "Zoom",
           deskripsiSingkat:
             "Gather and analyze user feedback to refine designs.",
           kurikulum: "-",
           deskripsiLengkap:
             "Presentasi Final Project melalui Zoom Meeting",
-          prerequisites: "Basic knowledge of UI/UX design principles.",
+          prerequisites: "",
           url: "https://youtube.com"
         },
       ],
@@ -90,9 +90,9 @@ mongoose
     {
       slug: "data-science",
       divisi: "Data Science and AI",
-      title: "Data Science and Artificial Intelligence",
-      waktuStart: new Date("2024-10-28T10:00:00Z"),
-      waktuEnd: new Date("2024-11-02T10:00:00Z"),
+      title: "Data Science and AI",
+      waktuStart: new Date("2024-10-28T03:00:00Z"),
+      waktuEnd: new Date("2024-11-02T03:00:00Z"),
       deskripsiKelas:
         "Membahas materi seputar workflow yang sesuai dengan standar industri, seperti CRISP-DM (Cross-Industry Standard Process for Data Mining) yang meliputi topik data preparation, prediction model development dan project evaluation.",
       enrolledBy: [],
@@ -113,31 +113,31 @@ mongoose
       sesi: [
         {
           judulSesi: "Introduction to Data Science",
-          waktu: new Date("2024-10-28T10:00:00Z"),
+          waktu: new Date("2024-10-28T03:00:00Z"),
           platform: "Zoom",
           deskripsiSingkat:
             "An overview of the data science landscape and its key concepts.",
           kurikulum: "Intro to Data Science, Data Cleaning, Exploratory Data Analysis, Preprocessing, Story Telling",
           deskripsiLengkap:
-            "Understand the foundations of data science, including techniques for cleaning and analyzing data, and visualizing results.",
-          prerequisites: "Basic statistics and Python knowledge recommended.",
+            "",
+          prerequisites: "",
           url: "https://youtube.com"
         },
         {
           judulSesi: "Machine Learning",
-          waktu: new Date("2024-10-29T10:00:00Z"),
+          waktu: new Date("2024-10-29T03:00:00Z"),
           platform: "Google Meet",
           deskripsiSingkat:
             "Learn the art of data wrangling using popular Python libraries.",
           kurikulum: "Overview of Machine Learning, Kaggle Competition",
           deskripsiLengkap:
-            "Explore how to clean, manipulate, and prepare datasets for analysis using Python libraries like Pandas and NumPy.",
-          prerequisites: "Python programming skills required.",
+            "",
+          prerequisites: "",
           url: "https://youtube.com"
         },
         {
           judulSesi: "Konsultasi Final Project",
-          waktu: new Date("2024-11-01T00:00:00Z"),
+          waktu: new Date("2024-10-31T17:00:00Z"),
           platform: "Zoom",
           deskripsiSingkat: "Create reusable components with design systems.",
           kurikulum: "-",
@@ -148,7 +148,7 @@ mongoose
         },
         {
           judulSesi: "Presentasi Final Project",
-          waktu: new Date("2024-11-02T10:00:00Z"),
+          waktu: new Date("2024-11-02T03:00:00Z"),
           platform: "Zoom",
           deskripsiSingkat:
             "Gather and analyze user feedback to refine designs.",
@@ -164,10 +164,10 @@ mongoose
       slug: "software-engineering",
       divisi: "Software Engineering",
       title: "Software Engineering",
-      waktuStart: new Date("2024-09-18T10:00:00Z"),
-      waktuEnd: new Date("2024-09-22T10:00:00Z"),
+      waktuStart: new Date("2024-10-28T03:00:00Z"),
+      waktuEnd: new Date("2024-11-02T03:00:00Z"),
       deskripsiKelas:
-        "Master the essentials of Full-Stack Web Development and become proficient in modern web technologies.",
+        "Membahas materi seputar Esensi software engineering, Pengenalan SDLC, ReactJS fundamental; hingga library seperti React Query; React Router, Testing (unit testing; integration test) dalam ReactJS, Deployment sederhana, Pengenalan ke Github dan collaborative workflow",
       enrolledBy: [],
       slots: 40,
       penugasan: {
@@ -185,32 +185,32 @@ mongoose
       },
       sesi: [
         {
-          judulSesi: "Introduction to Web Development",
-          waktu: new Date("2024-09-18T10:00:00Z"),
+          judulSesi: "Introduction to SE and React",
+          waktu: new Date("2024-10-28T03:00:00Z"),
           platform: "Zoom",
           deskripsiSingkat:
             "An overview of modern web development technologies and best practices.",
-          kurikulum: "HTML, CSS, and JavaScript basics.",
+          kurikulum: "Intro to SE; SDLC, Intro to Github, Intro to React, React fundamentals and React router, Mini Project",
           deskripsiLengkap:
-            "Learn the foundational elements of web development including core technologies like HTML, CSS, and JavaScript.",
-          prerequisites: "No prior experience required.",
+            "",
+          prerequisites: "",
           url: "https://youtube.com"
         },
         {
-          judulSesi: "React Basics",
-          waktu: new Date("2024-09-19T10:00:00Z"),
-          platform: "Google Meet",
+          judulSesi: "Advanced React",
+          waktu: new Date("2024-10-29T03:00:00Z"),
+          platform: "Zoom",
           deskripsiSingkat:
             "Learn how to build dynamic UIs using React components.",
-          kurikulum: "React components, JSX, and state management.",
+          kurikulum: "Mini project sharing, Tailwind CSS, React Query, Final Project",
           deskripsiLengkap:
-            "Build interactive and dynamic user interfaces using React components, JSX, and the basics of state management.",
-          prerequisites: "Basic knowledge of JavaScript.",
+            "",
+          prerequisites: "",
           url: "https://youtube.com"
         },
         {
           judulSesi: "Konsultasi Final Project",
-          waktu: new Date("2024-11-01T00:00:00Z"),
+          waktu: new Date("2024-10-31T17:00:00Z"),
           platform: "Zoom",
           deskripsiSingkat: "Create reusable components with design systems.",
           kurikulum: "-",
@@ -221,7 +221,7 @@ mongoose
         },
         {
           judulSesi: "Presentasi Final Project",
-          waktu: new Date("2024-11-02T10:00:00Z"),
+          waktu: new Date("2024-11-02T03:00:00Z"),
           platform: "Zoom",
           deskripsiSingkat:
             "Gather and analyze user feedback to refine designs.",
@@ -237,8 +237,8 @@ mongoose
       slug: "ui-ux-design",
       divisi: "UI/UX Design",
       title: "UI/UX Design",
-      waktuStart: new Date("2024-10-28T10:00:00Z"),
-      waktuEnd: new Date("2024-11-02T10:00:00Z"),
+      waktuStart: new Date("2024-10-28T03:00:00Z"),
+      waktuEnd: new Date("2024-11-02T03:00:00Z"),
       deskripsiKelas:
         "Kelas ini membahas materi seputar dasar-dasar UI/UX Design dan standar praktek di industri. Materi yang diusung seputar UX principles, Design Thinking Process, User Interface Process and Collaboration, hingga Design Hand-off.",
       enrolledBy: [],
@@ -265,8 +265,8 @@ mongoose
             "Explore the basics of UI/UX design and its importance in product development.",
           kurikulum: "User-Centered Design, User Research & Data Synthesis, Design Thinking, Exploring Design Patterns and Systems.",
           deskripsiLengkap:
-            "Learn the fundamentals of user-centered design, how to conduct user research, and create basic wireframes.",
-          prerequisites: "No prior experience required.",
+            "",
+          prerequisites: "",
           url: "https://youtube.com"
         },
         {
@@ -277,13 +277,13 @@ mongoose
             "Learn how to create wireframes and prototypes using industry-standard tools.",
           kurikulum: "Design Interaction, Wireframing, Design System, Design Hand-off, Mobile Apps, Final Project",
           deskripsiLengkap:
-            "Hands-on session to design wireframes and interactive prototypes using Sketch or Figma.",
-          prerequisites: "Familiarity with basic design concepts.",
+            "",
+          prerequisites: "",
           url: "https://youtube.com"
         },
         {
           judulSesi: "Konsultasi Final Project",
-          waktu: new Date("2024-11-01T00:00:00Z"),
+          waktu: new Date("2024-10-31T17:00:00Z"),
           platform: "Zoom",
           deskripsiSingkat: "Create reusable components with design systems.",
           kurikulum: "-",
@@ -294,7 +294,7 @@ mongoose
         },
         {
           judulSesi: "Presentasi Final Project",
-          waktu: new Date("2024-11-02T10:00:00Z"),
+          waktu: new Date("2024-11-02T03:00:00Z"),
           platform: "Zoom",
           deskripsiSingkat:
             "Gather and analyze user feedback to refine designs.",
@@ -320,12 +320,12 @@ const newConference = new Olcon({
   email: ["example1@example.com", "example2@example.com"], // Example emails
   slots: 40,
   sesi: [{
-    judulSesi: "Advanced JavaScript Patterns",
-    waktu: new Date("2024-10-26T10:00:00Z"),
-    lokasi: "Auditorium FMIPA Lantai 7 Universitas Gadjah Mada",
-    platform: "Zoom",
+    judulSesi: "Surviving the AI Wave: How IT Enthusiasts Can Thrive in the New Age",
+    waktu: new Date("2024-10-27T03:30:00Z"),
+    Lokasi: "Auditorium FMIPA Lantai 7 Universitas Gadjah Mada",
+    platform: "",
     deskripsi:
-      "Dive deep into advanced patterns and best practices in JavaScript development.",
+      "Surviving the AI Wave: How IT Enthusiasts Can Thrive in the New Age. Di dalam dunia IT, ada banyak jenis profesi yang dapat dipilih. Dari Software Engineering hingga Cyber Security, dari data analysis hingga web development, tetapi dengan adanya gelombang pengembangan AI yang semakin nampak, dibutuhkannya skillset baru yang dapat beradaptasi dengan perkembangan signifikan ini, hal tersebut menjadi sebuah tantangan baru, terutama untuk para mahasiswa yang baru  memulai perjalanan mereka di bidang IT.",
     mentor: {
       nama: "Jane Smith",
       fotoMentor: {
@@ -335,26 +335,26 @@ const newConference = new Olcon({
       deskripsi: "Expert in JavaScript and modern web frameworks.",
     },
     materi: [{
-      materiJudul: "ModuleTETEK",
-      jamBerapa: new Date("2024-10-26T10:00:00Z"),
+      materiJudul: "Open Gate",
+      jamBerapa: new Date("2024-10-27T03:30:00Z"),
     },
     {
-      materiJudul: "ModuleTITIT",
-      jamBerapa: new Date("2024-10-26T10:00:00Z"),
+      materiJudul: "Seminar",
+      jamBerapa: new Date("2024-10-27T04:20:00Z"),
     },
     {
-      materiJudul: "ModuleOLCSS",
-      jamBerapa: new Date("2024-10-26T10:00:00Z"),
+      materiJudul: "Sesi QnA",
+      jamBerapa: new Date("2024-10-27T05:55:00Z"),
     }
   ]
   },
   {
-    judulSesi: "Building Scalable Applications with Node.js",
-    waktu: new Date("2024-10-26T10:00:00Z"),
-    lokasi: "Auditorium FMIPA Lantai 1 Universitas Gadjah Mada",
-    platform: "Microsoft Teams",
+    judulSesi: "IT Networking Power Connecting Minds, Building Futures",
+    waktu: new Date("2024-11-03T03:00:00Z"),
+    Lokasi: "Auditorium FMIPA Lantai 1 Universitas Gadjah Mada",
+    platform: "",
     deskripsi:
-      "Learn to build scalable, high-performance applications using Node.js and Express.",
+      `“IT Networking Power Connecting Minds, Building Futures”. Di industri IT yang semakin kompetitif, membangun sebuah reputasi yang positif serta kemampuan berkolaborasi sangat diperlukan.`,
     mentor: {
       nama: "John Doe",
       fotoMentor: {
@@ -365,16 +365,16 @@ const newConference = new Olcon({
         "Backend expert with extensive experience in Node.js and cloud infrastructure.",
     },
     materi: [{
-      materiJudul: "ModuleENTOT",
-      jamBerapa: new Date("2024-10-26T10:00:00Z"),
+      materiJudul: "Open Gate",
+      jamBerapa: new Date("2024-11-03T03:00:00Z"),
     },
     {
-      materiJudul: "ModulePEPEK",
-      jamBerapa: new Date("2024-10-26T10:00:00Z"),
+      materiJudul: "Seminar",
+      jamBerapa: new Date("2024-11-03T03:40:00Z"),
     },
     {
-      materiJudul: "ModuleKONTOL",
-      jamBerapa: new Date("2024-10-26T10:00:00Z"),
+      materiJudul: "Sesi QnA",
+      jamBerapa: new Date("2024-11-03T05:10:00Z"),
     }
   ]
   },
