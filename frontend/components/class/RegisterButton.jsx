@@ -42,6 +42,14 @@ const RegisterButton = ({ classSlug }) => {
     );
   }
 
+  if(Date.now() >= new Date("2024-10-27T03:00:00.000Z")){
+    return(
+      <Button variant="secondary" className={`w-full`} disabled>
+        Pendaftaran Ditutup, OLC Sudah Dimulai
+      </Button>
+    );
+  }
+
   return (
     <Button variant="secondary" className={`w-full`} onClick={handleAction}>
       {buttonText}

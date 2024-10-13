@@ -63,20 +63,24 @@ const RegisterButton = () => {
     }
   };
 
-  const buttonContent =
-    loading || loading2 ? (
-      <Button variant={`secondary`} className={`w-full`} disabled>
-        <PropagateLoader size={4} color={`#ffffff`} />
-      </Button>
-    ) : loggedIn && isEnrolled ? (
-      <Button disabled variant="secondary" className={`w-full`}>
-        Anda sudah terdaftarkan OLCon
-      </Button>
-    ) : (
-      <Button variant="secondary" className={`w-full`}>
-        Enroll
-      </Button>
-    );
+  const buttonContent = loading || loading2 ? (
+    <Button variant={`secondary`} className={`w-full`} disabled>
+      <PropagateLoader size={4} color={`#ffffff`} />
+    </Button>
+  ) : loggedIn && isEnrolled ? (
+    <Button disabled variant="secondary" className={`w-full`}>
+      Anda sudah terdaftarkan OLCon
+    </Button>
+  ) : (Date.now() >= new Date("2024-10-27T03:00:00.000Z")) ? ( // Add this condition
+    <Button disabled variant="secondary" className={`w-full`}>
+      Pendaftaran Ditutup, OLCon Sudah Dimulai
+    </Button>
+  ) : (
+    <Button variant="secondary" className={`w-full`}>
+      Enroll
+    </Button>
+  );
+  
 
   return (
     <>

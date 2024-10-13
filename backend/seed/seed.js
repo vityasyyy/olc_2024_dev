@@ -26,7 +26,7 @@ mongoose
       slots: 40,
       penugasan: {
         bukaPenugasan: new Date("2024-10-29T03:00:00Z"),
-        deadline: new Date("2024-09-25T10:00:00Z"),
+        deadline: new Date("2024-11-02T03:00:00Z"),
         linkTugas: "https://example.com/assignment",
       },
       mentor: {
@@ -100,7 +100,7 @@ mongoose
       slots: 40,
       penugasan: {
         bukaPenugasan: new Date("2024-10-29T03:00:00Z"),
-        deadline: new Date("2024-09-25T10:00:00Z"),
+        deadline: new Date("2024-11-02T03:00:00Z"),
         linkTugas: "https://example.com/assignment",
       },
       mentor: {
@@ -174,7 +174,7 @@ mongoose
       slots: 40,
       penugasan: {
         bukaPenugasan: new Date("2024-10-29T03:00:00Z"),
-        deadline: new Date("2024-09-25T10:00:00Z"),
+        deadline: new Date("2024-11-02T03:00:00Z"),
         linkTugas: "https://example.com/assignment",
       },
       mentor: {
@@ -248,7 +248,7 @@ mongoose
       slots: 40,
       penugasan: {
         bukaPenugasan: new Date("2024-10-29T03:00:00Z"),
-        deadline: new Date("2024-09-25T10:00:00Z"),
+        deadline: new Date("2024-11-02T03:00:00Z"),
         linkTugas: "https://example.com/assignment",
       },
       mentor: {

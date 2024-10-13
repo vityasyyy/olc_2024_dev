@@ -135,7 +135,7 @@ const ClassDescriptionAndProgress = ({ classDetail, DAY, progress }) => {
       <div className={`flex flex-col gap-4`}>
         {/* class description */}
         <div className="flex flex-col *:text-black">
-          <h3 className="font-semibold lg:mb-2 lg:text-2xl">Tentang Kelas</h3>
+          <h3 className="font-semibold lg:mb-2 lg:text-2xl">Tentang Seminar</h3>
           <p>{classDetail.sesi[DAY].deskripsi}</p>
         </div>
 
