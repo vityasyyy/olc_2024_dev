@@ -28,6 +28,7 @@ const sessionSchema = new Schema({
 });
 
 const penugasanSchema = new Schema({
+  bukaPenugasan: Date,
   deadline: Date,
   linkTugas: String,
 })

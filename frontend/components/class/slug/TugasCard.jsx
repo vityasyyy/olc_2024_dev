@@ -2,7 +2,9 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export default function TugasCard({ tugasObject = null, className }) {
-  const dateObj = new Date(tugasObject.deadline);
+  const currentTime = Date.now();
+  const bukaPenugasan = new Date(tugasObject.bukaPenugasan);
+  const dateObj = currentTime <= bukaPenugasan ? bukaPenugasan : new Date(tugasObject.deadline);
 
   // Get the time in HH:mm format
   const time = dateObj.toLocaleTimeString("en-GB", {
@@ -32,14 +34,22 @@ export default function TugasCard({ tugasObject = null, className }) {
       {/*  lower part, download file and tanggal*/}
       <div className={`flex flex-row items-end justify-between`}>
         {/* tanggal */}
-        <div className={`flex flex-col text-sm`}>
-          <p className={`font-bold text-custom-blue-dark`}>Deadline</p>
-          <p className={`font-medium text-white`}>{time} WIB</p>
-          <p className={`font-medium text-white`}>{date}</p>
-        </div>
+        {currentTime <= bukaPenugasan ? 
+          <div className={`flex flex-col text-sm`}>
+            <p className={`font-bold text-custom-blue-dark`}>Tugas Dapat Diunduh Pada:</p>
+            <p className={`font-medium text-white`}>{time} WIB</p>
+            <p className={`font-medium text-white`}>{date}</p>
+          </div> : 
+          <div className={`flex flex-col text-sm`}>
+            <p className={`font-bold text-custom-blue-dark`}>Deadline:</p>
+            <p className={`font-medium text-white`}>{time} WIB</p>
+            <p className={`font-medium text-white`}>{date}</p>
+          </div>
+        }
+
 
         {/*  download file button */}
-        <Link
+        {currentTime >= bukaPenugasan ? <Link
           href={tugasObject.linkTugas}
           target={`_blank`}
           rel="noopener noreferrer"
@@ -49,9 +59,16 @@ export default function TugasCard({ tugasObject = null, className }) {
             variant="secondary"
             className={`bg-custom-blue-darker bg-custom-blue-darker/80 px-4`}
           >
-            Download File
+            Unduh Penugasan
           </Button>
-        </Link>
+        </Link> : <Button
+            variant="secondary"
+            className={`bg-custom-blue-darker bg-custom-blue-darker/80 px-4`} disabled
+          >
+            Penugasan Belum Dapat Diunduh
+          </Button>
+        }
+        
       </div>
     </div>
   );

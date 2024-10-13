@@ -25,6 +25,7 @@ mongoose
       enrolledBy: [],
       slots: 40,
       penugasan: {
+        bukaPenugasan: new Date("2024-10-29T03:00:00Z"),
         deadline: new Date("2024-09-25T10:00:00Z"),
         linkTugas: "https://example.com/assignment",
       },
@@ -52,7 +53,7 @@ mongoose
         },
         {
           judulSesi: "Application Security",
-          waktu: new Date("2024-09-19T03:00:00Z"),
+          waktu: new Date("2024-10-29T03:00:00Z"),
           platform: "Zoom",
           deskripsiSingkat:
             "Explore the fundamentals of securing computer networks.",
@@ -98,6 +99,7 @@ mongoose
       enrolledBy: [],
       slots: 40,
       penugasan: {
+        bukaPenugasan: new Date("2024-10-29T03:00:00Z"),
         deadline: new Date("2024-09-25T10:00:00Z"),
         linkTugas: "https://example.com/assignment",
       },
@@ -171,6 +173,7 @@ mongoose
       enrolledBy: [],
       slots: 40,
       penugasan: {
+        bukaPenugasan: new Date("2024-10-29T03:00:00Z"),
         deadline: new Date("2024-09-25T10:00:00Z"),
         linkTugas: "https://example.com/assignment",
       },
@@ -244,6 +247,7 @@ mongoose
       enrolledBy: [],
       slots: 40,
       penugasan: {
+        bukaPenugasan: new Date("2024-10-29T03:00:00Z"),
         deadline: new Date("2024-09-25T10:00:00Z"),
         linkTugas: "https://example.com/assignment",
       },

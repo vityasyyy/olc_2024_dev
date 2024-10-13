@@ -42,3 +42,11 @@ module.exports.isAuthenticated = async (req, res, next) => {
         res.status(400).json({ error: 'Invalid token' });
     }
 };
+
+module.exports.isPastDate = async (req, res, next) => {
+    const dateNow = Date.now();
+    if(dateNow > new Date("2024-10-27T00:00:00.000Z")) {
+        return res.status(400).json({ error: 'UDAH TUTUP WOIIIIII' });
+    }
+    next();
+}

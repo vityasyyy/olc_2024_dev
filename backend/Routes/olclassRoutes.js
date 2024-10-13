@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router({mergeParams: true});
 const {enroll,getAllClasses, getOneClass, getIdFromSlug} = require('../Controllers/olclassController');
-const {isAuthenticated} = require('../Utils/middlewares');
+const {isAuthenticated, isPastDate} = require('../Utils/middlewares');
 
 
 router.get('/', getAllClasses);
 router.get('/:slug', getOneClass);
-router.post('/:slug/enroll', isAuthenticated, enroll);
+router.post('/:slug/enroll', isAuthenticated, isPastDate, enroll);
 
 module.exports = router;
