@@ -3,7 +3,7 @@ const Olclass = require("../Models/olclass"); // Adjust path to your Olclass mod
 const Olcon = require("../Models/olcon"); // Adjust path to your Olcon model
 
 mongoose
-  .connect("K")
+  .connect("")
   .then(() => {
     console.log("MongoDB connection established!");
   })
@@ -322,7 +322,7 @@ const newConference = new Olcon({
   sesi: [{
     judulSesi: "Surviving the AI Wave: How IT Enthusiasts Can Thrive in the New Age",
     waktu: new Date("2024-10-27T03:30:00Z"),
-    Lokasi: "Auditorium FMIPA Lantai 7 Universitas Gadjah Mada",
+    Lokasi: "Auditorium Lantai 7 FMIPA UGM",
     platform: "",
     deskripsi:
       "Surviving the AI Wave: How IT Enthusiasts Can Thrive in the New Age. Di dalam dunia IT, ada banyak jenis profesi yang dapat dipilih. Dari Software Engineering hingga Cyber Security, dari data analysis hingga web development, tetapi dengan adanya gelombang pengembangan AI yang semakin nampak, dibutuhkannya skillset baru yang dapat beradaptasi dengan perkembangan signifikan ini, hal tersebut menjadi sebuah tantangan baru, terutama untuk para mahasiswa yang baru  memulai perjalanan mereka di bidang IT.",
@@ -351,7 +351,7 @@ const newConference = new Olcon({
   {
     judulSesi: "IT Networking Power Connecting Minds, Building Futures",
     waktu: new Date("2024-11-03T03:00:00Z"),
-    Lokasi: "Auditorium FMIPA Lantai 1 Universitas Gadjah Mada",
+    Lokasi: "Auditorium Lantai 1 FMIPA UGM",
     platform: "",
     deskripsi:
       `“IT Networking Power Connecting Minds, Building Futures”. Di industri IT yang semakin kompetitif, membangun sebuah reputasi yang positif serta kemampuan berkolaborasi sangat diperlukan.`,

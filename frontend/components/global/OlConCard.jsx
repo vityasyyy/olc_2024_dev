@@ -58,7 +58,7 @@ export const Card = ({ object, idx = 0 }) => {
           <p className="flex items-center">
             <MapPin className="mr-2 h-4 w-4" />
             <span className="transition duration-500 ease-in-out group-hover:text-custom-brown-light">
-              {object.sesi[idx].platform}
+              {object.sesi[idx].Lokasi}
             </span>
           </p>
         </div>
