@@ -1,6 +1,9 @@
+require('dotenv').config();
 const mongoose = require("mongoose");
 const Olclass = require("../Models/olclass"); // Adjust path to your Olclass model
 const Olcon = require("../Models/olcon"); // Adjust path to your Olcon model
+
+const mongouri = process.env.MONGODB_URI;
 
 mongoose
   .connect("")
@@ -30,10 +33,10 @@ mongoose
         linkTugas: "https://example.com/assignment",
       },
       mentor: {
-        nama: "Bob Smith",
+        nama: "David and Goliath",
         fotoMentor: {
-          url: "https://example.com/photo-bob.jpg",
-          filename: "photo-bob.jpg",
+          url: "https://res.cloudinary.com/dlfriigdo/image/upload/v1722925358/david-1_bdouso.png",
+          filename: "david-1_bdouso.png",
         },
         deskripsi:
           "Cyber security expert with over a decade of experience in ethical hacking and network security.",
@@ -104,10 +107,10 @@ mongoose
         linkTugas: "https://example.com/assignment",
       },
       mentor: {
-        nama: "Charlie Lee",
+        nama: "SULTAN DEVINO SUYUDI",
         fotoMentor: {
-          url: "https://example.com/photo-charlie.jpg",
-          filename: "photo-charlie.jpg",
+          url: "https://res.cloudinary.com/dlfriigdo/image/upload/v1722925345/devin_oceuh3.png",
+          filename: "devin_oceuh3.png",
         },
         deskripsi:
           "Data scientist with a background in machine learning and big data analytics.",
@@ -178,10 +181,10 @@ mongoose
         linkTugas: "https://example.com/assignment",
       },
       mentor: {
-        nama: "Alice Johnson",
+        nama: "VITYASU",
         fotoMentor: {
-          url: "https://example.com/photo-alice.jpg",
-          filename: "photo-alice.jpg",
+          url: "https://res.cloudinary.com/dlfriigdo/image/upload/v1722925674/argya_1_g1squ5.png",
+          filename: "argya_1_g1squ5.png",
         },
         deskripsi:
           "Experienced full-stack developer with expertise in MERN stack and cloud infrastructure.",
@@ -252,18 +255,18 @@ mongoose
         linkTugas: "https://example.com/assignment",
       },
       mentor: {
-        nama: "Diana Lopez",
+        nama: "Yoddie Babuta",
         fotoMentor: {
-          url: "https://example.com/photo-diana.jpg",
-          filename: "photo-diana.jpg",
+          url: "https://res.cloudinary.com/dlfriigdo/image/upload/v1728820686/mentor_uiux_vdbqtl.jpg",
+          filename: "mentor_uiux_vdbqtl.jpg",
         },
         deskripsi:
-          "UI/UX expert with a decade of experience in designing intuitive and accessible user interfaces.",
+          "Senior Game Designer Gameloft, ex-Art Director and ex-2D game artist.",
       },
       sesi: [
         {
           judulSesi: "UX Principles and Design Thinking",
-          waktu: new Date("2024-10-28T16:00:00Z"),
+          waktu: new Date("2024-10-28T03:00:00Z"),
           platform: "Zoom",
           deskripsiSingkat:
             "Explore the basics of UI/UX design and its importance in product development.",
@@ -275,7 +278,7 @@ mongoose
         },
         {
           judulSesi: "Visual Design and Interaction Design",
-          waktu: new Date("2024-10-29T16:00:00Z"),
+          waktu: new Date("2024-10-29T03:00:00Z"),
           platform: "Zoom",
           deskripsiSingkat:
             "Learn how to create wireframes and prototypes using industry-standard tools.",
@@ -319,8 +322,8 @@ const seedOlclass = async () => {
 };
 
 const newConference = new Olcon({
-  slug: "javascript-conference-2024",
-  title: "JavaScript Conference 2024",
+  slug: "olcon-2024",
+  title: "OLConvention 2024",
   email: ["example1@example.com", "example2@example.com"], // Example emails
   slots: 40,
   sesi: [{

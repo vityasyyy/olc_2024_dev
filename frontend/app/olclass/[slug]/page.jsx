@@ -32,7 +32,7 @@ const ClassDetail = async ({ params }) => {
           <Avatar
             nama={classDetail.mentor?.nama}
             deskripsi={classDetail.mentor?.deskripsi}
-            src={classDetail.mentor?.image}
+            src={classDetail.mentor?.fotoMentor.url}
             alt={classDetail.mentor?.nama}
           />
 

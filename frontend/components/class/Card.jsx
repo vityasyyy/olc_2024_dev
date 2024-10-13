@@ -24,11 +24,12 @@ const Card = ({
 };
 
 const CardImage = ({ src, alt, label }) => (
-  <div className="relative max-h-36 w-full overflow-hidden rounded-t-xl">
+  <div className="relative h-36 w-full overflow-hidden rounded-t-xl">
     <Image
       src={src}
       alt={alt}
-      className="layout-fill h-full w-full rounded-t-xl object-cover"
+      fill
+      className="h-full w-full rounded-t-xl object-cover"
     />
     <span className="absolute left-3 top-3 mr-8 rounded-md bg-custom-blue px-2 py-1 text-sm font-medium">
       {label}

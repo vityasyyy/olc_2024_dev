@@ -109,6 +109,7 @@ const Classes = ({ classes }) => {
                   <Card
                     label={item.divisi}
                     judul={item.title}
+                    src={item.mentor.fotoMentor.url}
                     tanggal={
                       item.waktuStart && item.waktuEnd
                         ? `${formatDate(item.waktuStart)} - ${formatDate(item.waktuEnd)}`
