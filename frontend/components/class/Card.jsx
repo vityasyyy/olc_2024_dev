@@ -15,7 +15,7 @@ const Card = ({
 }) => {
   return (
     <div
-      className={`group flex max-h-80 w-full auto-rows-fr flex-col overflow-hidden rounded-xl border-[1px] border-custom-blue-dark shadow-sm transition-all hover:-translate-y-[1px] hover:shadow-xl ${className}`}
+      className={`group flex h-full w-full auto-rows-fr flex-col overflow-hidden rounded-xl border-[1px] border-custom-blue-dark shadow-sm transition-all hover:-translate-y-[1px] hover:shadow-xl ${className}`}
     >
       <CardImage src={src} alt={imageAlt} label={label} />
       <CardContent judul={judul} tanggal={tanggal} href={href} />
@@ -24,7 +24,7 @@ const Card = ({
 };
 
 const CardImage = ({ src, alt, label }) => (
-  <div className="relative h-2/5 w-full overflow-hidden rounded-t-xl">
+  <div className="relative max-h-36 w-full overflow-hidden rounded-t-xl">
     <Image
       src={src}
       alt={alt}

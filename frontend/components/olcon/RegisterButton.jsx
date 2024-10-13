@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "../ui/button";
 import { Input } from "@/components/ui/input";
@@ -25,10 +25,6 @@ const RegisterButton = () => {
   const [error, setError] = useState(null); // Error state
   const [loading2, loggedIn, isEnrolled] = useEnrolled();
   const router = useRouter();
-
-  const handleAction = () => {
-    setIsModalOpen(true); // Open modal on button click
-  };
 
   const handleConfirm = async () => {
     setLoading(true);
@@ -67,12 +63,19 @@ const RegisterButton = () => {
     }
   };
 
+  useEffect(() => {
+    console.log("loading: ", loading);
+    console.log("loading2: ", loading2);
+    console.log("loggedIn: ", loggedIn);
+    console.log("isEnrolled: ", isEnrolled);
+  }, [isEnrolled, loggedIn, loading, loading2]);
+
   const buttonContent =
     loading || loading2 ? (
       <Button variant={`secondary`} className={`w-full`} disabled>
         <PropagateLoader size={4} color={`#ffffff`} />
       </Button>
-    ) : isEnrolled ? (
+    ) : loggedIn && isEnrolled ? (
       <Button disabled variant="secondary" className={`w-full`}>
         Anda sudah terdaftarkan OLCon
       </Button>

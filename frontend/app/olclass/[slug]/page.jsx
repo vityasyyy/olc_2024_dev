@@ -27,8 +27,8 @@ const ClassDetail = async ({ params }) => {
       <BackButton black />
       <h1 className="my-8 text-4xl font-bold">{classDetail.title}</h1>
 
-      <div className="flex w-full flex-col gap-6 lg:flex-row">
-        <div className="flex flex-col gap-6 sm:flex-row lg:w-1/2">
+      <div className="grid w-full grid-cols-1 gap-6 lg:grid-cols-4">
+        <div className="col-span-1 flex flex-col gap-6 sm:flex-row">
           <Avatar
             nama={classDetail.mentor?.nama}
             deskripsi={classDetail.mentor?.deskripsi}
@@ -45,7 +45,7 @@ const ClassDetail = async ({ params }) => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-6">
+        <div className="col-span-1 flex flex-col gap-6 lg:col-span-3">
           <div className="hidden lg:block">
             <ClassDescriptionAndProgress
               classDetail={classDetail}

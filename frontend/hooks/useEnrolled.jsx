@@ -1,12 +1,12 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 
 export default function useEnrolled() {
   const [loading, setLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isEnrolled, setIsEnrolled] = useState(false);
-  const router = useRouter();
+  // const router = useRouter();
 
   const fetchEnrolledClass = async () => {
     const token = localStorage.getItem("token");
@@ -38,15 +38,15 @@ export default function useEnrolled() {
         .then((response) => {
           if (response.ok) {
             setIsLoggedIn(true);
-            setLoading(false);
           } else {
             setIsLoggedIn(false);
-            setLoading(false);
           }
         })
         .catch(() => setIsLoggedIn(false));
     }
-    fetchEnrolledClass();
+    setLoading(false);
+
+    fetchEnrolledClass().catch();
   }, []);
 
   return [loading, isLoggedIn, isEnrolled];

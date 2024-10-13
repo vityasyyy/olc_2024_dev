@@ -18,6 +18,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { PropagateLoader } from "react-spinners";
 
 const Payment = () => {
   const params = useParams();
@@ -57,10 +58,28 @@ const Payment = () => {
       } else {
         setError("Failed to fetch enrolled classes.");
       }
+
+      setLoading(false);
     };
 
-    fetchData();
+    fetchData().catch();
   }, [router, slug]);
+
+  if (loading) {
+    return (
+      <>
+        <div className="grid grid-cols-1 md:h-screen md:grid-cols-2 md:overflow-hidden">
+          {/* left/top */}
+          <div className="h-[50vh] bg-custom-blue-darker px-[min(5vw,32px)] py-8 md:h-screen">
+            <BackButton />
+          </div>
+
+          {/* right/bottom/form */}
+          <div className="flex flex-col justify-center gap-1 overscroll-contain bg-white px-[min(5vw,32px)] py-8 duration-700 animate-in fade-in md:overflow-auto md:overscroll-y-contain md:pb-24 md:pt-56"></div>
+        </div>
+      </>
+    );
+  }
 
   return (
     <>
@@ -89,6 +108,7 @@ const Payment = () => {
                 src={`/global/main.png`}
                 className={`z-10 object-cover`}
                 fill
+                sizes={`100%`}
                 alt={`OmahTI Learning Center`}
                 priority
               />
@@ -104,7 +124,7 @@ const Payment = () => {
           </div>
 
           {/* form */}
-          <PaymentForm slug={slug} isDike={isDike}/>
+          <PaymentForm slug={slug} isDike={isDike} />
         </div>
       </div>
     </>
@@ -116,7 +136,6 @@ export default Payment;
 const PaymentForm = ({ slug, className, isDike }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false); // Track modal state
   const router = useRouter();
   const handleEnrollment = async () => {
     setLoading(true);
@@ -144,14 +163,29 @@ const PaymentForm = ({ slug, className, isDike }) => {
       setError(err.message);
     } finally {
       setLoading(false);
-      setIsModalOpen(false); // Close modal after submission
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsModalOpen(true); // Open modal on submit
   };
+
+  let buttonContent = loading ? (
+    <Button
+      disabled
+      variant={`secondary`}
+      className={`py-3 text-sm font-medium sm:text-base`}
+    >
+      <PropagateLoader size={4} color={`#ffffff`} />
+    </Button>
+  ) : (
+    <Button
+      variant={`secondary`}
+      className={`py-3 text-sm font-medium sm:text-base`}
+    >
+      Submit
+    </Button>
+  );
 
   return (
     <div
@@ -168,7 +202,11 @@ const PaymentForm = ({ slug, className, isDike }) => {
           <ol className="mx-2 list-outside list-disc pl-3 text-sm text-custom-black">
             <li>Pembayaran seharga IDR 75.000</li>
             {isDike || <li>Biaya pendaftaran sebesar IDR 5.000</li>}
-            {isDike || <li><b>Total Pembayaran seharga IDR 80.000</b></li>}
+            {isDike || (
+              <li>
+                <b>Total Pembayaran seharga IDR 80.000</b>
+              </li>
+            )}
             <li>
               Pembayaran transfer kepada{" "}
               <strong>BNI a.n Andreandhiki (083456688)</strong>
@@ -180,14 +218,7 @@ const PaymentForm = ({ slug, className, isDike }) => {
         </div>
         <UploadButton />
         <AlertDialog>
-          <AlertDialogTrigger asChild>
-            <Button
-              variant={`secondary`}
-              className={`py-3 text-sm font-medium sm:text-base`}
-            >
-              Submit
-            </Button>
-          </AlertDialogTrigger>
+          <AlertDialogTrigger asChild>{buttonContent}</AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>
               <AlertDialogTitle>Confirm Enrollment</AlertDialogTitle>

@@ -20,7 +20,7 @@ export default function Hero() {
 
         {/* image with a bunch of wrappers */}
         <div
-          className={`absolute bottom-[-2rem] left-[45%] z-10 h-96 w-full -translate-x-1/2 overflow-visible sm:left-auto sm:right-[-5rem] sm:h-[90vh] sm:w-[70vw] sm:translate-x-0`}
+          className={`absolute bottom-[-2rem] left-[45%] z-10 h-96 w-full -translate-x-1/2 overflow-visible sm:left-auto sm:right-[-5rem] sm:h-[90vh] sm:w-full sm:translate-x-0 md:w-[70vw]`}
         >
           <div className={`relative h-full w-full overflow-visible`}>
             {/* actual image */}

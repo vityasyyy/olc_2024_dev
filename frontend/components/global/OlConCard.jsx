@@ -5,11 +5,11 @@ export const Card = ({ object, idx = 0 }) => {
   // Create a Date object
   const dateObj = new Date(object.sesi[idx].waktu);
 
-  // Get the time in HH:mm format
-  const time = dateObj.toLocaleTimeString("en-GB", {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
+  // // Get the time in HH:mm format
+  // const time = dateObj.toLocaleTimeString("en-GB", {
+  //   hour: "2-digit",
+  //   minute: "2-digit",
+  // });
 
   // Get the date in "2 October 2024" format
   const dateFormatter = new Intl.DateTimeFormat("en-GB", {
@@ -25,6 +25,7 @@ export const Card = ({ object, idx = 0 }) => {
         src={`/olcon/${object.sesi[idx].mentor?.fotoMentor.filename || "../placeholder.svg"}`}
         alt="OLConvention"
         fill
+        sizes={`100%`}
         className="z-0 object-cover transition-transform duration-700 ease-out group-hover:scale-105"
       ></Image>
 

@@ -7,7 +7,7 @@ const Card = ({
   idx,
   judul = "Introduction to IT World",
   description = [""],
-  href = "#",
+  // href = "#",
   src = "/hero/macbook.png",
 }) => {
   return (
@@ -17,6 +17,7 @@ const Card = ({
       <Image
         src={src}
         fill
+        sizes={`100%`}
         className="z-0 object-contain"
         alt="OLConvention"
       ></Image>
