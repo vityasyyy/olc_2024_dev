@@ -26,7 +26,7 @@ export default function OLConButton({ idx = 1 }) {
   }
 
   return (
-    <Link href="/auth/login" className="w-full">
+    <Link href="/olcon/day-1" className="w-full">
       <Button className="w-full">Daftar Sekarang</Button>
     </Link>
   );

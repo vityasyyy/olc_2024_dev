@@ -60,7 +60,7 @@ const WhatsappToast = (className) => {
           <p className="mr-2 text-xs font-medium sm:text-sm">
             Gabung grup Whatsapp
           </p>
-          <Link href={`https://whatsapp.com`}>
+          <Link href={`https://chat.whatsapp.com/CVSvOsn1sEF7IpvUBAiSLE`}>
             <Button variant="secondary" className="ml-auto text-xs">
               Gabung
             </Button>
