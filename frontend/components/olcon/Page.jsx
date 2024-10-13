@@ -37,8 +37,8 @@ const OLConDetail = async ({ DAY }) => {
             <>
               <Link href={`/olcon/day-1`}>
                 <Button variant="link" className="p-0">
+                <ArrowLeft className="mr-2 h-4 w-4" />
                   Day 1
-                  <ArrowLeft className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
             </>
