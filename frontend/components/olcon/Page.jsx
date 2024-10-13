@@ -20,6 +20,7 @@ const OLConDetail = async ({ DAY }) => {
   return (
     <>
       <ContainerLarge className="text-custom-blue-dark" parentClass="bg-white">
+        {/* href arrows */}
         <div className="inline-flex flex-row gap-12">
           {DAY === 0 ? (
             <>
@@ -43,10 +44,13 @@ const OLConDetail = async ({ DAY }) => {
             </>
           )}
         </div>
+
+        {/* title */}
         <h1 className="my-8 text-4xl font-bold">{olcon.sesi[DAY].judulSesi}</h1>
 
-        <div className="flex w-full flex-col gap-6 lg:flex-row">
-          <div className="flex flex-col gap-6 sm:flex-row lg:w-1/2">
+        {/* main content */}
+        <div className="grid w-full grid-cols-1 gap-6 lg:grid-cols-4">
+          <div className="flex auto-cols-max flex-col gap-6 sm:flex-row">
             <Avatar
               nama={olcon.sesi[DAY].mentor?.nama}
               deskripsi={olcon.sesi[DAY].mentor?.deskripsi}
@@ -64,7 +68,7 @@ const OLConDetail = async ({ DAY }) => {
             </div>
           </div>
 
-          <div className="flex flex-col gap-6">
+          <div className="col-span-3 flex flex-col gap-6">
             {/* ON LARGE SCREENS */}
             <div className="hidden w-full lg:block">
               <ClassDescriptionAndProgress

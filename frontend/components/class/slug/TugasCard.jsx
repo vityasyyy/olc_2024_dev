@@ -42,6 +42,7 @@ export default function TugasCard({ tugasObject = null, className }) {
         <Link
           href={tugasObject.linkTugas}
           target={`_blank`}
+          rel="noopener noreferrer"
           className="ml-auto mt-auto"
         >
           <Button

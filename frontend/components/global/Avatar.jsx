@@ -9,7 +9,7 @@ const Avatar = ({
 }) => {
   return (
     <div
-      className={`flex h-[70vh] w-full max-w-sm flex-col gap-4 lg:h-full lg:max-w-none`}
+      className={`col-span-1 flex h-[70vh] w-full max-w-sm flex-col gap-4 lg:h-full lg:max-w-none`}
     >
       {/* the actual avatar image */}
       <div

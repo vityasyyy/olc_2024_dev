@@ -54,6 +54,7 @@ const CardDrawer = ({
                   className={`ml-auto ${loggedIn || "pointer-events-none"}`}
                   aria-disabled={!loggedIn}
                   target={`_blank`}
+                  rel="noopener noreferrer"
                   tabIndex={!loggedIn ? -1 : undefined}
                 >
                   {loading || (
