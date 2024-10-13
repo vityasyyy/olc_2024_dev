@@ -63,13 +63,6 @@ const RegisterButton = () => {
     }
   };
 
-  useEffect(() => {
-    console.log("loading: ", loading);
-    console.log("loading2: ", loading2);
-    console.log("loggedIn: ", loggedIn);
-    console.log("isEnrolled: ", isEnrolled);
-  }, [isEnrolled, loggedIn, loading, loading2]);
-
   const buttonContent =
     loading || loading2 ? (
       <Button variant={`secondary`} className={`w-full`} disabled>

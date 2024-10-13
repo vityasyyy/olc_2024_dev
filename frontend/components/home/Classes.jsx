@@ -69,7 +69,7 @@ const Card = ({
               {/* title */}
               <h1 className="text-2xl font-semibold sm:text-4xl">{judul}</h1>
               {/* moderator */}
-              <p className="text-sm sm:text-lg">Moderator: {nama}</p>
+              <p className="text-sm sm:text-lg">Mentor: {nama}</p>
               {/* description */}
               <p className="text-sm">{description}</p>
             </div>
