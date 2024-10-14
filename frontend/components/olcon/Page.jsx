@@ -100,7 +100,7 @@ const OLConDetail = async ({ DAY }) => {
                         hour: "2-digit",
                         minute: "2-digit",
                       },
-                    )}
+                    )} tempat={session.tempat}
                   />
                 </div>
               ))}

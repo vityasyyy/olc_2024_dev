@@ -35,6 +35,7 @@ const Classes = async () => {
             nama={item.mentor.nama}
             description={item.mentor.deskripsi}
             key={item._id}
+            src={item.mentor.fotoMentor.url}
             materi={item.sesi.map((sesi) => sesi.judulSesi).join(", ")}
           />
         ))}

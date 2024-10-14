@@ -45,12 +45,12 @@ const CardDrawer = ({
             <DrawerHeader>
               <DrawerTitle>{judul}</DrawerTitle>
               <DrawerDescription>
-                {deskripsi}
+                {tanggal}
                 <br />
                 <p> </p>
-                <p className="mt-2">Curriculum: {kurikulum}</p>
+                <p className="mt-2">Jam: {jam}</p>
                 <Link
-                  href={href}
+                  href="https://mipa.ugm.ac.id/peta-kampus/"
                   className={`ml-auto ${loggedIn || "pointer-events-none"}`}
                   aria-disabled={!loggedIn}
                   target={`_blank`}
@@ -59,7 +59,6 @@ const CardDrawer = ({
                 >
                   {loading || (
                     <Button className={`gap-0.5 p-0`} variant={`link`}>
-                      <Link2 className={`h-4`} />
                       {tempat}
                     </Button>
                   )}
