@@ -37,7 +37,7 @@ const Classes = ({ classes }) => {
       }
     };
 
-    fetchEnrolledClass();
+    fetchEnrolledClass().catch();
   }, []);
 
   if (loading) {

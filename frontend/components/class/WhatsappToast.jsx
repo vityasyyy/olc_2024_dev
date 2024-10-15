@@ -45,7 +45,7 @@ const WhatsappToast = (className) => {
       }
     };
 
-    fetchEnrolledClass();
+    fetchEnrolledClass().catch();
   }, []);
 
   if (loading) return <></>;

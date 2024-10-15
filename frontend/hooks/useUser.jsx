@@ -27,7 +27,7 @@ export default function useUser() {
       setLoading(false);
     }
 
-    fetchUser();
+    fetchUser().catch();
   }, []);
 
   return [loading, loggedIn];

@@ -7,8 +7,6 @@ import { useEffect, useState } from "react";
 export default function BackButtonOLCon() {
   const [enrolledClass, setEnrolledClass] = useState(false);
   const [loading, setLoading] = useState(true); // Start loading as true
-  const [error, setError] = useState("");
-  const [olcon, setOlcon] = useState(null);
   useEffect(() => {
     const fetchEnrolledClass = async () => {
       const token = localStorage.getItem("token");
@@ -28,16 +26,24 @@ export default function BackButtonOLCon() {
         }
         setEnrolledClass(true); // Assume classData is a single olclass object
       } catch (err) {
-        setError(err.message);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchEnrolledClass();
+    fetchEnrolledClass().catch();
   }, []);
 
   let linkHref = enrolledClass ? "/olclass" : "/../";
+
+  if (loading) {
+    return (
+      <Button variant="link" className="p-0">
+        <ArrowLeft className="mr-2 h-4 w-4" />
+        Kembali
+      </Button>
+    );
+  }
 
   return (
     <Link href={linkHref}>

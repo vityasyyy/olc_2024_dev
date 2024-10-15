@@ -35,7 +35,7 @@ const UserName = () => {
       }
     };
 
-    fetchUser();
+    fetchUser().catch();
   }, [router]);
 
   if (loading) return <Skeleton className="mt-2 h-8 w-96" />;
