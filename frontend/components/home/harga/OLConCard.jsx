@@ -31,7 +31,7 @@ const Card = ({
         <h1 className="text-3xl font-semibold sm:text-4xl">{judul}</h1>
 
         {/* bullet points */}
-        <ul className="mb-2 ml-4 flex max-h-0 list-disc flex-col gap-0.5 opacity-0 transition-all duration-500 ease-in-out group-hover:max-h-96 group-hover:opacity-100 sm:my-4 sm:gap-2">
+        <ul className="mb-2 ml-4 flex list-disc flex-col gap-0.5 transition-all duration-500 ease-in-out sm:my-4 sm:gap-2 lg:max-h-0 lg:opacity-0 lg:group-hover:max-h-96 lg:group-hover:opacity-100">
           {description.map((desc, i) => (
             <li key={i}>{desc}</li>
           ))}

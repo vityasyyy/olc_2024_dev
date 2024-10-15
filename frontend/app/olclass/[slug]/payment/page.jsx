@@ -83,7 +83,7 @@ const Payment = () => {
 
   return (
     <>
-      <div className="grid grid-cols-1 md:h-screen md:grid-cols-2 md:overflow-hidden">
+      <div className="grid grid-cols-1 md:h-screen md:grid-cols-2">
         {/* left/top */}
         <div className="relative h-[50vh] overflow-hidden bg-custom-blue-dark px-[min(5vw,32px)] py-8 md:h-screen">
           <BackButton />
@@ -100,12 +100,12 @@ const Payment = () => {
 
           {/* image with a bunch of wrappers */}
           <div
-            className={`absolute bottom-0 right-0 z-10 h-64 w-64 md:h-[95vh] md:w-[90%]`}
+            className={`absolute bottom-0 right-0 z-10 h-64 w-80 overflow-visible md:h-[95vh] md:w-full`}
           >
-            <div className={`relative h-full w-full`}>
+            <div className={`relative h-full w-full overflow-visible`}>
               {/* actual image */}
               <Image
-                src={`/global/kalidua.png`}
+                src={`/global/payment.png`}
                 className={`z-10 object-cover`}
                 fill
                 sizes={`100%`}
@@ -125,6 +125,7 @@ const Payment = () => {
 
           {/* form */}
           <PaymentForm slug={slug} isDike={isDike} />
+          {error && <p className="mt-2 text-sm text-red-500">{error}</p>}
         </div>
       </div>
     </>
