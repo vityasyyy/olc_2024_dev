@@ -30,9 +30,9 @@ const ClassDetail = async ({ params }) => {
       <div className="grid w-full grid-cols-1 gap-6 lg:grid-cols-4">
         <div className="col-span-1 flex flex-col gap-6 sm:flex-row">
           <Avatar
-            nama={classDetail.mentor?.nama}
-            deskripsi={classDetail.mentor?.deskripsi}
-            src={classDetail.mentor?.fotoMentor.url}
+            nama={classDetail.mentor?.nama === "" ? undefined : classDetail.mentor?.nama}
+            deskripsi={classDetail.mentor?.deskripsi ===  "" ? undefined : classDetail.mentor?.deskripsi}
+            src={classDetail.mentor?.fotoMentor.url === "" ? undefined : classDetail.mentor?.fotoMentor.url}
             alt={classDetail.mentor?.nama}
           />
 

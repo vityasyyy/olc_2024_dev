@@ -22,7 +22,7 @@ export const Card = ({ object, idx = 0 }) => {
   return (
     <div className="group relative h-80 w-full overflow-hidden rounded-lg pb-[10%] sm:mx-auto md:w-full md:pb-[50%]">
       <Image
-        src={`/olcon/${object.sesi[idx].mentor?.fotoMentor.filename || "../placeholder.svg"}`}
+        src={object.sesi[idx].mentor?.fotoMentor.url || "../placeholder.svg"}
         alt="OLConvention"
         fill
         sizes={`100%`}

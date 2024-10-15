@@ -20,7 +20,7 @@ const Harga = async () => {
             idx={1}
             judul="OLConvention Only"
             description={olcononly}
-            src={`https://img.freepik.com/free-photo/female-business-executive-giving-speech_107420-63791.jpg?w=2000&t=st=1728980175~exp=1728980775~hmac=d2b9ac441cab25e0127c0ce6b05127e8a611553372313005bddfde3d2836036f`}
+            src={`/global/konvensi.jpg`}
           />
           <Card
             idx={2}

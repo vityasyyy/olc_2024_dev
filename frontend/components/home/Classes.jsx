@@ -34,10 +34,10 @@ const Classes = async () => {
           <Card
             label={item.divisi}
             judul={item.title}
-            nama={item.mentor.nama}
-            description={item.mentor.deskripsi}
+            nama={item.mentor.nama || "TBA"}
+            description={item.mentor.deskripsi || "TBA"}
             key={item._id}
-            src={item.mentor.fotoMentor.url}
+            src={item.mentor.fotoMentor.url || "/placeholder.svg"}
             materi={item.sesi.map((sesi) => sesi.judulSesi).join(", ")}
           />
         ))}
@@ -49,7 +49,7 @@ const Classes = async () => {
 const Card = ({
   label = "Software Engineering",
   judul = "Nama Judul Kelas",
-  nama = "Fahmi Shampoerna",
+  nama = "TBA",
   src = "placeholder.svg",
   description = "Project Manager at TelkomBeta",
   materi = "Banyak banget yang dipelajari",

@@ -54,7 +54,7 @@ const OLConDetail = async ({ DAY }) => {
             <Avatar
               nama={olcon.sesi[DAY].mentor?.nama}
               deskripsi={olcon.sesi[DAY].mentor?.deskripsi}
-              src={`/olcon/${olcon.sesi[DAY].mentor?.fotoMentor.filename}`}
+              src={olcon.sesi[DAY].mentor?.fotoMentor.url}
               alt={olcon.mentor?.nama}
             />
 

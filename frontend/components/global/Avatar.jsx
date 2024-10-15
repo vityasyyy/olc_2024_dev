@@ -3,8 +3,8 @@ import Image from "next/image";
 const Avatar = ({
   src = "/placeholder.svg",
   alt = "Speaker Image",
-  nama = "Speaker Name",
-  deskripsi = "Speaker Position",
+  nama = "TBA",
+  deskripsi = "TBA",
   className,
 }) => {
   return (
