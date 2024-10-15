@@ -66,6 +66,7 @@ const Classes = ({ classes }) => {
           <div className="grid auto-rows-auto grid-cols-1 gap-4 duration-700 ease-in animate-in fade-in slide-in-from-right-5 sm:grid-cols-2 lg:grid-cols-4">
             <Card
               key={enrolledClass._id}
+              src={enrolledClass.mentor.fotoMentor.coverKelas}
               label={enrolledClass.divisi}
               judul={enrolledClass.title}
               tanggal={
@@ -109,7 +110,7 @@ const Classes = ({ classes }) => {
                   <Card
                     label={item.divisi}
                     judul={item.title}
-                    src={item.mentor.fotoMentor.url === "" ? undefined : item.mentor.fotoMentor.url}
+                    src={item.mentor.fotoMentor.coverKelas === "" ? undefined : item.mentor.fotoMentor.coverKelas}
                     tanggal={
                       item.waktuStart && item.waktuEnd
                         ? `${formatDate(item.waktuStart)} - ${formatDate(item.waktuEnd)}`
