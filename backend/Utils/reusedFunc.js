@@ -1,6 +1,3 @@
-if (process.env.NODE_ENV === 'development') {
-    require('dotenv').config();
-}
 const nodemailer = require('nodemailer');
 const transporter = nodemailer.createTransport({
     host: 'smtp-relay.brevo.com',

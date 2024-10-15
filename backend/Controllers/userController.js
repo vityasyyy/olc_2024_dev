@@ -1,6 +1,3 @@
-if (process.env.NODE_ENV === 'development') {
-    require('dotenv').config();
-}
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const User = require('../Models/users');

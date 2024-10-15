@@ -1,6 +1,3 @@
-if (process.env.NODE_ENV === 'development') {
-    require('dotenv').config();
-}
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
 const BlacklistedToken = require('../Models/tokenBlacklist');
