@@ -1,4 +1,6 @@
-require('dotenv').config();
+if (process.env.NODE_ENV === 'development') {
+    require('dotenv').config();
+}
 const Olcon = require('../Models/olcon');
 const Olclass = require('../Models/olclass');
 const { sendTicket } = require('../Utils/reusedFunc');

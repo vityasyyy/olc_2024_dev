@@ -1,5 +1,7 @@
+if (process.env.NODE_ENV === 'development') {
+    require('dotenv').config();
+}
 const nodemailer = require('nodemailer');
-require('dotenv').config();
 const transporter = nodemailer.createTransport({
     host: 'smtp-relay.brevo.com',
     port: 587,
@@ -95,7 +97,7 @@ module.exports.sendTicket = async (email, username) => {
                 <p><strong>Venue:</strong> Auditorium FMIPA UGM Lantai 7 dan Lantai 1</p>
             </div>
             <p>Please show this email to the gatekeeper upon arrival.</p>
-            <a href="http://localhost:3000" class="button">View Full Schedule</a>
+            <a href=${process.env.FRONTEND_COMPLETE_URL} class="button">View Full Schedule</a>
         </div>
         <div class="footer">
             <p>Presented by OmahTI | Tingkatkan Skill IT Bersama Professional Industri</p>

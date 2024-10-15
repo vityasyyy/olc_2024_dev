@@ -105,7 +105,7 @@ const Payment = () => {
             <div className={`relative h-full w-full`}>
               {/* actual image */}
               <Image
-                src={`/global/main.png`}
+                src={`/global/kalidua.png`}
                 className={`z-10 object-cover`}
                 fill
                 sizes={`100%`}
@@ -251,7 +251,7 @@ const PaymentForm = ({ slug, className, isDike }) => {
 
 const UploadButton = () => (
   <Link
-    href="https://drive.google.com/"
+    href="https://drive.google.com/drive/u/1/folders/1xj6qQb1KDFBcSS2qfTDQMf7o17mjF0GW"
     target="_blank"
     rel="noopener noreferrer"
   >

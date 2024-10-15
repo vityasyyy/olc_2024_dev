@@ -1,4 +1,6 @@
-require('dotenv').config();
+if (process.env.NODE_ENV === 'development') {
+  require('dotenv').config();
+}
 const express = require('express');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
@@ -16,7 +18,7 @@ connectDB();
 
 app.use(helmet());
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: `${process.env.FRONTEND_COMPLETE_URL}`,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'HEAD', 'OPTIONS'],
   credentials: true
 }));

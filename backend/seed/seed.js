@@ -344,14 +344,20 @@ const newConference = new Olcon({
     materi: [{
       materiJudul: "Open Gate",
       jamBerapa: new Date("2024-10-27T03:30:00Z"),
+      tempat: "Auditorium Lantai 7 FMIPA UGM",
+
     },
     {
       materiJudul: "Seminar",
       jamBerapa: new Date("2024-10-27T04:20:00Z"),
+      tempat: "Auditorium Lantai 7 FMIPA UGM",
+
     },
     {
       materiJudul: "Sesi QnA",
       jamBerapa: new Date("2024-10-27T05:55:00Z"),
+      tempat: "Auditorium Lantai 7 FMIPA UGM",
+
     }
   ]
   },
@@ -374,14 +380,20 @@ const newConference = new Olcon({
     materi: [{
       materiJudul: "Open Gate",
       jamBerapa: new Date("2024-11-03T03:00:00Z"),
+      tempat: "Auditorium Lantai 1 FMIPA UGM",
+
     },
     {
       materiJudul: "Seminar",
       jamBerapa: new Date("2024-11-03T03:40:00Z"),
+      tempat: "Auditorium Lantai 1 FMIPA UGM",
+
     },
     {
       materiJudul: "Sesi QnA",
       jamBerapa: new Date("2024-11-03T05:10:00Z"),
+      tempat: "Auditorium Lantai 1 FMIPA UGM",
+
     }
   ]
   },
