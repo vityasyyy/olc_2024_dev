@@ -1,6 +1,4 @@
-if (process.env.NODE_ENV === 'development') {
-  require('dotenv').config();
-}
+require('dotenv').config();
 const express = require('express');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
@@ -36,5 +34,5 @@ app.use((err, req, res, next) => {
   res.status(statusCode).json({ error: err.message });
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5050;
 app.listen(PORT, () => console.log(`Server running on PORT ${PORT}`));
