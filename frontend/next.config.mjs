@@ -13,6 +13,12 @@ const nextConfig = {
             hostname: 'example.com',
             pathname: '/**',
           },
+          {
+            protocol: 'https',
+            hostname: 'img.freepik.com',
+            pathname: '/**',
+          },
+        
       ],
     },
   }
