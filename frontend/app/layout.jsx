@@ -16,6 +16,20 @@ const poppins = Poppins({
 export const metadata = {
   title: "OmahTI Learning Center",
   description: "OmahTI Learning Center",
+  icons: {
+    icon: [
+      {
+        media: "(prefers-color-scheme: light)",
+        url: "/icons/favicon-light.ico",
+        href: "/icons/favicon-light.ico",
+      },
+      {
+        media: "(prefers-color-scheme: dark)",
+        url: "/icons/favicon-dark.ico",
+        href: "/icons/favicon-dark.ico",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({ children }) {
