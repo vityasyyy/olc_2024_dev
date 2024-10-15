@@ -18,7 +18,7 @@ const Card = ({
         src={src}
         fill
         sizes={`100%`}
-        className="z-0 object-contain"
+        className="z-0 object-cover"
         alt="OLConvention"
       ></Image>
 

@@ -8,7 +8,7 @@ import Footer from "@/components/global/Footer";
 export default function Loading() {
   return (
     <>
-      <Navbar loggedIn />
+      <Navbar variant={`white`} />
       <ContainerLarge parentClass="bg-white">
         <h1 className="pb-10 text-3xl font-semibold text-custom-blue-dark sm:text-4xl">
           Halo,

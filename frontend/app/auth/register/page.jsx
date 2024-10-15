@@ -27,6 +27,7 @@ const Register = () => {
                 src={`/global/main.png`}
                 className={`z-10 object-cover`}
                 fill
+                sizes={`100%`}
                 alt={`OmahTI Learning Center`}
                 priority
               />
@@ -35,9 +36,9 @@ const Register = () => {
         </div>
 
         {/* right/bottom/form */}
-        <div className="flex flex-col justify-center gap-1 overscroll-contain bg-white px-[min(5vw,32px)] py-8 duration-700 animate-in fade-in md:overflow-auto md:overscroll-y-contain md:pb-24 md:pt-56">
+        <div className="flex flex-col justify-center gap-1 overscroll-contain bg-white px-[min(5vw,32px)] py-8 duration-700 animate-in fade-in md:overflow-auto md:overscroll-y-contain md:pb-24 md:pt-32">
           {/* title and subtitle */}
-          <div className="flex flex-col gap-1 md:mt-8">
+          <div className="flex flex-col gap-1">
             <h1 className="text-center text-2xl font-semibold text-custom-blue-dark lg:text-4xl">
               Daftar OLClass
             </h1>

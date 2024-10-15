@@ -37,7 +37,7 @@ const OLConDetail = async ({ DAY }) => {
             <>
               <Link href={`/olcon/day-1`}>
                 <Button variant="link" className="p-0">
-                <ArrowLeft className="mr-2 h-4 w-4" />
+                  <ArrowLeft className="mr-2 h-4 w-4" />
                   Day 1
                 </Button>
               </Link>
@@ -68,7 +68,7 @@ const OLConDetail = async ({ DAY }) => {
             </div>
           </div>
 
-          <div className="col-span-3 flex flex-col gap-6">
+          <div className="col-span-1 flex flex-col gap-6 lg:col-span-3">
             {/* ON LARGE SCREENS */}
             <div className="hidden w-full lg:block">
               <ClassDescriptionAndProgress
@@ -100,7 +100,8 @@ const OLConDetail = async ({ DAY }) => {
                         hour: "2-digit",
                         minute: "2-digit",
                       },
-                    )} tempat={session.tempat}
+                    )}
+                    tempat={session.tempat}
                   />
                 </div>
               ))}

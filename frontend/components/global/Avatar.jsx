@@ -9,7 +9,7 @@ const Avatar = ({
 }) => {
   return (
     <div
-      className={`col-span-1 flex h-[70vh] w-full max-w-sm flex-col gap-4 lg:h-full lg:max-w-none`}
+      className={`col-span-1 flex min-h-96 w-full max-w-sm flex-col gap-4 sm:max-w-xs sm:shrink-0 lg:h-full lg:max-w-none`}
     >
       {/* the actual avatar image */}
       <div
@@ -20,6 +20,8 @@ const Avatar = ({
           src={src}
           alt={alt}
           fill
+          priority
+          sizes={`100%`}
         />
 
         <div className="absolute inset-0 bg-gradient-to-t from-custom-blue-darker to-transparent" />

@@ -10,10 +10,11 @@ export const OLConCard = ({ object, className, href, idx = 0 }) => {
     >
       <Image
         src={object.sesi[idx].mentor?.fotoMentor}
-        width={500}
-        height={500}
         alt="OLConvention"
-        className="layout-fill z-0 object-cover"
+        fill
+        sizes={`100%`}
+        priority
+        className="z-0 object-cover"
       ></Image>
 
       {/* gradient */}

@@ -4,6 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import useUser from "@/hooks/useUser";
 
+// idx 1: olcon only
+// idx 2: olcon + olclass
+
 export default function OLConButton({ idx = 1 }) {
   const [loading, loggedIn] = useUser();
   // function to validate user log in state
@@ -25,8 +28,9 @@ export default function OLConButton({ idx = 1 }) {
     );
   }
 
+  let href = idx === 1 ? "/olcon/day-1" : "/auth/register";
   return (
-    <Link href="/olcon/day-1" className="w-full">
+    <Link href={href} className="w-full">
       <Button className="w-full">Daftar Sekarang</Button>
     </Link>
   );

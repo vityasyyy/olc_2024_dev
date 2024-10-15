@@ -9,9 +9,9 @@ const CardLoading = () => {
         <Image
           src="/placeholder.svg"
           alt="Kelas"
-          layout="fill"
-          objectFit="cover"
-          className="rounded-t-xl"
+          fill
+          sizes={`100%`}
+          className="rounded-t-xl object-cover"
         />
         <span className="absolute left-3 top-3 w-1/2 rounded-md bg-gray-100 px-2 py-1 text-sm font-medium">
           <Skeleton className="h-4 w-full" />
@@ -22,7 +22,10 @@ const CardLoading = () => {
         <Skeleton className="h-8 w-full" />
         <Skeleton className="h-8 w-full" />
         <Skeleton className="h-4 w-1/2" />
-        <Button className="ml-auto px-4 border-custom-blue-dark" variant="outline">
+        <Button
+          className="ml-auto border-custom-blue-dark px-4"
+          variant="outline"
+        >
           <Skeleton className="h-4 w-24" />
         </Button>
       </div>

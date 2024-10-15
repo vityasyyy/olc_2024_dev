@@ -57,7 +57,7 @@ const Card = ({
   return (
     // 2 divs that will always be square
     <div
-      className={`group relative col-span-1 flex h-fit ${smallCard || "min-h-64 sm:col-span-2 lg:col-span-4"} ${smallCard ? "bg-custom-blue-dark text-white" : "bg-custom-blue-light text-custom-blue-dark"} col-span-1 w-full flex-col justify-end rounded-md p-3 pt-14 ${className}`}
+      className={`group relative col-span-1 flex h-fit ${smallCard ? "rounded-lg border-2 border-custom-blue-light bg-custom-blue-dark text-white" : "min-h-64 rounded-xl border-[1px] border-custom-blue-dark bg-custom-blue-light text-custom-blue-dark sm:col-span-2 lg:col-span-4"} col-span-1 w-full flex-col justify-end p-3 pt-14 ${className}`}
     >
       {/* day label */}
       <p
@@ -78,13 +78,13 @@ const Card = ({
       <div className="mt-4 flex flex-col gap-2 text-sm font-medium">
         <p className="flex items-center">
           <Calendar className="mr-2 h-4 w-4" />
-          <span className="group-hover:animate-shake transition duration-300 ease-in-out">
+          <span className="transition duration-300 ease-in-out group-hover:animate-shake">
             {date}
           </span>
         </p>
         <p className="flex items-center">
           <MapPin className="mr-2 h-4 w-4" />
-          <span className="group-hover:animate-shake-delay transition duration-300 ease-in-out">
+          <span className="transition duration-300 ease-in-out group-hover:animate-shake-delay">
             {smallCard
               ? objectOlClass?.sesi[0].platform
               : objectOlCon?.sesi[idx].Lokasi}

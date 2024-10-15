@@ -29,6 +29,8 @@ const CardImage = ({ src, alt, label }) => (
       src={src}
       alt={alt}
       fill
+      sizes={`100%`}
+      priority
       className="h-full w-full rounded-t-xl object-cover"
     />
     <span className="absolute left-3 top-3 mr-8 rounded-md bg-custom-blue px-2 py-1 text-sm font-medium">

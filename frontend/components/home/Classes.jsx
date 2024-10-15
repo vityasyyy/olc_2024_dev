@@ -9,7 +9,9 @@ import {
 } from "@/components/ui/accordion";
 
 const Classes = async () => {
-  const responses = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/olclass`, {cache: "no-cache"});
+  const responses = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/olclass`, {
+    cache: "no-cache",
+  });
   const classes = await responses.json();
 
   return (
@@ -60,7 +62,13 @@ const Card = ({
         <div className="flex h-72 w-full flex-col overflow-hidden rounded-t-2xl sm:h-48 sm:flex-row">
           {/* image */}
           <div className="relative h-1/2 w-full overflow-hidden sm:h-full sm:w-[200px]">
-            <Image src={src} fill className="object-cover" alt="Class Image" />
+            <Image
+              src={src}
+              fill
+              sizes={`100%`}
+              className="object-cover"
+              alt="Mentor Image"
+            />
           </div>
           <div className="flex h-1/2 w-full flex-col justify-between gap-1 bg-custom-blue-darker p-4 text-white sm:h-full sm:w-full">
             {/* label */}

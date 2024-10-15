@@ -35,7 +35,6 @@ const CardDrawer = ({
             sesi={sesi}
             judul={judul}
             jam={jam}
-            tanggal={tanggal}
             tempat={tempat}
             className={className}
           />
@@ -44,25 +43,36 @@ const CardDrawer = ({
           <div className="mx-auto w-full max-w-xl">
             <DrawerHeader>
               <DrawerTitle>{judul}</DrawerTitle>
-              <DrawerDescription>
-                {tanggal}
-                <br />
-                <p> </p>
-                <p className="mt-2">Jam: {jam}</p>
-                <Link
-                  href="https://mipa.ugm.ac.id/peta-kampus/"
-                  className={`ml-auto ${loggedIn || "pointer-events-none"}`}
-                  aria-disabled={!loggedIn}
-                  target={`_blank`}
-                  rel="noopener noreferrer"
-                  tabIndex={!loggedIn ? -1 : undefined}
-                >
-                  {loading || (
-                    <Button className={`gap-0.5 p-0`} variant={`link`}>
-                      {tempat}
-                    </Button>
-                  )}
-                </Link>
+              <DrawerDescription asChild>
+                <>
+                  <div className={`mt-4 text-balance`}>
+                    <span className="font-semibold">Tanggal: </span>
+                    {tanggal}
+                  </div>
+                  <div className="mt-1">
+                    <span className={`font-semibold`}>Jam: </span>
+                    {jam}
+                  </div>
+                  <Link
+                    href="https://mipa.ugm.ac.id/peta-kampus/"
+                    className={`${loggedIn || "pointer-events-none"}`}
+                    aria-disabled={!loggedIn}
+                    target={`_blank`}
+                    rel="noopener noreferrer"
+                    tabIndex={!loggedIn ? -1 : undefined}
+                  >
+                    {loading || (
+                      <Button
+                        className={`gap-0.5 p-0`}
+                        variant={`link`}
+                        disabled={!loggedIn}
+                      >
+                        <Link2 className={`h-4`} />
+                        {tempat}
+                      </Button>
+                    )}
+                  </Link>
+                </>
               </DrawerDescription>
             </DrawerHeader>
             <DrawerFooter>
@@ -87,14 +97,12 @@ const CardBase = ({ sesi, judul, jam, tanggal, tempat, className }) => {
       <p className="text-base font-semibold">Sesi {sesi}</p>
 
       <div className="flex flex-col gap-1">
-        <p className="text-balance text-3xl font-semibold">{judul}</p>
-        <div className="flex justify-between gap-2 text-sm font-medium">
+        <p className="mb-2 text-balance text-3xl font-semibold">{judul}</p>
+        <div className="flex items-center justify-between gap-2 text-sm font-medium">
           <div className="flex flex-col gap-1">
-            <p>{jam}</p>
-            <p>{tanggal}</p>
+            <p>{jam} WIB</p>
           </div>
           <div
-            variant={`secondary`}
             className={`mt-auto inline-flex items-center justify-center text-nowrap rounded-md bg-custom-blue-dark p-2 text-center text-xs text-white hover:bg-custom-blue-dark`}
           >
             {tempat}

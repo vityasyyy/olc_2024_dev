@@ -16,10 +16,16 @@ const Harga = async () => {
       <Container parentClass="bg-white" className="flex flex-col gap-6">
         <Tag blue>Harga</Tag>
         <div className="flex flex-col gap-6 md:flex-row">
-          <Card idx={1} judul="OLConvention Only" description={olcononly} />
+          <Card
+            idx={1}
+            judul="OLConvention Only"
+            description={olcononly}
+            src={`/hero/kontolclass.png`}
+          />
           <Card
             idx={2}
             judul="OLConvention + OLClass"
+            src={`/hero/macbookscreenonly.png`}
             description={olconolclass}
           />
         </div>
