@@ -120,7 +120,7 @@ export default function NavbarButtons({ variant = "blue" }) {
         buttons = (
           <>
             <Link
-              href={`https://drive.google.com/file/d/1Y-DAf-IHUwRmsi7BlHlsVcwFSBjbMQa1/view?usp=sharing`}
+              href={`https://drive.google.com/drive/folders/1w5WouvhdbHrKjGNa9_Pe5QZsqGURfsJg?usp=drive_link`}
               target={`_blank`}
               rel="noopener noreferrer"
             >
@@ -141,7 +141,7 @@ export default function NavbarButtons({ variant = "blue" }) {
           <>
             <Link 
             target="_blank"
-            href="https://drive.google.com/file/d/1Y-DAf-IHUwRmsi7BlHlsVcwFSBjbMQa1/view?usp=sharing">
+            href="https://drive.google.com/drive/folders/1w5WouvhdbHrKjGNa9_Pe5QZsqGURfsJg?usp=drive_link">
               <Button className={`px-4`} variant="ghost">
                 Guidebook
               </Button>
@@ -187,7 +187,7 @@ export default function NavbarButtons({ variant = "blue" }) {
                 <div className="flex h-[100vw] w-full flex-col items-center justify-center gap-4 text-custom-blue-dark">
                   <Link
                   target="_blank"
-                    href={`https://drive.google.com/file/d/1Y-DAf-IHUwRmsi7BlHlsVcwFSBjbMQa1/view?usp=sharing`}
+                    href={`https://drive.google.com/drive/folders/1w5WouvhdbHrKjGNa9_Pe5QZsqGURfsJg?usp=drive_link`}
                     className={`relative z-20`}
                   >
                     <Button variant="ghost">Guidebook</Button>
