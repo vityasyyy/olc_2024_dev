@@ -11,6 +11,7 @@ imageSchema.virtual("thumbnail").get(function () {
 });
 
 const mentorSchema = new Schema({
+  coverKelas: String,
   nama: String,
   fotoMentor: imageSchema,
   deskripsi: String,
