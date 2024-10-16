@@ -14,11 +14,27 @@ app.set('trust proxy', 1);
 connectDB();
 
 app.use(helmet());
+const allowedOrigins = [
+  process.env.FRONTEND_COMPLETE_URL,
+  "http://localhost:3000"
+];
+
 app.use(cors({
-  origin: `${process.env.FRONTEND_COMPLETE_URL}`,
+  origin: (origin, callback) => {
+    // Allow requests with no origin (like mobile apps, curl requests)
+    if (!origin) return callback(null, true);
+
+    // Check if the origin is in the list of allowed origins
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'HEAD', 'OPTIONS'],
   credentials: true
 }));
+
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(mongoSanitize());
