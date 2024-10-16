@@ -224,8 +224,7 @@ const PaymentForm = ({ slug, className, isDike }) => {
             <AlertDialogHeader>
               <AlertDialogTitle>Confirm Enrollment</AlertDialogTitle>
               <AlertDialogDescription>
-                Are you absolutely sure you want to submit the payment? Make
-                sure you have read the instructions properly.
+                Apakah anda yakin untuk mendaftar di kelas ini? Pastikan anda membaca instruksi dengan baik, teliti, lengkap, dan benar.
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>

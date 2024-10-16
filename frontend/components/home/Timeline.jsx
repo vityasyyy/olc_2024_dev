@@ -12,7 +12,7 @@ const Timeline = async () => {
   return (
     <>
       <Container parentClass="bg-white" className="flex flex-col gap-6">
-        <Tag blue>Timeline</Tag>
+        <Tag blue>Linimasa</Tag>
         <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           <Card objectOlCon={olcon} idx={0} />
           {olclass.map((item, key) => (
@@ -71,7 +71,7 @@ const Card = ({
       </p>
 
       <h1 className={`text-2xl font-semibold`}>
-        {smallCard ? "OLClass" : "OLCon"}
+        {smallCard ? "OLClass" : "OLConvention"}
       </h1>
 
       {/* tanggal dan lokasi */}

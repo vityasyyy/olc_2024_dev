@@ -11,7 +11,7 @@ const Benefits = () => {
       >
         {/* tags */}
         <div className="flex flex-col gap-4">
-          <Tag className="">Benefits</Tag>
+          <Tag className="">Manfaat</Tag>
           <p className="font-semibold">Hal yang akan kamu dapatkan disini</p>
         </div>
 
@@ -36,7 +36,37 @@ const Benefits = () => {
             </p>
           </Card>
         </div>
+
+        {/* tags */}
+        <div className="mt-8 flex flex-col gap-4">
+          <Tag className="">Sponsor Kami</Tag>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <Card judul="" className="sm:col-span-2 h-full bg-custom-blue-light"> {/* Span two columns */}
+            <div className="flex flex-wrap justify-center gap-6"> {/* Flex container for horizontal alignment */}
+              <img
+                src="/hero/sysbraykrlogobg.png"
+                alt="Sysbraykr Logo"
+                className="h-32 w-auto max-w-full" // Adjust height as needed
+              />
+              <img
+                src="/hero/TelkomSigmalogo.webp"
+                alt="Gameloft Logo"
+                className="h-32 w-auto max-w-full" // Adjust height as needed
+              />
+              <img
+                src="/hero/gameloftlogobg.png"
+                alt="Telkom Sigma Logo"
+                className="h-32 w-auto max-w-full" // Adjust height as needed
+              />
+            </div>
+          </Card>
+        </div>
+
+
       </Container>
+
     </>
   );
 };
