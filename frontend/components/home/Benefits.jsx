@@ -27,7 +27,7 @@ const Benefits = () => {
               Top 3 project akan dipresentasikan kepada Ahli
             </p>
           </Card>
-          <Card judul="Sertifikat" className="h-full">
+          <Card judul="Sertifikat" className="h-full ">
             <p>
               memungkinkan pembelajaran praktis yang memperkuat keterampilan,
               kreativitas, dan pemahaman melalui pengalaman langsung serta
