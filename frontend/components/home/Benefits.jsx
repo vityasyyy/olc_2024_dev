@@ -1,5 +1,6 @@
 import Container from "../global/Container";
 import Tag from "../global/Tag";
+import Image from "next/image";
 
 const Benefits = () => {
   return (
@@ -15,7 +16,7 @@ const Benefits = () => {
           <p className="font-semibold">Hal yang akan kamu dapatkan disini</p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           <Card judul="Hands On Project">
             <p>
               memungkinkan pembelajaran praktis yang memperkuat keterampilan,
@@ -27,7 +28,7 @@ const Benefits = () => {
               Top 3 project akan dipresentasikan kepada Ahli
             </p>
           </Card>
-          <Card judul="Sertifikat" className="h-full ">
+          <Card judul="Sertifikat" className="h-full">
             <p>
               memungkinkan pembelajaran praktis yang memperkuat keterampilan,
               kreativitas, dan pemahaman melalui pengalaman langsung serta
@@ -38,46 +39,37 @@ const Benefits = () => {
         </div>
 
         {/* tags */}
-        <div className="mt-8 flex flex-col gap-4">
-          <Tag className="">Sponsor Kami</Tag>
+        <div className="mt-8">
+          <Tag>Sponsor Kami</Tag>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <Card judul="" className="sm:col-span-2 h-full bg-custom-blue-light"> {/* Span two columns */}
-            <div className="flex flex-wrap justify-center gap-6"> {/* Flex container for horizontal alignment */}
-              <img
-                src="/hero/sysbraykrlogobg.png"
-                alt="Sysbraykr Logo"
-                className="h-32 w-auto max-w-full" // Adjust height as needed
-              />
-              <img
-                src="/hero/TelkomSigmalogo.webp"
-                alt="Gameloft Logo"
-                className="h-32 w-auto max-w-full" // Adjust height as needed
-              />
-              <img
-                src="/hero/gameloftlogobg.png"
-                alt="Telkom Sigma Logo"
-                className="h-32 w-auto max-w-full" // Adjust height as needed
-              />
-            </div>
-          </Card>
+        {/* Flex container for horizontal alignment */}
+        <div className="flex flex-row justify-center gap-4 sm:gap-6">
+          <SponsorCard src="/hero/sysbraykrlogobg.png" alt="Sysbraykyr" />
+          <SponsorCard src="/hero/TelkomSigmaLogo.webp" alt="Telkomsigma" />
+          <SponsorCard src="/hero/gameloftlogobg.png" alt="Gameloft" />
         </div>
-
-
       </Container>
-
     </>
   );
 };
 
 const Card = ({ judul, children, className }) => {
   return (
-    <div className={`flex h-fit w-full flex-col gap-4 rounded-lg border-[1px] border-white bg-custom-blue-darker p-6 text-white ${className}`}>
+    <div
+      className={`flex h-fit w-full flex-col gap-4 rounded-lg border-[1px] border-white bg-custom-blue-darker p-6 text-white ${className}`}
+    >
       <h1 className="text-3xl font-semibold sm:text-4xl">{judul}</h1>
       {children}
     </div>
   );
 };
 
+const SponsorCard = ({ src = "placeholder.svg", alt = "Sponsor Image" }) => {
+  return (
+    <div className="grid w-48 place-items-center gap-4 rounded-md border-[2px] border-custom-blue-darker bg-custom-blue-light p-4">
+      <Image src={src} alt={alt} width={100} height={100} />
+    </div>
+  );
+};
 export default Benefits;
