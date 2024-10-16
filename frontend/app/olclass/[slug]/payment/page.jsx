@@ -210,10 +210,10 @@ const PaymentForm = ({ slug, className, isDike }) => {
             )}
             <li>
               Pembayaran transfer kepada{" "}
-              <strong>BNI a.n Andreandhiki (083456688)</strong>
+              <strong>BNI a.n Muhammad Fariz (1442851203)</strong>
             </li>
             <li>
-              Beri catatan dengan format <strong>Nama_NIM_DIKEOLC</strong>
+              Beri catatan dengan format <strong>[Nama]_[KelasOLClass]_OLC</strong>
             </li>
           </ol>
         </div>
@@ -252,7 +252,7 @@ const PaymentForm = ({ slug, className, isDike }) => {
 
 const UploadButton = () => (
   <Link
-    href="https://drive.google.com/drive/u/1/folders/1xj6qQb1KDFBcSS2qfTDQMf7o17mjF0GW"
+    href="https://forms.gle/sFa6Rt4gVuXfsqXQ8"
     target="_blank"
     rel="noopener noreferrer"
     className="w-full border-[1.5px] border-custom-blue-dark font-medium text-custom-black hover:bg-custom-blue/10 sm:text-base flex justify-center items-center py-2"
