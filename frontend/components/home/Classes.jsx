@@ -37,7 +37,7 @@ const Classes = async () => {
             nama={item.mentor.nama || "TBA"}
             description={item.mentor.deskripsi || "TBA"}
             key={item._id}
-            src={item.mentor.fotoMentor.url || "/placeholder.svg"}
+            src={item.mentor.fotoMentor.coverKelas || "/placeholder.svg"}
             materi={item.sesi.map((sesi) => sesi.judulSesi).join(", ")}
           />
         ))}
