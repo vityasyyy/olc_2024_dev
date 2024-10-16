@@ -59,9 +59,9 @@ const Card = ({
       {/* wrapper for card and accordion */}
       <div className="flex flex-col gap-2">
         {/*  */}
-        <div className="flex h-72 w-full flex-col overflow-hidden rounded-t-2xl sm:h-48 sm:flex-row">
+        <div className="flex min-h-80 w-full flex-col overflow-hidden rounded-t-2xl sm:min-h-0 sm:h-48 sm:flex-row">
           {/* image */}
-          <div className="relative h-1/2 w-full overflow-hidden sm:h-full sm:w-[200px]">
+          <div className="relative h-40 w-full overflow-hidden sm:h-full sm:w-[200px]">
             <Image
               src={src}
               fill
@@ -70,7 +70,7 @@ const Card = ({
               alt="Mentor Image"
             />
           </div>
-          <div className="flex h-1/2 w-full flex-col justify-between gap-1 bg-custom-blue-darker p-4 text-white sm:h-full sm:w-full">
+          <div className="flex min-h-40 w-full flex-col justify-between gap-1 bg-custom-blue-darker p-4 text-white sm:h-full sm:w-full">
             {/* label */}
             <p className="p-1 text-sm">{label}</p>
 
