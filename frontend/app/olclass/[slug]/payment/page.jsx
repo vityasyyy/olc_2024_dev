@@ -201,11 +201,11 @@ const PaymentForm = ({ slug, className, isDike }) => {
         </h4>
         <div className="my-2">
           <ol className="mx-2 list-outside list-disc pl-3 text-sm text-custom-black">
-            <li>Pembayaran seharga IDR 75.000</li>
-            {isDike || <li>Biaya pendaftaran sebesar IDR 5.000</li>}
+            <li>Commitment fee seharga IDR 60.000</li>
+            {isDike || <li>Biaya pendaftaran sebesar IDR 15.000</li>}
             {isDike || (
               <li>
-                <b>Total Pembayaran seharga IDR 80.000</b>
+                <b>Total Pembayaran seharga IDR 75.000</b>
               </li>
             )}
             <li>
@@ -255,15 +255,11 @@ const UploadButton = () => (
     href="https://drive.google.com/drive/u/1/folders/1xj6qQb1KDFBcSS2qfTDQMf7o17mjF0GW"
     target="_blank"
     rel="noopener noreferrer"
+    className="w-full border-[1.5px] border-custom-blue-dark font-medium text-custom-black hover:bg-custom-blue/10 sm:text-base flex justify-center items-center py-2"
   >
-    <Button
-      variant={`outline`}
-      className={`w-full border-[1.5px] border-custom-blue-dark font-medium text-custom-black hover:bg-custom-blue/10 sm:text-base`}
-    >
-      <span className="mr-2 block">
-        <ImageIcon className={`h-5 font-light text-custom-blue-dark`} />
-      </span>
-      Upload Bukti Pembayaran
-    </Button>
+    <span className="mr-2 block">
+      <ImageIcon className={`h-5 font-light text-custom-blue-dark`} />
+    </span>
+    Upload Bukti Pembayaran
   </Link>
 );

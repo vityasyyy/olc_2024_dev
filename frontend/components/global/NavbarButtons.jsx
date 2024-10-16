@@ -120,7 +120,7 @@ export default function NavbarButtons({ variant = "blue" }) {
         buttons = (
           <>
             <Link
-              href={`https://youtube.com`}
+              href={`https://drive.google.com/file/d/1Y-DAf-IHUwRmsi7BlHlsVcwFSBjbMQa1/view?usp=sharing`}
               target={`_blank`}
               rel="noopener noreferrer"
             >
@@ -139,7 +139,7 @@ export default function NavbarButtons({ variant = "blue" }) {
         // landing page, belom log in
         buttons = (
           <>
-            <Link href="https://youtube.com">
+            <Link href="https://drive.google.com/file/d/1Y-DAf-IHUwRmsi7BlHlsVcwFSBjbMQa1/view?usp=sharing">
               <Button className={`px-4`} variant="ghost">
                 Guidebook
               </Button>
@@ -184,7 +184,7 @@ export default function NavbarButtons({ variant = "blue" }) {
                     OmahTI Learning Center
                   </p>
                   <Link
-                    href={`https://youtube.com`}
+                    href={`https://drive.google.com/file/d/1Y-DAf-IHUwRmsi7BlHlsVcwFSBjbMQa1/view?usp=sharing`}
                     className={`relative z-20`}
                   >
                     <Button variant="ghost">Guidebook</Button>
