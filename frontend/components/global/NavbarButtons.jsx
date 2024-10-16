@@ -139,7 +139,9 @@ export default function NavbarButtons({ variant = "blue" }) {
         // landing page, belom log in
         buttons = (
           <>
-            <Link href="https://drive.google.com/file/d/1Y-DAf-IHUwRmsi7BlHlsVcwFSBjbMQa1/view?usp=sharing">
+            <Link 
+            target="_blank"
+            href="https://drive.google.com/file/d/1Y-DAf-IHUwRmsi7BlHlsVcwFSBjbMQa1/view?usp=sharing">
               <Button className={`px-4`} variant="ghost">
                 Guidebook
               </Button>
@@ -184,6 +186,7 @@ export default function NavbarButtons({ variant = "blue" }) {
                 </p>
                 <div className="flex h-[100vw] w-full flex-col items-center justify-center gap-4 text-custom-blue-dark">
                   <Link
+                  target="_blank"
                     href={`https://drive.google.com/file/d/1Y-DAf-IHUwRmsi7BlHlsVcwFSBjbMQa1/view?usp=sharing`}
                     className={`relative z-20`}
                   >
