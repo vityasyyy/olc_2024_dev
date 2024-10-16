@@ -66,7 +66,7 @@ const Card = ({
               src={src}
               fill
               sizes={`100%`}
-              className="object-cover"
+              className="object-cover scale-110"
               alt="Mentor Image"
             />
           </div>
