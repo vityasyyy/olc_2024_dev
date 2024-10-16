@@ -13,7 +13,7 @@ const Class = async () => {
   return (
     <>
         <div
-          className={`flex flex-col-reverse gap-4 md:flex-row md:justify-between`}
+          className={`flex flex-col-reverse gap-4 md:flex-row md:justify-between first-letter `}
         >
           <h1 className="pb-10 text-3xl font-semibold text-custom-blue-dark sm:text-4xl">
             Halo,
