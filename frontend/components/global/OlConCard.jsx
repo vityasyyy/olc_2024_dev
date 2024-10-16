@@ -22,8 +22,8 @@ export const Card = ({ object, idx = 0 }) => {
   return (
     <div className="group relative h-80 w-full overflow-hidden rounded-lg pb-[10%] sm:mx-auto md:w-full md:pb-[50%]">
       <Image
-        src={object.sesi[idx].mentor?.fotoMentor.url || "../placeholder.svg"}
-        alt="OLConvention"
+        src={object.sesi[idx].mentor?.fotoMentor.url || "/placeholder.svg"}
+        alt="Foto Mentor OLCon"
         fill
         sizes={`100%`}
         className="z-0 object-cover transition-transform duration-700 ease-out group-hover:scale-105"

@@ -35,11 +35,14 @@ const AboutOLC = () => {
             Pelatihan Hardskill IT bersama Profesional langsung bersama industri
           </p>
           <div className="flex gap-4">
-            <p className="text-justify">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente
-              placeat hic, quam natus velit neque. Ex, id praesentium
-              perspiciatis est modi debitis iste magni dolorum cupiditate labore
-              magnam odit eos.
+            <p className="text-justify text-sm">
+              OmahTI Learning Center (OLC) adalah sebuah mini-bootcamp yang
+              diselenggarakan selama 6 hari. Kegiatan ini mencakup OLClass (mini-bootcamp) dan
+              OLCon (seminar), yang bertujuan menggabungkan teori dan praktik secara langsung,
+              sehingga memberikan manfaat yang nyata dan relevan dengan kebutuhan industri
+              serta perkembangan teknologi terkini. Dengan pendekatan edukatif yang interaktif
+              dan inklusif, OLC 2024 berupaya memberikan kontribusi positif dalam meningkatkan
+              pemahaman teknologi informasi di kalangan masyarakat.
             </p>
           </div>
         </div>
