@@ -1,6 +1,9 @@
 import Container from "../global/Container";
 import Tag from "../global/Tag";
 import Image from "next/image";
+import sysbraykrlogobg from "@/public/hero/sysbraykrlogobg.png";
+import gameloftlogobg from "@/public/hero/gameloftlogobg.png";
+import telkomsigmalogo from "@/public/hero/telkomsigmalogo.webp";
 
 const Benefits = () => {
   return (
@@ -45,9 +48,9 @@ const Benefits = () => {
 
         {/* Flex container for horizontal alignment */}
         <div className="flex flex-row justify-center gap-4 sm:gap-6">
-          <SponsorCard src="/hero/sysbraykrlogobg.png" alt="Sysbraykyr" />
-          <SponsorCard src="/hero/TelkomSigmaLogo.webp" alt="Telkomsigma" />
-          <SponsorCard src="/hero/gameloftlogobg.png" alt="Gameloft" />
+          <SponsorCard src={sysbraykrlogobg} alt="Sysbraykyr" />
+          <SponsorCard src={telkomsigmalogo} alt="Telkomsigma" />
+          <SponsorCard src={gameloftlogobg} alt="Gameloft" />
         </div>
       </Container>
     </>
@@ -65,7 +68,7 @@ const Card = ({ judul, children, className }) => {
   );
 };
 
-const SponsorCard = ({ src = "placeholder.svg", alt = "Sponsor Image" }) => {
+const SponsorCard = ({ src, alt = "Sponsor Image" }) => {
   return (
     <div className="grid w-48 place-items-center gap-4 rounded-md border-[2px] border-custom-blue-darker bg-custom-blue-light p-4">
       <Image src={src} alt={alt} width={100} height={100} />
