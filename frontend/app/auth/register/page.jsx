@@ -3,14 +3,15 @@ import Link from "next/link";
 import BackButton from "@/components/global/BackButton";
 import RegisterForm from "@/components/auth/register/RegisterForm";
 import Image from "next/image";
+import main from "@/public/global/main.png";
 
 const Register = () => {
   return (
     <>
       <div className="grid grid-cols-1 md:h-screen md:grid-cols-2 md:overflow-hidden">
         {/* left/top */}
-        <div className="relative h-[50vh] overflow-hidden bg-custom-blue-dark px-[min(5vw,32px)] py-8 md:h-screen">
-          <BackButton home />
+        <div className="relative h-72 overflow-hidden bg-custom-blue-dark py-8 md:h-screen">
+          <BackButton className={`mx-[min(5vw,32px)]`} home />
 
           {/* orange box */}
           <div
@@ -19,16 +20,17 @@ const Register = () => {
 
           {/* image with a bunch of wrappers */}
           <div
-            className={`absolute bottom-0 right-0 z-10 h-64 w-64 md:h-[95vh] md:w-[90%]`}
+            className={`absolute bottom-0 right-0 z-10 h-64 w-64 md:h-[95vh] md:w-full`}
           >
             <div className={`relative h-full w-full`}>
               {/* actual image */}
               <Image
-                src={`/global/main.png`}
+                src={main}
                 className={`z-10 object-cover`}
                 fill
                 sizes={`100%`}
                 alt={`OmahTI Learning Center`}
+                placeholder="blur"
                 priority
               />
             </div>

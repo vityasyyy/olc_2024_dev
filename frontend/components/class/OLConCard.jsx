@@ -6,7 +6,7 @@ export const OLConCard = ({ object, className, href, idx = 0 }) => {
   return (
     // 2 divs that will always be square
     <div
-      className={`group relative w-full overflow-hidden rounded-lg shadow-sm transition-all hover:-translate-y-[1px] hover:shadow-xl sm:mx-auto ${className}`}
+      className={`group relative h-full w-full overflow-hidden rounded-lg shadow-sm transition-all hover:-translate-y-[1px] hover:shadow-xl sm:mx-auto ${className}`}
     >
       <Image
         src={object.sesi[idx].mentor?.fotoMentor.url || "/placeholder.svg"}

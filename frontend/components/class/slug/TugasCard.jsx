@@ -59,13 +59,13 @@ export default function TugasCard({ tugasObject = null, className }) {
             variant="secondary"
             className={`bg-custom-blue-darker bg-custom-blue-darker/80 px-4`}
           >
-            Unduh Penugasan
+            Unduh
           </Button>
         </Link> : <Button
             variant="secondary"
-            className={`bg-custom-blue-darker bg-custom-blue-darker/80 px-4`} disabled
+            className={`bg-custom-blue-darker max-w-48 sm:max-w-none bg-custom-blue-darker/80 px-4`} disabled
           >
-            Belom dapat diunduh 
+            Unduh
           </Button>
         }
         

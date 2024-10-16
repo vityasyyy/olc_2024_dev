@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { Image as ImageIcon } from "lucide-react";
 import Image from "next/image";
+import payment from "@/public/global/payment.png";
 import { useParams, useRouter } from "next/navigation";
 import {
   AlertDialog,
@@ -85,7 +86,7 @@ const Payment = () => {
     <>
       <div className="grid grid-cols-1 md:h-screen md:grid-cols-2">
         {/* left/top */}
-        <div className="relative h-[50vh] overflow-hidden bg-custom-blue-dark px-[min(5vw,32px)] py-8 md:h-screen">
+        <div className="relative h-72 overflow-hidden bg-custom-blue-dark px-[min(5vw,32px)] py-8 md:h-screen">
           <BackButton />
           <h1
             className={`relative z-30 mt-2 text-2xl font-semibold text-white`}
@@ -105,11 +106,12 @@ const Payment = () => {
             <div className={`relative h-full w-full overflow-visible`}>
               {/* actual image */}
               <Image
-                src={`/global/payment.png`}
+                src={payment}
                 className={`z-10 object-cover`}
                 fill
                 sizes={`100%`}
                 alt={`OmahTI Learning Center`}
+                placeholder="blur"
                 priority
               />
             </div>

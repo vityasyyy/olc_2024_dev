@@ -63,29 +63,38 @@ const RegisterButton = () => {
     }
   };
 
-  const buttonContent =
-    loading || loading2 ? (
+  if (loading || loading2) {
+    return (
       <Button variant={`secondary`} className={`w-full`} disabled>
         <PropagateLoader size={4} color={`#ffffff`} />
       </Button>
-    ) : loggedIn && isEnrolled ? (
+    );
+  }
+
+  if (loggedIn && isEnrolled) {
+    return (
       <Button disabled variant="secondary" className={`w-full`}>
-        Anda sudah terdaftarkan OLCon
-      </Button>
-    ) : Date.now() >= new Date("2024-10-27T03:00:00.000Z") ? ( // Add this condition
-      <Button disabled variant="secondary" className={`w-full`}>
-        Pendaftaran Ditutup, OLCon Sudah Dimulai
-      </Button>
-    ) : (
-      <Button variant="secondary" className={`w-full`}>
-        Enroll
+        Enrolled
       </Button>
     );
+  }
+
+  if (Date.now() >= new Date("2024-10-27T03:00:00.000Z")) {
+    return (
+      <Button disabled variant="secondary" className={`w-full`}>
+        Pendaftaran Ditutup
+      </Button>
+    );
+  }
 
   return (
     <>
       <AlertDialog>
-        <AlertDialogTrigger asChild>{buttonContent}</AlertDialogTrigger>
+        <AlertDialogTrigger asChild>
+          <Button variant="secondary" className={`w-full`}>
+            Enroll
+          </Button>
+        </AlertDialogTrigger>
         <AlertDialogContent className="max-w-md">
           <AlertDialogHeader>
             <AlertDialogTitle className="mx-auto">

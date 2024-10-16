@@ -38,12 +38,12 @@ const UserName = () => {
     fetchUser().catch();
   }, [router]);
 
-  if (loading) return <Skeleton className="mt-2 h-8 w-96" />;
+  if (loading) return <Skeleton className="mt-2 h-8 w-64" />;
   if (error) return <p className="text-red-500">{error}</p>;
 
   return (
     <p className="duration-700 animate-in fade-in slide-in-from-right-5">
-      {user ? user.username : <Skeleton className="mt-2 h-8 w-96" />}
+      {user ? user.username : <Skeleton className="mt-2 h-8 w-64" />}
     </p>
   );
 };

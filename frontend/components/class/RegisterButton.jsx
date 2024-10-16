@@ -31,7 +31,7 @@ const RegisterButton = ({ classSlug }) => {
   if (isEnrolled) {
     return (
       <Button variant="secondary" className={`w-full`} disabled>
-        Kamu telah terdaftar dalam kelas ini
+        Enrolled
       </Button>
     );
   }

@@ -179,10 +179,10 @@ export default function NavbarButtons({ variant = "blue" }) {
                 olc
               </DrawerTitle>
               <DrawerDescription>
-                <div className="flex w-full flex-col items-center gap-4 text-custom-blue-dark">
-                  <p className={`z-20 mb-16 text-white`}>
-                    OmahTI Learning Center
-                  </p>
+                <p className={`z-20 mb-16 text-white`}>
+                  OmahTI Learning Center
+                </p>
+                <div className="flex h-[100vw] w-full flex-col items-center justify-center gap-4 text-custom-blue-dark">
                   <Link
                     href={`https://drive.google.com/file/d/1Y-DAf-IHUwRmsi7BlHlsVcwFSBjbMQa1/view?usp=sharing`}
                     className={`relative z-20`}

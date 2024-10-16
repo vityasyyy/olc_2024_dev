@@ -63,7 +63,7 @@ const Classes = ({ classes }) => {
             Kelas Pilihanmu
           </p>
           <p className="pb-6 font-medium">OLClass dan OLConvention</p>
-          <div className="grid auto-rows-auto grid-cols-1 gap-4 duration-700 ease-in animate-in fade-in slide-in-from-right-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid auto-rows-fr grid-cols-1 gap-4 duration-700 ease-in animate-in fade-in slide-in-from-right-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             <Card
               key={enrolledClass._id}
               src={enrolledClass.mentor.fotoMentor.coverKelas}
@@ -75,7 +75,7 @@ const Classes = ({ classes }) => {
                   : "TBA"
               }
               href={`/olclass/${enrolledClass.slug}`}
-              className="col-span-1 sm:col-span-2 xl:col-span-1"
+              className="col-span-1 sm:col-span-2 md:col-span-1"
             />
             <OLConCard
               object={olcon}

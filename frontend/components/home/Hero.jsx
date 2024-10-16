@@ -8,19 +8,19 @@ export default function Hero() {
     <div className="relative w-full bg-custom-blue-dark">
       <ContainerLarge
         diamonds
-        className="flex h-[80vh] flex-col justify-between gap-0 sm:justify-around"
+        className="flex h-[30rem] md:h-[80vh] flex-col justify-between gap-0 sm:justify-around"
         parentClass={`overflow-hidden`}
       >
         {/* hero section image main block */}
 
         {/* orange box */}
         <div
-          className={`absolute bottom-0 left-1/2 z-0 h-64 w-48 -translate-x-1/2 transform rounded-t-lg bg-custom-brown-light sm:left-auto sm:right-[5rem] sm:h-[50vh] sm:w-[25vw] sm:translate-x-0`}
+          className={`absolute bottom-0 left-1/2 z-0 h-1/2 w-48 -translate-x-1/2 transform rounded-t-lg bg-custom-brown-light sm:left-auto sm:right-[5rem] sm:w-[25vw] sm:translate-x-0`}
         ></div>
 
         {/* image with a bunch of wrappers */}
         <div
-          className={`absolute bottom-[-2rem] left-[45%] z-10 h-96 w-full -translate-x-1/2 overflow-visible sm:left-auto sm:right-[-5rem] sm:h-[90vh] sm:w-full sm:translate-x-0 md:w-[70vw]`}
+          className={`absolute aspect-square bottom-[-2rem] left-[50%] z-10 h-96 w-full -translate-x-1/2 overflow-visible sm:left-[20vw] lg:w-[80vw] lg:left-[30vw] md:right-[-5rem] md:h-[90vh] sm:translate-x-0`}
         >
           <div className={`relative h-full w-full overflow-visible`}>
             {/* actual image */}
