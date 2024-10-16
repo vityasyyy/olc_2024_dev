@@ -65,7 +65,7 @@ export default function TugasCard({ tugasObject = null, className }) {
             variant="secondary"
             className={`bg-custom-blue-darker bg-custom-blue-darker/80 px-4`} disabled
           >
-            Penugasan Belum Dapat Diunduh
+            Belom dapat diunduh 
           </Button>
         }
         
