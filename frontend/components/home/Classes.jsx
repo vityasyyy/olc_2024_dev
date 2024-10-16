@@ -67,7 +67,7 @@ const Card = ({
               fill
               sizes={`100%`}
               className="object-cover scale-110"
-              alt="Mentor Image"
+              alt="Mentor Image "
             />
           </div>
           <div className="flex min-h-40 w-full flex-col justify-between gap-1 bg-custom-blue-darker p-4 text-white sm:h-full sm:w-full">
