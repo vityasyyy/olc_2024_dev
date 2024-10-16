@@ -71,8 +71,13 @@ const Payment = () => {
       <>
         <div className="grid grid-cols-1 md:h-screen md:grid-cols-2 md:overflow-hidden">
           {/* left/top */}
-          <div className="h-[50vh] bg-custom-blue-darker px-[min(5vw,32px)] py-8 md:h-screen">
+          <div className="h-72 bg-custom-blue-dark px-[min(5vw,32px)] py-8 md:h-screen">
             <BackButton />
+            <h1
+              className={`relative z-30 mt-2 text-2xl font-semibold text-white`}
+            >
+              Pembayaran
+            </h1>
           </div>
 
           {/* right/bottom/form */}
@@ -215,7 +220,8 @@ const PaymentForm = ({ slug, className, isDike }) => {
               <strong>BNI a.n Muhammad Fariz (1442851203)</strong>
             </li>
             <li>
-              Beri catatan dengan format <strong>[Nama]_[KelasOLClass]_OLC</strong>
+              Beri catatan dengan format{" "}
+              <strong>[Nama]_[KelasOLClass]_OLC</strong>
             </li>
           </ol>
         </div>
@@ -226,7 +232,8 @@ const PaymentForm = ({ slug, className, isDike }) => {
             <AlertDialogHeader>
               <AlertDialogTitle>Confirm Enrollment</AlertDialogTitle>
               <AlertDialogDescription>
-                Apakah anda yakin untuk mendaftar di kelas ini? Pastikan anda membaca instruksi dengan baik, teliti, lengkap, dan benar.
+                Apakah anda yakin untuk mendaftar di kelas ini? Pastikan anda
+                membaca instruksi dengan baik, teliti, lengkap, dan benar.
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
@@ -256,7 +263,7 @@ const UploadButton = () => (
     href="https://forms.gle/sFa6Rt4gVuXfsqXQ8"
     target="_blank"
     rel="noopener noreferrer"
-    className="w-full border-[1.5px] border-custom-blue-dark font-medium text-custom-black hover:bg-custom-blue/10 sm:text-base flex justify-center items-center py-2"
+    className="flex w-full items-center justify-center border-[1.5px] border-custom-blue-dark py-2 font-medium text-custom-black hover:bg-custom-blue/10 sm:text-base"
   >
     <span className="mr-2 block">
       <ImageIcon className={`h-5 font-light text-custom-blue-dark`} />
