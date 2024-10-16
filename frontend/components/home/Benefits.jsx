@@ -3,7 +3,7 @@ import Tag from "../global/Tag";
 import Image from "next/image";
 import sysbraykrlogobg from "@/public/hero/sysbraykrlogobg.png";
 import gameloftlogobg from "@/public/hero/gameloftlogobg.png";
-import telkomsigmalogo from "@/public/hero/telkomsigmalogo.webp";
+import telkomsigmalogo from "@/public/hero/TelkomSigmalogo.webp";
 
 const Benefits = () => {
   return (
