@@ -15,7 +15,7 @@ export default function Hero() {
 
         {/* orange box */}
         <div
-          className={`absolute bottom-0 left-1/2 z-0 h-1/2 w-48 -translate-x-1/2 transform rounded-t-lg bg-custom-brown-light sm:left-auto sm:right-[5rem] sm:w-[25vw] sm:translate-x-0`}
+          className={`absolute bottom-0 left-1/2 z-0 h-1/2 w-48 -translate-x-1/2 transform rounded-t-lg bg-custom-brown-light sm:left-auto sm:right-[5rem] sm:w-[25vw] sm:translate-x-0 `}
         ></div>
 
         {/* image with a bunch of wrappers */}
