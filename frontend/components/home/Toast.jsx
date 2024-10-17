@@ -46,7 +46,7 @@ const Toast = () => {
 
   return (
     // toast and cta
-    <div className="z-20 mx-auto flex w-full max-w-sm flex-col items-center gap-2.5 rounded-lg bg-white p-2.5 text-sm sm:mx-0 sm:w-fit sm:max-w-xl sm:flex-row sm:px-4">
+    <div className="z-20 mx-auto flex w-fit px-8 max-w-xs flex-col items-center gap-2.5 rounded-lg bg-white p-2.5 text-sm sm:mx-0 sm:w-fit sm:max-w-xl sm:flex-row sm:px-4">
       {text}
       {button}
     </div>
