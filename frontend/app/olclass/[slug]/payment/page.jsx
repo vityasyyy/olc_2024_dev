@@ -144,7 +144,13 @@ export default Payment;
 const PaymentForm = ({ slug, className, isDike }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [isUploaded, setIsUploaded] = useState(false); // New state variable
   const router = useRouter();
+
+  const handleUploadClick = () => {
+    setIsUploaded(true); // Mark as uploaded when the button is clicked
+  };
+
   const handleEnrollment = async () => {
     setLoading(true);
     setError(null);
@@ -190,6 +196,7 @@ const PaymentForm = ({ slug, className, isDike }) => {
     <Button
       variant={`secondary`}
       className={`py-3 text-sm font-medium sm:text-base`}
+      disabled={!isUploaded} // Disable if not uploaded
     >
       Submit
     </Button>
@@ -225,7 +232,7 @@ const PaymentForm = ({ slug, className, isDike }) => {
             </li>
           </ol>
         </div>
-        <UploadButton />
+        <UploadButton onClick={handleUploadClick} /> {/* Pass click handler */}
         <AlertDialog>
           <AlertDialogTrigger asChild>{buttonContent}</AlertDialogTrigger>
           <AlertDialogContent>
@@ -258,12 +265,14 @@ const PaymentForm = ({ slug, className, isDike }) => {
   );
 };
 
-const UploadButton = () => (
+// Modify UploadButton to accept an onClick prop
+const UploadButton = ({ onClick }) => (
   <Link
     href="https://forms.gle/sFa6Rt4gVuXfsqXQ8"
     target="_blank"
     rel="noopener noreferrer"
     className="flex w-full items-center justify-center border-[1.5px] border-custom-blue-dark py-2 font-medium text-custom-black hover:bg-custom-blue/10 sm:text-base"
+    onClick={onClick} // Call onClick when the button is clicked
   >
     <span className="mr-2 block">
       <ImageIcon className={`h-5 font-light text-custom-blue-dark`} />
