@@ -4,6 +4,7 @@ import Image from "next/image";
 import sysbraykrlogobg from "@/public/hero/sysbraykrlogobg.png";
 import gameloftlogobg from "@/public/hero/gameloftlogobg.png";
 import telkomsigmalogo from "@/public/hero/TelkomSigmalogo.webp";
+import imperial from "@/public/hero/imperial.png"
 
 const Benefits = () => {
   return (
@@ -51,6 +52,7 @@ const Benefits = () => {
           <SponsorCard src={sysbraykrlogobg} alt="Sysbraykyr" />
           <SponsorCard src={telkomsigmalogo} alt="Telkomsigma" />
           <SponsorCard src={gameloftlogobg} alt="Gameloft" />
+          <SponsorCard src={imperial} alt="Imperial" />
         </div>
       </Container>
     </>
