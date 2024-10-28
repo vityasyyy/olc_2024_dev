@@ -1,4 +1,4 @@
-## Before You Make Changes
+## Before You Make Changes OI OI OI BAKAAA
 
 PLEASE jangan lupa **PULL** sebelum bikin perubahan apapun, dan jangan lupa saling kabarin lagi kerjain bagian apa :)
 
