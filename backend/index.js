@@ -43,11 +43,5 @@ app.use('/auth', userRoutes);
 app.use('/olcon', olconRoutes);
 app.use('/olclass', olclassRoutes);
 
-app.use((err, req, res, next) => {
-  const { statusCode = 500 } = err;
-  if(!err.message) err.message = "Something went wrong";
-  res.status(statusCode).json({ error: err.message });
-});
-
 const PORT = process.env.PORT || 5050;
 app.listen(PORT, () => console.log(`Server running on PORT ${PORT}`));
